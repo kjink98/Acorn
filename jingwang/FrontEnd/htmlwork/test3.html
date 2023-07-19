@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 로컬 경로 -->
+    <!-- <img src="C:\jingwang\FrontEnd\htmlwork\images\Desert.jpg"/> -->
+    
+    <!-- 가상 경로 -->
+    <img src="http://127.0.0.1:5500/images/Desert.jpg"/>
+    <!-- 주소를 바꿀 필요 없음 -->
+    <!-- / 은 절대 경로 -->
+    <img src="/images/Desert.jpg"/>
+    
+    <!-- 상대 경로 -->
+    <img src="images/Desert.jpg"/>
+    <img src="images/Penguins.jpg"/>
+    <img src="duke_point.gif"/>
+    <!-- . 은 현재 위치 -->
+    <!-- .. 은 상위 -->
+    <!-- alt 는 이미지 오류 났을 때 뜨는 설명 -->
+    <img src="./images/Desert.jpg" alt="사막 이미지"/>
+    <img src="./duke_point.gif" alt="듀크 포인트 이미지"/> 
+    <img src="../images/Jellyfish.jpg" alt="해파리 이미지"/>
+</body>
+</html>
