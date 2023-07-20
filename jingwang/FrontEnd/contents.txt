@@ -60,3 +60,15 @@ HTML(Hyper Text Markup Language)
 				- 절대 경로
 					ㄴ 로컬 경로 (서버에서는 사용 불가, 내 pc에서는 사용 가능)
 					ㄴ 가상 경로
+			4) 하이퍼 링크
+				※ URL(Uniform Resource Locator)
+					네트워크 상에서 자원이 어디 있는지를 알려주기 위한 규약이다. 즉, 컴퓨터 네트워크와 검색 메커니즘에서의 위치를 지정하는, 웹 리소스에 대한 참조이다. 쉽게 말해서, 웹 페이지를 찾기위한 주소를 말한다.
+				- 형식
+					프로토콜명://도메인주소:포트번호/폴더명/파일명#세부위치
+					// http는 프로토콜 (hyper text tranasfer protocol)
+					http://
+				- test4.html
+			5) 테이블
+				- test5.html
+			6) Input Type : 폼 태그
+				- test6.html
