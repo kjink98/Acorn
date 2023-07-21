@@ -27,7 +27,7 @@ HTML(Hyper Text Markup Language)
 	문법
 		- 주석 처리 : <!-- 컨텐츠 -->
 		- 태그의 기본 구조
-			<열린태그 속성="속성값">컨텐츠</닫힌태그> <<- Element(요소) 라고 함
+			<열린태그 속성="속성값">컨텐츠</닫힌태그> <<- Element(시작과 끝을 잘 묶어준, 완전히 하나의 구성요소) 라고 함
 			<열린태그></닫힌태그> 또는 <열린태그 /> // 컨텐츠가 없을 때
 		- 문서의 기본 구조
 			<!DOCTYPE html>
@@ -72,3 +72,57 @@ HTML(Hyper Text Markup Language)
 				- test5.html
 			6) Input Type : 폼 태그
 				- test6.html
+
+CSS (Cascading Style Sheet)
+	개요
+		1) 버전
+			css 1.x -> css 2.x -> css 3.x > css 4.x
+		2) 목적
+			- 디자인(HTML 등)의 효과적인 관리(유지보수 등)
+			- 웹 표준화(Cross Browsing)
+	사용 방법
+		1) External Style
+			- 별도의 .css파일을 만들어서 호출하여 사용하는 방식
+		2) Inline Style
+			- 태그 안에서 직접 사용하는 방식
+			- style 이라는 속성을 이용
+		3) Internal Style
+			- 하나의 페이지에 단 한 번만 정의함으로써 같은 페이지내에서는 동일한 디자인을 재사용할 수 있다.
+		4) Import Style
+			- 외부의 css파일간의 연결(직렬)
+	문법
+		선택자(Selector) { 속성 : 값; }
+		
+		1) 선택자(Selector)
+			a) 기본 선택자
+				- * (전체 선택자)
+				- 태그 선택자 : 태그 이름으로 선택
+				- 클래스 선택자 : 태그의 class 속성의 값으로 선택 (. 표시)
+				- 아이디 선택자 : 태그의 id 속성의 값으로 선택 (# 표시)
+			b) 복합 선택자
+				- 일치 선택자(Basic Combinator) : 태그.클래스명
+				- 자식 선택자(Child Combinator) : 태그 > 클래스명
+				- 하위(후손) 선택자(Descendant Combinator) : 태그 .클래스명
+				- 인접 형제 선택자(Adjacent Sibling Combinator) : .클래스명 + 태그
+				- 일반 형제 선택자(General Sibling Combinator) : .클래스명 ~ 태그
+			c) 가상 클래스 선택자(Pseudo Classes Selector) : ":" 을 사용
+				- hover : 마우스 커서가 요소 위에 있는 동안 선택
+				- active : 마우스를 클릭하고 있는 동안 선택
+				- focus : 포커싱이 되면 선택. 모든 걸 포커스가 되는 게 아님.
+					input, a, button,label, select 등 주로 대화형 컨텐츠들
+				- first-child
+				- last-child
+				- nth-child
+				- not
+			d) 가상 요소 선택자(Pseudo Elements Selector) : "::" 사용, 컨텐츠 추가
+				- before
+				- after
+			e) 속성 선택자(Attribute Selector)
+				※ 속성이란? <태그명 속성> </태그명>
+				[속성명] {...}
+				[속성=값] {...}
+		2) 디자인 속성값
+			- Font 관련 (font, line)
+			- 색상 및 이미지 관련(color, background)
+			- 텍스트 관련(text, line)
+			- 여백(margin, padding, border)
