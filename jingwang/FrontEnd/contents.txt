@@ -126,3 +126,253 @@ CSS (Cascading Style Sheet)
 			- 색상 및 이미지 관련(color, background)
 			- 텍스트 관련(text, line)
 			- 여백(margin, padding, border)
+		3) 스타일 상속
+			- 현재 요소의 스타일이 자식이나 하위 요소에까지 영향을 미치는 것
+			- 주로 글자/문자 관련 속성들이 상속(font, text 관련)
+		4) Block 요소와 Inline 요소
+			a) Block 요소
+				- 줄 바꿈 현상이 나타남
+				- width/height 값 사용 가능(공간 만들기 가능)
+				- margin(바깥 여백)과 padding(안 쪽 여백) 값 사용 가능(상하 배치 작업 가능)
+				- inline 요소를 포함할 수 있다.
+				- <div>, <p>, <h>, <ul>, ...
+			b) Inline 요소
+				- 줄 바꿈 현상이 없음
+				- width/height 값 적용 불가
+				- margin/padding/bottom 값 적용 불가(좌우 여백은 가능)
+				- block 요소를 포함할 수 없다
+				- <img>, <a>, <span>, ...
+			※ <input> : block 과 inline 두 가지 특징을 모두 가지고 있다.
+		5) 디자인 속성
+			a) width, height
+			- width 는 자동으로 크기가 설정된다.
+				<div></div>
+				div {
+				/*   width:100px; */
+					height:100px;
+					background-color :orange;
+				}
+			b) margin, padding
+				margin : top, right, bottom, left
+				margin : [top, bottom] [left, right[
+				ex)
+					margin : 20px 20px
+				margin : [top] [left, right] [bottom]
+				margin : [top right, bottom, left]
+				
+				padding 도 동일
+			c) border
+				border : 선-두께 선-종류 선-색상 - 한 번에
+				border : width, border-style, border-color - 개별적
+			d) 크기 계산 : box-sizing
+				- content-box (기본값)
+				- border-box
+					<div class='item'>hello</div>
+					<div class='item'>hello</div>
+					
+					.item {
+					  width: 100px;
+					  height: 100px;
+					  background-color: orange;
+					}
+
+					.item:first-child{
+					/* border 4px+4px, padding 20px+20px 총 48px를 빼야 두번째 div랑 크기가 같아짐   */
+					/*   width: 52px;
+					  height: 52px; */
+					/* 자동으로 맞춰짐  */
+					  box-sizing: border-box;
+					  border: 4px solid red;
+					  padding: 20px;
+					}
+				-------------------------------------------------------
+			e) 넘침 제어 : overflow
+				- visible : 넘친 내용을 그대로 보여줌
+				- hidden : 넘친 내용을 숨김
+				- auto : 넘친 내용이 있을 경우에만 잘라내고 스크롤바 생성
+				- scroll (거의 안씀)
+					<div class="parent">
+						<div class="child"></div>
+					</div>
+					
+					.parent{
+					  width: 200px;
+					  height: 150px;
+					  background-color: royalblue;
+					  margin: 20px;
+					/*   overflow: hidden; */
+					  overflow: auto;
+					}
+
+					.child{
+					  width: 300px;
+					  height: 100px;
+					  background-color: orange;
+					}
+				-------------------------------------------------------------------
+			f) 출력 : display
+				- block, inline, inline-block
+				- flex(1차원), grid(2차원), none(화면에서 사라짐)
+				- table, table-cell, table-row, ...
+			g) 배경 : background
+				test.html
+			h) 배치
+				ㄱ) 기준점 : position
+					- static (기본값)
+					- relative : 요소 자신을 기준
+					- absolute : 위치상 부모 요소를 기준, 가장 많이 사용
+					- fixed : 뷰포트(브라우저) 기준, 화면 고정 효과가 있다.
+					<div class="wrap">
+					  <div class="container">
+						<div class="item">1</div>
+						<div class="item">2</div>
+						<div class="item">3</div>
+					  </div>
+					</div>
+					
+					.wrap{
+					  width: 400px;
+					  height: 300px;
+					  background-color: tomato;
+					  position: relative;
+					}
+
+					.container{
+					  width: 300px;
+					  background-color: royalblue;
+					/*   컨테이너 위치 relative로 잡아주기 */
+					  position: static;
+					}
+
+					.container .item{
+					 border: 4px dashed red;
+					 background-color: orange;
+					}
+
+					.container .item:nth-child(1){
+					  width: 100px;
+					  height: 100px;
+					}
+
+					.container .item:nth-child(2){
+					  width: 140px;
+					  height: 70px;
+					/*   현재 있던 곳에서 위를 기준으로 30px 왼쪽을 기준으로 60px 떨어져 있음. 근데 실제로 움직인 건 아니고 거의 잔상 느낌 그래서 relative는 잘 쓰이진 않음. 레이아웃이 깨질 수 있음 
+					  position: relative; 
+					  top: 30px;
+					  left: 60px; */
+					
+					/*   구조상에 부모는 있어도 위치상에 부모가 없음 부모가 없으면 상위 부모를 찾는데 없으면 뷰포트(body)가 기준이 됨
+					  하지만 지금 원하는 건 컨테이너가 기준이 되는 것 따라서 컨테이너에 위치를 잡아줌(position)*/
+					  position : absolute;
+					  bottom: 30px;
+					  right: 60px;
+					  
+					}
+
+					.container .item:nth-child(3){
+					  width: 70px;
+					  height: 120px;
+					}
+				-------------------------------------------------
+				ㄴ) 방향 지정 :top, bottom, right, left
+					- auto : 브라우저가 자동으로 계산
+					- 숫자값 지정 : px, em, rem 단위 사용
+				ㄷ) Stack Order(요소 쌓임 순서) : z-index
+					- 요소에 position 속성의 값이 있는 경우 위에 쌓임 (static 제외)
+					- 위의 조건이 같은 경우 z-index 속성의 숫자 값이 높을 수록 위에 쌓임
+					- 위의 모든 조건이 같은 경우 HTML의 다음 구조일 수록 위에 쌓임		
+				<div class="container">
+				  <div class="item">1</div>
+				  <div class="item">2</div>
+				  <div class="item">3</div>
+				</div>
+
+				.container{
+				  width: 300px;
+				  background-color: royalblue;
+				  position: relative;
+				}
+
+				.container .item{
+				  width: 100px;
+				  height: 100px;
+				  border: 4px dashed red;
+				  background-color: orange;
+				}
+
+				.container .item:nth-child(1){
+				  position:relative;
+				  z-index:1;
+				}
+
+				.container .item:nth-child(2){
+				  position: absolute;
+				  top: 50px;
+				  left: 50px;
+				  z-index:0;
+				}
+
+				.container .item:nth-child(3){
+				  position: fixed;
+				  z-index:2;
+				}
+				
+				ㄹ) position 의 값으로 absolute, fixed가 지정된 요소는, display 속성이 block으로 변경됨
+				<span>123</span>
+				
+				/* 인라인 요소, 글자 속성 이므로 폭과 높이 적용이 안됨 display: block을 넣으면 가능 */
+				span {
+				  width: 100px;
+				  height: 100px;
+				  background: orange;
+				  font-size: 40px;
+				  position:fixed;
+				/*   display: block; */
+				}
+				-----------------------------------------------------------------------
+				ㅁ) flex(정렬) : 1차원 레이아웃의 정렬
+					- Flex Container
+					- Flex Item
+				<div class="container">
+				  <div class="item">1</div>
+				  <div class="item">2</div>
+				  <div class="item">3</div>
+				</div>
+				
+				.container {
+				  background : royalblue;
+				  display: flex;
+				}
+
+				.item{
+				  width: 100px;
+				  height: 100px;
+				  border: 3px dashed red;
+				  background : orange;
+				}
+			------------------------------------------------------------------
+		6) 전환 : transition
+			transition : 속성명 지속시간 타이밍함수 대기시간;
+			<div></div>
+			
+			div {
+			  width: 100px;
+			  height: 100px;
+			  background : orange;
+			  transition :
+				width 2s, 5s,
+				background 2s;
+			}
+
+			div:hover {
+			  width: 300px;
+			  background : royalblue;
+			}
+		------------------------------------------------------------------------
+		7) 변환 : transform
+			transform : 변환함수1 변환함수2 변환함수3 ...;
+				원근법, 이동, 크기, 회전, 기울임
+			- 2D 변환함수
+			- 3D 변환함수
+			test2.html
