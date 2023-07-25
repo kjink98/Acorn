@@ -72,7 +72,7 @@ HTML(Hyper Text Markup Language)
 				- test5.html
 			6) Input Type : 폼 태그
 				- test6.html
-
+================================================================================================================================================
 CSS (Cascading Style Sheet)
 	개요
 		1) 버전
@@ -215,6 +215,7 @@ CSS (Cascading Style Sheet)
 				- flex(1차원), grid(2차원), none(화면에서 사라짐)
 				- table, table-cell, table-row, ...
 			g) 배경 : background
+				- background-image: url("경로")
 				test.html
 			h) 배치
 				ㄱ) 기준점 : position
@@ -333,7 +334,18 @@ CSS (Cascading Style Sheet)
 				-----------------------------------------------------------------------
 				ㅁ) flex(정렬) : 1차원 레이아웃의 정렬
 					- Flex Container
+						- display : 가용한 공간 내에서 크기와 위치를 자동 조정
+						- flex-direction : 컨테이너 안에 위치되는 방법 지정
+						- flex-wrap : 줄바꿈
+						- justify-content : 수직방향의 정렬
+						- align-content : 기본 축 내에서 개별 항목을 정렬하는 방법과 유사하게 교차 축에 추가 공간이 있을 때 flex container의 선을 정렬
+						- align-items : 세로 축을 기준으로 정렬
 					- Flex Item
+						- order : item의 순서를 설정
+						- flow-grow : 속성이 남는 행 여백을 분배해서 채움
+						- flex-shrink : 속성이 레이아웃을 벗어난 아이템 너비를 분배해서 줄이는 방법
+						- flex-basis : flex 아이템의 기본 크기 설정
+						
 				<div class="container">
 				  <div class="item">1</div>
 				  <div class="item">2</div>
@@ -376,3 +388,30 @@ CSS (Cascading Style Sheet)
 			- 2D 변환함수
 			- 3D 변환함수
 			test2.html
+================================================================================================================================================
+JavaScript
+	※ HTML이 웹 페이지의 기본 구조를 담당하고, CSS가 디자인을 담당한다면 JavaScript는 클라이언트 단에서 웹 페이지가 동작하는 것을 담당한다. 웹 페이지를 자동차에 비유하자면, HTML은 자동차의 뼈대, CSS는 자동차의 외관, JavaScript는 자동차의 동력원인 엔진이라고 볼 수 있다.
+	
+	※ ECMA스크립트란, ECMA-262 기술 규격에 따라 정의하고 있는 표준화된 스크립트 프로그래밍 언어를 말한다. 자바스크립트를 표준화하기 위해 만들어졌다
+	
+	- 스크립트 언어
+	- 객체 기반 언어
+	- 사용 방법
+		1) inline 방식
+			inline.html
+		2) internal 방식
+			internal html
+		3) external 방식
+			external.html
+	- 문법
+		1) 변수 : 임시 기억(저장) 장소
+			- 변수 선언 방법
+				var 변수명; (안 쓰는 거 권장)
+				let
+				const
+				01_variable.html
+		2) 변수 표기법
+			- dash-case(kebab-case)
+			- snake_case
+			- camelCase
+			- PascalCase
