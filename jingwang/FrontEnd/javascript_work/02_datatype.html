@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // String
+        let string1 = "Hello";
+        let string2 = '1234';
+        // ` ;Backtick  바깥에 있는 변수 불러올 수 있음
+        // ${} ; Template literals
+        let string3 = `Hello ${string2}`; 
+
+        console.log(string1, string2, string3);
+        console.log("---------------------------------");
+
+        // ---------------------------------------------
+        // Number
+        let num1 = 100;
+        console.log(num1 + 10);
+
+        let num2 = 3.14;
+        let num3 = .15;
+        console.log(num1 + num2);
+        console.log(typeof(string1), typeof(num1));
+        console.log(num1 + string2);
+        console.log(num1 + undefined); // NaN; Not A Number
+        console.log(typeof(num1 + undefined)); // number
+
+        num1 = 0.1;
+        num2 = 0.2;
+        console.log(num1 + num2);
+        console.log((num1 + num2).toFixed(1));
+        console.log(typeof((num1 + num2).toFixed(1)));
+        console.log(Number((num1 + num2).toFixed(1)));
+        console.log(typeof(Number((num1 + num2).toFixed(1))));
+        console.log("---------------------------------");
+
+        // ---------------------------------------------
+        // Boolean
+        let b1 = true;
+        let b2 = false;
+        console.log(b1, b2);
+        console.log("---------------------------------");
+
+        // ---------------------------------------------
+        // Undefined, Null
+        // Null 은 직접 사용하는 값, Undefined은 자동으로 값이 표시되는 값
+        let age = null;
+        console.log(age);
+
+        let height;
+        console.log(height);
+        console.log("---------------------------------");
+
+        // ---------------------------------------------
+        // Object
+        const user1 = new Object() // 객체 생성
+        user1.name = '홍길동';
+        user1.age = 30;
+        user1.height = 170.5;
+        console.log(user1.name, user1.age, user1.height);
+        console.log(user1['name'], user1['age'], user1['height']);
+        console.log(user1);
+
+        // key: value
+        const user2 = {
+            name:"임꺽정",
+            age: 35,
+            height: 172.7
+        };
+        console.log(user2);
+        console.log(user2.name, user2.age, user2.height);
+        console.log(user2['name'], user2['age'], user2['height']);
+
+        const userA = {
+            name : '홍길동',
+            age : 30
+        };
+
+        const userB = {
+            name: '홍도깨비',
+            age: 150,
+            origin : userA
+        };
+        
+        console.log(userB);
+        console.log(userB.name, userB.age);
+        console.log(userB.origin.name, userB.origin.age);
+        console.log(userB['origin'].name, userB['origin'].age);
+        console.log(userB['origin']['name'], userB['origin']['age']);
+        console.log("---------------------------------");
+        
+        // ---------------------------------------------
+        // Array
+        let fruit1 = 'apple';
+        let fruit2 = 'banana';
+        let fruit3 = 'cherry';
+        
+        // let fruit = new Array('apple', 'banana', 'cherry');
+        let fruit = ['apple', 'banana', 'cherry', 100];
+        console.log(fruit);
+        console.log(fruit[0], fruit[1], fruit[2], fruit[3]);
+        console.log(fruit.length);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
