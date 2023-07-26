@@ -1,0 +1,26 @@
+body{
+    /* kbo 사진 넣기 */
+    background-color: cornflowerblue;
+    height: 100vh;
+}
+.container{
+    /* 팀명 */
+    margin: 500px 150px;
+    width: 550px;
+    height: 100px;
+    border-radius: 30px;
+    border: solid black;
+}
+
+.container .ssgLanders{
+    /* ssg 배너 */
+    width: 550px;
+    height: 100px;
+    background-color: aqua;
+}
+
+.container .ssgLanders .txt-ssgLanders{
+    /* ssg 링크 */
+    color: red;
+    background-color: aliceblue;
+}
