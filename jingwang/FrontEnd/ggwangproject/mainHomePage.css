@@ -2,6 +2,7 @@ body{
     /* kbo 사진 넣기 */
     /* background-color: cornflowerblue; */
     height: 100vh;
+    display: flex;
 }
 .container{
     /* 팀명 */

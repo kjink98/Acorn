@@ -6,14 +6,33 @@ body{
     padding: 50px 0px;
 }
 
-.container .position .pitcher{
-
+.container .txt{
+    /* 글자체 */
 }
 
-.container .position .better{
-
+.container .txt .txt-pitcher{
+    /* 위치조정 */
+    position: absolute;
+    top: 750px;
+    left: 250px;
 }
 
-.container .position .coach{
+.container .txt .batter{
+    
+}
 
+.container .txt .coach{
+    
+}
+
+.container .img .pitcher{
+    /* 사진, 위치 */
+}
+
+.container .img .batter{
+    
+}
+
+.container .img .coach{
+    
 }
