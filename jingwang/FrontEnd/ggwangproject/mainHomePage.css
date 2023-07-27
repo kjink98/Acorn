@@ -2,7 +2,6 @@ body{
     /* kbo 사진 넣기 */
     /* background-color: cornflowerblue; */
     height: 100vh;
-    display: flex;
 }
 .container{
     /* 팀명 */
@@ -21,10 +20,10 @@ body{
 
 .container .ssgLanders .txt-ssgLanders{
     /* ssg 링크 */
-    margin: 10px 180px;
+    margin: 10px 170px;
 	padding: 10px;
     position: absolute;
     font-size: 10px;
-    background-attachment: fixed;
+    white-space: nowrap;  /* 줄바꿈 없애기 */
     
 }
