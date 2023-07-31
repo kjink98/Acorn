@@ -552,4 +552,111 @@ JavaScript
 				c) 배열의 구조 분해 할당
 				d) 나머지 매개변수
 			- 함수 작성 문법
-				Array Function(화살표 함수)
+				Arrow Function(화살표 함수)
+				------------------------
+				function sum() {코드}
+				const sum = function() {코드}
+				const sum = ()=>{코드}
+				------------------------
+				※ 매개변수가 없을 때 (생략 불가능)
+					const a = () => {}
+				※ 매개변수가 하나 있을 때 (생략 가능)
+					const a = x => {}
+				※ 매개변수가 두 개 이상 있을 때 (생략 불가능)
+					const a = (x, y) => {}
+					
+				※ return을 생략할 때에는 {}도 생략해야 한다.
+					const a = x => {return x*x;}
+					const a = x => x*x;
+				※ 두 줄 이상일때는 {}와 return 생략 불가능
+					const a = x => {
+						console.log(x*x);
+						return x*x;
+					}
+				※ 객체 형식 사용 가능
+					const a = () => {return {x:1} }
+					※ 한 줄 일 때
+					const a = () =>  {x:1} // 이것은 오류
+					const a = () =>  ({x:1}) // 이것은 가능
+				※ 배열 형식 사용 가능
+					const a = () => { return [1, 2, 3] }
+					※ 생략 가능
+					const a = () => [1, 2, 3] // 구분이 가능하기 때문에
+					09_function4.html
+			- 콜백 함수
+				함수가 실행될 때 인자로 돌아가는 또 다른 함수가
+				09_function4.html
+			- 재귀(recursive) 함수
+				function a(){
+				...
+				a()
+				}
+				
+				a();
+			- 내장(built-in) 함수
+				메시지 관련 함수
+					window.prompt()
+					window.alert()
+					window.confirm()
+				변환 함수
+					Number(), String()
+					parselnt(), parseFloat()
+					eval()
+				그 외
+					isFinite(), isNan()
+					escape(), unescape() : 알파벳과 숫자 및 * @ - _ + . / 를 제외한 문자를 모두 16진수로 바꾸어주거나 다시 원상태로 복구
+				10_function5.html
+		7) 객체
+			※	함수 : 어디에도 속하지 않고 함수 자체로만 존재하는 것
+				메서드 : 객체라는 커다란 덩어리 안에 있는 함수
+			- 객체 생성 방법
+				객체명 = function(파라미터){
+					this.인스턴스변수 = 파라미터
+				}
+				
+				객체명.prototype.메서드명 = function(파라미터){
+					this.인스턴스변수 = 파라미터
+				}
+				
+				b1 = new Object()
+				b1.title = "노인과 바다"
+				b1.author = "헤밍웨이"
+				b1.setValue = function(t, a){
+					this.title=t
+					this.author=a
+				}
+				11.userDefineObject1.html
+			- 내장 객체
+			(mdn으로 검색)
+				a) Array
+					- length // 배열의 길이
+					- concat() // 문자열 합치기, join() // 배열의 원소를 문자열로 합치기, reverse() // 배열 반전, sort() //배열 정렬, slice() // 배열 자르기
+				b) Date
+					-getFullYear() // 연도 출력, getMonth() // 월 출력, getDate() // 날짜 출력, getDay() // 요일 출력 (월1... 일7), getHour() // 시간 출력, ...
+				c) Math
+					- pow() //제곱, ceil() // 올림, round() // 반올림, random() // 난수 생성, abs() // 절대값, ...
+				d) String
+					-toLowerCase() //소문자, toUpperCase() //대문자, charAt() // 특정 인덱스 문자 반환, concat() // 문자열 합치기, indexOf() //특정 문자 위치 찾기, split() // 문자열을 배열로 변환, substr() // 문자열 자르기, ...
+				e) Screen
+					- height, width, availHeight //화면의 사용 가능한 높이 값을 반환, availWidth // 화면의 사용 가능한 너비 값을 반환, pixelDepth //화면의 픽셀당 비트 수를 반환, colorDepth //화면의 표현 가능한 컬러 색상 수를 반환
+				f) Window
+					location // 현재 브라우저에 표시된 html 문서의 주소
+					history // 브라우저의 히스토리 정보를 문서와 문서 상태 목록으로 저장하는 객체
+					navigator // 브라우저와 관련된 정보를 컨트롤. 브라우저에 대한 버전, 정보, 종류 등 관련된 정보를 제공
+					document //  웹 페이지 그 자체를 의미
+						link
+						anchor // a태그. 특정 위치로 이동
+						image
+						layer
+						form
+							text
+							textarea
+							password
+							radio
+							checkbox
+							button
+							select
+							reset
+							submit
+				ex) window.document.form.text
+				
