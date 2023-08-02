@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="log.js"></script>
+    <script>
+        function fnload(){
+            // 가장 꼭대기를 가리킴
+            const root = document.documentElement;
+            log(root.nodeName); // HTML
+            log(root.nodeValue); //텍스트 내용이 없으므로 null
+            log(root.nodeType); // 숫자값으로 확인가능
+            log("</br>");
+
+            const first = root.firstChild;
+            log(first.nodeName); // HEAD
+            log(first.nodeValue); // null
+            log(first.nodeType); // 숫자값으로 확인가능
+            log("</br>");
+
+            log(root.lastChild.nodeName); // BODY
+            log(root.lastChild.nodeValue); // null
+            log(root.lastChild.nodeType);
+            log("</br>");
+            
+            const body = root.lastChild;
+
+            let span = body.firstChild;
+            log(span.nodeName); // 공백도 노드이기 때문에 #text출력
+            log(span.nodeValue); // 공백
+            log(span.nodeType);
+            log("</br>");
+
+            let span2 = document.getElementById("a");
+            log(span2.nodeName); // SPAN
+            log(span2.nodeValue); // null
+            log(span2.nodeType);
+            log("</br>");
+
+            log(span2.firstChild.nodeName); // #text
+            log(span2.firstChild.nodeValue); // a
+            log(span2.firstChild.nodeType); 
+            log("</br>");
+
+            log(span2.nextElementSibling.nodeName); // p
+            log(span2.nextElementSibling.nodeValue); // null
+            log(span2.nextElementSibling.nodeType);
+            log("</br>");
+
+            log(document.getElementsByTagName("p").length); // 가져온 p 태그가 몇 개가 있는지
+            log(document.getElementsByTagName("p").item(0).nodeValue); // null
+            log("</br>");
+
+            let spanList = document.getElementsByTagName("span");
+            log(spanList.length); // 3
+            log("</br>");
+
+            for(let i=0; i<spanList.length; i++){
+                let span = spanList.item(i);
+                log((i+1) + '번째 span의 id는 ' + span.getAttribute("id"))
+            }
+            log("</br>");
+
+            let pNode = document.getElementsByTagName("p").item(0);
+            let childs = pNode.childNodes;
+
+            for(let i=0; i<childs.length; i++){
+                let child = childs.item(i);
+
+                if(child.nodeType == 3){ // text 값만 받아서 출력
+                    log(child.nodeValue);
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="fnload()">
+    <span id="a">a</span>
+    <p>
+        <b>진하게</b> test <span id="b"> b 입니다</span>
+    </p>
+    <div>
+        <p>p</p> <span id="c">c</span>
+    </div>
+    <br/><br/>
+    <div id="debugConsole" style="border:1px solid red"></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let cnt = 0;
+        function fnAppendItem(){
+            cnt++;
+            let newItem = document.createElement("div"); // div 생성
+            
+            // <div id="item1"></div>
+            newItem.setAttribute("id", `item${cnt}`); // 속성만 부여
+
+            // <div id="item1">새로 추가된 아이템[1] <input type.../></div>
+            newItem.innerHTML = /* html */ `새로 추가된 아이템[${cnt}] 
+            <input type='button' value='삭제' onclick='fnDeleteItem(${cnt})'/>` // 콘텐츠 부여
+            
+            let itemDiv = document.getElementById("itemList");
+            itemDiv.appendChild(newItem);
+        }
+
+        function fnDeleteItem(cnt) {
+           let item = document.getElementById(`item${cnt}`);
+
+           // null 값이 아니라면 삭제하기
+           if(item !== null){
+            item.parentNode.removeChild(item) // 바로 remove를 쓰면 자기자신도 삭제 될수 있으니 부모를 통해 안전하게 삭제
+           }
+        }
+
+        function fnAppendImg(){
+            
+            
+            let newImg = document.createElement("img"); // img 요소 생성
+            newImg.setAttribute("src","images/hero2.png"); // src 속성 부여
+            newImg.setAttribute("id","img"); // id 속성 부여
+            
+            
+            let container = document.querySelector(".container"); //컨테이너 클래스 검색
+            container.appendChild(newImg); //컨테이너 자식에 newImg 생성
+            
+            let loadingMessage = document.querySelector(".container");
+            loadingMessage.firstElementChild.remove();
+            loadingMessage.firstChild.nextSibling.remove();
+            
+            
+        }
+        
+        
+        setTimeout(fnAppendImg, 3000)
+        
+
+        
+        
+    </script>
+</head>
+<body>
+    <input type="button" value="추가" onclick="fnAppendItem()"/>
+    <div id="itemList"></div>
+    <hr/>
+    <div class="container">
+        <h1>Image Loading...</h1>
+        3초 후에 이미지가 로드됩니다.
+    </div>
+</body>
+</html>

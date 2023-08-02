@@ -663,42 +663,83 @@ JavaScript
 				ex) window.document.form.text
 				12_window.html, zipcode.html, 10_function5.html
 				
-			8) DOM (Document Object Model)
-				자바스크립트가 HTML에 접근할 수 있도록 도와주는 모델(트리 구조)
-				- HTML문서를 객체로 표현한 것
-				- DOM API : DOM에서 사용할 수 있는 여러가지 명령어(함수)
-				※ API (Application Programming Interface) : 함수들의 묶음, 두 소프트웨어 구성 요소가 서로 통신할 수 있게 하는 메커니즘
+		8) DOM (Document Object Model)
+			자바스크립트가 HTML에 접근할 수 있도록 도와주는 모델(트리 구조)
+			- HTML문서를 객체로 표현한 것
+			- DOM API : DOM에서 사용할 수 있는 여러가지 명령어(함수)
+			※ API (Application Programming Interface) : 함수들의 묶음, 두 소프트웨어 구성 요소가 서로 통신할 수 있게 하는 메커니즘
+			
+			a) Node(나머지) vs Element(태그)
+				- Node : HTML 요소, 텍스트, 주석 등 모든 것을 의미
+				- Element : HTML 요소만을 의미
+				13_DOM1.html
+			b) 검색과 탐색
+				- document.getElementById() : id 속성으로 검색
+				- document.querySelector() : css 선택자로 검색
+				- document.querySelectorAll() : css 선택자로 검색한 모든 요소
+				----------------------------------------
+				- N.parentElement : 노드의 부모요소를 반환
+				- E.cloeset() : 자신을 포함한 조상 요소 중 'css선택자'와 일치하는 가장 가까운 요소를 반환
+				- N.previousSibling / N.nextSibling : 노드의 이전 형제 혹은 다음 형제노드 반환
+				- E.previousElementSibling / E.nextElementSibling
+				- E.children : 요소의 모든 자식 요소를 반환
+				- E.firstElementChild / E.lastElementChild : 첫 번째 자식 요소, 마지막 자식 요소를 반환
 				
-				a) Node(나머지) vs Element(태그)
-					- Node : HTML 요소, 텍스트, 주석 등 모든 것을 의미
-					- Element : HTML 요소만을 의미
-					13_DOM1.html
-				b) 검색과 탐색
-					- document.getElementById() : id 속성으로 검색
-					- document.querySelector() : css 선택자로 검색
-					- document.querySelectorAll() : css 선택자로 검색한 모든 요소
-					----------------------------------------
-					- N.parentElement : 노드의 부모요소를 반환
-					- E.cloeset() : 자신을 포함한 조상 요소 중 'css선택자'와 일치하는 가장 가까운 요소를 반환
-					- N.previousSibling / N.nextSibling : 노드의 이전 형제 혹은 다음 형제노드 반환
-					- E.previousElementSibling / E.nextElementSibling
-					- E.children : 요소의 모든 자식 요소를 반환
-					- E.firstElementChild / E.lastElementChild : 첫 번째 자식 요소, 마지막 자식 요소를 반환
-					
 body
-	div
-		<p class="inner-text first-item" id="first">
-			Happy Week
-			<a href="https://chat.netsong7.net" id="chat-link">
-			
-		<p class="inner-text second-item">
-			Happy Programming
-			<a href="https://www.w3schools.com" id="w3-link">
-				W3schools
-			
-	<p class="outer-text first-item" id="second">
-		<b>
-			Programming is funny
-	<p class="outer-text">
-		<b>
-			All or Nothing!
+div
+	<p class="inner-text first-item" id="first">
+		Happy Week
+		<a href="https://chat.netsong7.net" id="chat-link">
+		
+	<p class="inner-text second-item">
+		Happy Programming
+		<a href="https://www.w3schools.com" id="w3-link">
+			W3schools
+		
+<p class="outer-text first-item" id="second">
+	<b>
+		Programming is funny
+<p class="outer-text">
+	<b>
+		All or Nothing!
+14_DOM1test.html
+			c) 생성, 조회, 수정
+				- document.createElement(); 메모리에만 존재하는 새로운 HTML 요소를 생성하고 반환
+				- E.prepend() / E.append() : 노드를 첫 번째 혹은 마지막 자식으로 삽입 (여러 개 추가 가능)
+				- E.remove() : 요소 제거
+				- E.insertAdjacenElement() : 대상 요소의 지정한 위치에 새로운 요소를 삽입
+					insertAdjacenElement(위치, 새로운 요소);
+					
+					<!-- beforebegin -->
+					<div class="target">
+					<!-- afterbegin -->
+						내용
+					<!-- beforeend -->
+					</div>
+					<!-- afterend -->
+				- N.insertBegin(추가할 노드, 참조할 노드)
+				- N.contains(주어진 노드) : 주어진 노드가 자신을 포함한 후손인지 확인
+				- N.textContent : 노드의 모든 텍스트를 얻거나 변경한다.
+				- E. innerHTML
+				- E.dataset : 'data-" 속성값을 얻거나 지정한다.
+				- E.tagName : 요소의 태그 이름을 반환, 수정 불가
+				- E.id : 요소의 id 속성값을 얻거나 지정한다, 수정 가능
+				- E.className : 요소의 class 속성값을 얻거나 지정. 수정 가능
+				- E.getAttribute("속성명"), E.setAttribute("속성명", "값") : 속성값 가져오기
+				- E.hasAttribute("속성명"), E.removeAttribute("속성명")
+				- E.classList : 요소의 class 속성값을 제어
+					.add(), .remove(), .toggle(), contains()
+				- E.style : 요소의 style 속성의 css속성값을 얻거나 지정한다.
+				- window.getComputedStyle() : 요소의 적용된 style 객체를 반환
+				15_DOM2.html
+		9) Event 처리
+			- 3가지 구성 요소
+				이벤트 소스 : 어디서 이벤트가 일어나는지
+					HTML 요소 (주로 input)
+				이벤트 클래스 : 어떤 이벤트가 일어났는지
+					onclick, onblur, onfocus, onmouseover, onmouseout, onselect, onsubmit, onreset, onload, onunload, ondbclick, ondragdrop, onkeydown, onkeyup, onkeypress, onmove, onsize, ...
+				이벤트 핸들러 : 이벤트가 발생했을 때 실행될 함수
+					함수
+			- 이벤트 등록 및 해제
+				addEventListener(이벤트 클래스, 이벤트 핸들러, 캡쳐 타입)
+				removeEventListener(이벤트 클래스, 이벤트 핸들러, 캡쳐 타입)
