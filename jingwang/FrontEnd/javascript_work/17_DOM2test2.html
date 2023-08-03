@@ -30,7 +30,7 @@
            }
         }
 
-        function fnAppendImg(){
+        function fnAppendImg (){
             
             
             let newImg = document.createElement("img"); // img 요소 생성
@@ -39,17 +39,19 @@
             
             
             let container = document.querySelector(".container"); //컨테이너 클래스 검색
+            container.innerHTML=""; // conatainer의 html안을 비워주기
             container.appendChild(newImg); //컨테이너 자식에 newImg 생성
+
+            // let loadingMessage = document.querySelector(".container");
             
-            let loadingMessage = document.querySelector(".container");
-            loadingMessage.firstElementChild.remove();
-            loadingMessage.firstChild.nextSibling.remove();
-            
+            // loadingMessage.firstElementChild.remove();
+            // loadingMessage.firstChild.nextSibling.remove();
+
             
         }
         
-        
         setTimeout(fnAppendImg, 3000)
+        
         
 
         

@@ -8,7 +8,21 @@
     <script>
         window.onload = () => {
             let btn = document.getElementById("btn");
-            btn.addEventListener("click", () => {}, false);
+            btn.addEventListener("click", (ev)=> {
+                log(ev.target) // target ; 이벤트 소스 정보
+                console.log(ev.target);
+
+                log(ev.target.id);
+                log(ev.target.type);
+            }, false);
+            btn.addEventListener("keydown", (ev) => {
+                log(ev.key);
+            })
+
+            btn.addEventListener("wheel", (ev) => {
+                console.log(ev);
+                log(ev);
+            })
         }
     </script>
 </head>
