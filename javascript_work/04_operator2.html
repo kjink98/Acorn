@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // Nullish 병합 연산자
+        let n = 0;
+        let num1 = n || 7;
+        console.log(num1);
+
+        n = 0;
+        num1 = n ?? 7;
+        console.log(num1);
+        console.log(null ?? 1);
+        console.log(undefined ?? 2);
+        console.log(null ?? 1 ?? 2);
+        console.log(false ?? 1 ?? 2);
+        console.log(0 ?? 1 ?? 2);
+        console.log("-----------------------------------------------------------");
+
+        // --------------------------------------------------------------------------------
+        // 전개 연산자
+        let a = [1, 2, 3];
+        console.log(a);
+        console.log(a[0], a[1], a[2]); // a[n] : 인덱스; 배열 안에 있는 데이터에 접근하기 위한 위치정보
+        console.log(...a); // 대괄호를 풀어주어 바로 데이터를 쓸 수 있게 해줌
+
+        let b = [4, 5, 6];
+        let c = [a, b];
+        console.log(c);
+        console.log(...c);
+
+        let d = [...a, ...b];
+        console.log(d);
+        console.log(...d);
+
+        a = {x:1, y:2}; // {키:값, 키:값} , [값, 값]
+        b = {y:3, z:4}; // 키를 이용해 검색하기 위해
+        c = {a, b}; // 키는 중복이 되면 안되지만 자바스크립트에서는 마지막에 입력된 키를 출력해줌
+        console.log(c);
+
+        d = {...a, ...b};
+        console.log(d);
+
+        let e = Object.assign({}, a, b); // 함수를 이용한 전개
+        console.log(e);
+        console.log("-----------------------------------------------------------");
+
+        // --------------------------------------------------------------------------------
+        // 구조 분해 할당 연산자
+        x = 0;
+        y = 0;
+        z = 0;
+        let arr = [1, 2, 3];
+        // x = arr[0];
+        // y = arr[1];
+        // z = arr[2];
+        [x, y, z] = arr;
+        console.log(x, y, z);
+
+        [, y, z] = arr;
+        console.log(y, z);
+
+        [, , z] =arr;
+        console.log(z);
+
+        [x, ...y] = arr;
+        console.log(x, ...y);
+
+        // 배열과 객체의 비교
+        arr = [1, 2, 3, 4, 5];
+        let obj = {a:1, b:2, c:3, d:4, e:5};
+
+        [, , , , z] = arr;
+        console.log(z);
+
+        ({e} = obj);
+        console.log(e);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
