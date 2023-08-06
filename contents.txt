@@ -110,19 +110,24 @@ CSS (Cascading Style Sheet)
 			c) 가상 클래스 선택자(Pseudo Classes Selector) : ":" 을 사용
 				- hover : 마우스 커서가 요소 위에 있는 동안 선택
 				- active : 마우스를 클릭하고 있는 동안 선택
+				selector3.html
 				- focus : 포커싱이 되면 선택. 모든 걸 포커스가 되는 게 아님.
 					input, a, button,label, select 등 주로 대화형 컨텐츠들
+				selector4.html
 				- first-child
 				- last-child
 				- nth-child
 				- not
+				selector5.html
 			d) 가상 요소 선택자(Pseudo Elements Selector) : "::" 사용, 컨텐츠 추가
 				- before
 				- after
+				selector6.html
 			e) 속성 선택자(Attribute Selector)
 				※ 속성이란? <태그명 속성> </태그명>
 				[속성명] {...}
 				[속성=값] {...}
+				selector7.html
 		2) 디자인 속성값
 			- Font 관련 (font, line)
 			- 색상 및 이미지 관련(color, background)
@@ -131,6 +136,7 @@ CSS (Cascading Style Sheet)
 		3) 스타일 상속
 			- 현재 요소의 스타일이 자식이나 하위 요소에까지 영향을 미치는 것
 			- 주로 글자/문자 관련 속성들이 상속(font, text 관련)
+				inheritance1.html, inheritance2.html
 		4) Block 요소와 Inline 요소
 			a) Block 요소
 				- 줄 바꿈 현상이 나타남
