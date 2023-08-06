@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const str = `
+            010-1234-5678
+            thesecond@gmail.com
+            Hello world!
+            https://www.omdbapi.com/?apikey=7035c60c&s=frozen
+            The quick brown fox jumps over the lazy dog.
+            hello@naver.com
+            http://localhost:1234
+            동해물과 백두산이 마르고 닳도록
+            abbcccddddeeeee`
+        // 생성자 방식
+        // const regexp = new RegExp('the',''); // 옵션 없음
+        // const regexp = new RegExp('the','g'); // global의 약자 모든 줄을 검색
+        // const regexp = new RegExp('the','gi'); // global ignore case 대소문자 구분 안함
+
+        // 리터럴 방식
+        // const regexp = /the/gi
+        // console.log(str.match(regexp));
+
+        // --------------------------------------------------------------------
+        // 메서드
+        // const regexp = /fox/gi;
+        // console.log((regexp.test(str))); // 일치 여부 확인; true
+        // console.log(str.match(regexp)); // 일치하는 문자 출력
+        // console.log(str.replace(regexp, 'cat')); // cat으로 변경해서 전체 출력
+
+        // --------------------------------------------------------------------
+        // 플래그
+        console.log(str.match(/the/));
+        console.log(str.match(/the/g));
+        console.log(str.match(/the/gi));
+        console.log(str.match(/\.$/gi)); // \: .을 뜻함$ : 맨마지막 , --> 마지막 위치에서 .을 찾겠다.
+        console.log(str.match(/\.$/gim)); // m: 각 줄이 시작과 끝
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
