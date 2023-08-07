@@ -772,7 +772,7 @@ div
 					26_event9.html
 			- 디스패치 : 강제로 이벤트를 발생
 		10) 모듈화
-		29_moduleTest.html, js 파일
+			29_moduleTest.html, js 파일
 		11) 정규 표현식(Regular Expression)
 			※ regexp mdn으로 검색
 			a) 문자열에서 특정 문자 조합을 찾기 위한 패턴

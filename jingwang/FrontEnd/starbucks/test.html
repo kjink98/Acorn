@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <!-- style reset -->
+    <link href="
+        https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css
+" rel="stylesheet">
+
+    <style>
+        div {
+            width: 200px;
+            height: 100px;
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div>Hello World</div>
+    <ul>
+        <li>사과</li>
+        <li>배</li>
+    </ul>
+
+    <!-- BEM(Block Element Modifier) : 요소__일부분, 요소--상태 -->
+    <div class="container">
+        <div class="name"></div>
+        <div class="item">
+            <div class="name"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 요소의 일부분으로써 사용 -->
+        <div class="container__name"></div> 
+        <div class="item">
+            <div class="item__name"></div>
+        </div>
+    </div>
+
+    <div class="btn primary"></div>
+    <div class="btn success"></div>
+    <div class="btn error"></div>
+    
+    <div class="btn--primary"></div>
+    <div class="btn--success"></div>
+    <div class="btn--error"></div>    
+</body>
+
+</html>

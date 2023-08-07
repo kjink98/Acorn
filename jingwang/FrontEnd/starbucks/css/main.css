@@ -1,0 +1,142 @@
+/* COMMON */
+body {
+    color: #333;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: 400;
+    line-height: 1.4;
+    font-size: 16px;
+}
+
+img {
+    /* 이미지는 inline 속성이므로 여백이 있음
+    그러므로 그림 밑 여백을 없애기 위해
+    block 속성으로 변환 */
+    display: block;
+}
+
+a{
+    /* 밑줄 없애기 */
+    text-decoration: none;
+}
+/* style reset을 하면 쓸 필요 없음 */
+/* ul{
+    list-style: none;
+} */
+/* HEADER */
+header {
+    background-color: #f6f5f0;
+    border-bottom: 1px solid #c8c8c8;
+}
+
+header .inner {
+    width: 1100px;
+    /* 가운데 정렬하기 위해 */
+    margin: 0 auto;
+    height: 120px;
+    position: relative;
+}
+
+header .logo {
+    /* 수직정렬을 하기위해서는 높이가 정해져 있어야 함 */
+    height: 75px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    /* 부모를 기준으로 해서 정렬을 해주겠다. */
+    position: absolute;
+    left: 0;
+}
+
+header .sub-menu{
+    /* 한줄로 정렬 */
+    display: flex;
+    /* 오른쪽 정렬 */
+    right: 0px;
+    top: 10px;
+    position: absolute;
+}
+
+header .sub-menu ul.menu{
+    font-family: Arial, Helvetica, sans-serif;
+    /* 수평정렬 */
+    display: flex;
+}
+
+header .sub-menu ul.menu li{
+    position: relative;
+}
+
+header .sub-menu ul.menu li::before{
+    /* 가상 요소 선택자에서는 내용이 없더라도 */
+    /* content는 포함되어야 함 */
+    content:"";
+    width: 1px;
+    height: 12px;
+    background-color: #e5e5e5;
+    /* display: block; */
+    /* position이 absolute나 fixed면 
+    자동으로 display가 block으로 변환됨 */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+header .sub-menu ul.menu li:first-child::before{
+    display: none;
+}
+
+header .sub-menu ul.menu li a{
+    /* background-color: white; */
+    font-size: 12px;
+    /* 실수로 다른 곳을 클릭하지 않도록 여백을 줌 */
+    padding: 11px 16px;
+    /* a태그는 인라인 요소라 위아래 여백을 줄 수가 없음 */
+    display: block;
+    color: #656565;
+}
+
+header .sub-menu ul.menu li a:hover{
+    color:black;
+}
+
+header .sub-menu .search{
+    height: 34px;
+    position: relative;
+}
+
+header .sub-menu .search input {
+    width: 36px;
+    height: 34px;
+    padding: 4px 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+    color: #777;
+    transition: width .4s;
+    font-size: 12px;
+}
+
+header .sub-menu .search input:focus{
+    width: 190px;
+    border-color: #669900;
+}
+
+header .sub-menu .search .material-icons {
+    height: 24px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    /* 오른쪽으로 이동 */
+    right: 5px;
+    transition: .4s;
+    
+}
+
+header .sub-menu .search.focused .material-icons{
+    /* 투명도 */
+    opacity: 0;
+}
