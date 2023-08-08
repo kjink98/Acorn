@@ -1,0 +1,8 @@
+- String
+- Number
+- Boolean
+- Undefined
+- Null	
+- Object
+- Array
+- Function
