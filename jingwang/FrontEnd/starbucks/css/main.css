@@ -557,23 +557,30 @@ header .badges .badge {
 }
 
 /* 공통 속성 */
-.notice .promotion .swiper-button-prev,
-.notice .promotion .swiper-button-next{
+.notice .promotion .swiper-prev,
+.notice .promotion .swiper-next{
     width: 42px;
     height: 42px;
+    outline: none;
+    border: 2px solid #333;
+    border-radius: 50%;
     position: absolute;
+    /* Swiper Container 높이의 절반만큼 끌어올림 */
+    /* 버튼 높이의 절반만큼 추가로 끌어올림 */
     top: 300px;
     z-index: 1;
     cursor: pointer;
-    border-radius: 50%;
-    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .4s;
 }
-.notice .promotion .swiper-button-prev{
+.notice .promotion .swiper-prev{
     left: 50%;
     margin-left: -480px;
 }
 
-.notice .promotion .swiper-button-next{
+.notice .promotion .swiper-next{
     right: 50%;
     margin-right: -480px;
 }

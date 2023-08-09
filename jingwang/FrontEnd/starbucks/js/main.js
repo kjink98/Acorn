@@ -78,7 +78,7 @@ new Swiper('.promotion .swiper', {
     
       // Navigation arrows. 화살표
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-next',
+        prevEl: '.swiper-prev',
       }
 })
