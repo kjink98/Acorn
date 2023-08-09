@@ -162,7 +162,7 @@ header .sub-menu ul.menu li:first-child::before {
 
 header .sub-menu ul.menu li a {
     /* background-color: white; */
-    font-size: 12px;
+    font-size: 13px;
     /* 실수로 다른 곳을 클릭하지 않도록 여백을 줌 */
     padding: 11px 16px;
     /* a태그는 인라인 요소라 위아래 여백을 줄 수가 없음 */
@@ -377,4 +377,213 @@ header .badges .badge {
     position: absolute;
     bottom: 0;
     left: 275px;
+}
+
+.visual .fade-in{
+    opacity: 0;
+
+}
+
+/* --------------------------------------------------------------------- */
+
+/* NOTICE */
+
+.notice{}
+
+.notice .notice-line{
+    position: relative;
+}
+
+.notice .notice-line .bg-left{
+    background-color: #333;
+    /* 부모를 기준으로 반반 나눔 */
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.notice .notice-line .bg-right{
+    background-color: #f6f5ef;
+    /* 부모를 기준으로 반반 나눔 */
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    right: 0;
+    top: 0;
+}
+/* inner 요소는 어쨌든 전체적으로 하나 */
+.notice .notice-line .inner{
+    height: 62px;
+    /* 수평정렬 */
+    display: flex;
+}
+
+.notice .notice-line .inner .inner__left{
+    width: 60%;
+    height: 100%;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.notice .notice-line .inner .inner__left h2{
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    /* 공지사항과 내용의 여백 */
+    margin-right: 20px;
+}
+
+.notice .notice-line .inner .inner__left .swiper{
+    /* 공간 최대 늘리기 */
+    height: 62px;
+    flex-grow: 1;
+}
+
+.notice .notice-line .inner .inner__left .swiper .swiper-slide{
+    /* 높이가 있어야 수직정렬이 가능 */
+    height: 62px;
+    display: flex;
+    align-items: center;
+}
+
+.notice .notice-line .inner .inner__left .swiper .swiper-slide a{
+    color: #fff;
+}
+
+.notice .notice-line .inner__left .notice-line__more{
+    width: 62px;
+    height : 62px;
+    display: flex;
+    /* display: flex일 때 사용 */
+    /* 상자가 적절한 축 방향의 정렬 컨테이너 내부 정당화되는 방법 수평정렬 */
+    justify-content: center;
+    /* 콘텐츠 아이템의 내부 상하관계 수직 정렬 */
+    align-items: center;
+}
+
+.notice .notice-line .inner__left .notice-line__more .material-icons{
+    color: #fff;
+    font-size: 30px;
+}
+
+.notice .notice-line .inner__right{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.notice .notice-line .inner__right h2{
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.notice .notice-line .inner__right .toggle-promotion {
+    width: 62px;
+    height : 62px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notice .notice-line    .inner__right .toggle-promotion .material-icons{
+    font-size: 30px;
+}
+
+.notice .promotion {
+    height: 693px;
+    background-color: #f6f5ef;
+    position: relative;
+    overflow: hidden;
+}
+
+.notice .promotion .swiper{
+    /* width: 2477px; */
+    /* 819px 슬라이드 3개와 그 사이 여백 10px씩 */
+    /* 단위가 바뀌어도 자동으로 계산 */
+    width: calc(819px * 3 + 20px);
+    height: 553px;
+    text-align: center;
+    /* 창 크기 조절을 해도 가운데에 있게 */
+    position: absolute;
+    left: 50%;
+    top: 40px;
+    /* 전체 width의 절반을 끌어오기 위해 */
+    margin-left: calc((819px * 3 + 20px) / -2 );
+}
+/* 가운데면 swiper-slide-active로 swiper가 알아서 바꿔줌 */
+/* 따라서 여기는 가운데가 아닌 양 옆 슬라이드 */
+.notice .promotion .swiper-slide{
+    opacity: .5;
+    transition: opacity 1s;
+    position: relative;
+}
+
+.notice .promotion .swiper-slide .btn {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    position: absolute;
+}
+.notice .promotion .swiper-slide-active{
+    opacity: 1;
+}
+
+.notice .promotion .swiper-pagination{
+    bottom: 40px;
+    left: 0;
+    right: 0;
+}
+
+.notice .promotion .swiper-pagination .swiper-pagination-bullet{
+    background-image: url("../images/promotion_slide_pager.png");
+    /* 이미지 크기 확인 */
+    width: 13px;
+    height: 12px;
+    margin-right: 6px;
+    /* 색 초기화 */
+    background-color: transparent;
+}
+
+.notice .promotion .swiper-pagination .swiper-pagination-bullet-active{
+    background-image: url("../images/promotion_slide_pager_on.png");
+}
+
+/* 공통 속성 */
+.notice .promotion .swiper-button-prev,
+.notice .promotion .swiper-button-next{
+    width: 42px;
+    height: 42px;
+    position: absolute;
+    top: 300px;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    outline: none;
+}
+.notice .promotion .swiper-button-prev{
+    left: 50%;
+    margin-left: -480px;
+}
+
+.notice .promotion .swiper-button-next{
+    right: 50%;
+    margin-right: -480px;
+}
+
+/* --------------------------------------------------------------------- */
+
+/* REWARDS */
+.rewards{}
+
+.rewards .inner {
+    background-image: url("../images/rewards.jpg");
+    height: 241px;
 }

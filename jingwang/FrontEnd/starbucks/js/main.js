@@ -43,3 +43,42 @@ window.addEventListener('scroll', _.throttle(()=>{
         gsap.to(badgeE1, .6, {opacity:0, display:'none'})
     else gsap.to(badgeE1, .6, {opacity:1, display:'block'})
 }, 300))
+
+// Visual Image를 순차적으로 나타나게 하는 기능
+const fadeEls = document.querySelectorAll('.visual .fade-in');
+// forEach 반복으로 실행
+// delay : 각각의 요소들을 개별적으로 따로따로
+// cnt가 1증가 할때마다 .7초 씩 지연
+fadeEls.forEach((el, cnt)=>{
+    gsap.to(el, 1, {opacity:1, delay:(cnt + 1) * .7})
+})
+
+// 슬라이드 요소 관리
+new Swiper('.notice-line .swiper', {
+    direction: 'vertical',
+    loop: true,
+    autoplay: true
+})
+
+new Swiper('.promotion .swiper', {
+    direction: 'horizontal', // horizontal이 기본값, 생략 가능
+    slidesPerView: 3, // 한번에 보여줄 슬라이드 개수
+    loop: true,
+    spaceBetween: 10, // 슬라이드 간의 여백
+    centeredSlides: true, // true 인 경우 1번 슬라이드는 항상 왼쪽이 아닌 가운데에 배치
+    // autoplay: {
+    //     delay: 5000
+    // }
+
+    // If we need pagination. 페이지 나누고 구현
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
+    
+      // Navigation arrows. 화살표
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      }
+})

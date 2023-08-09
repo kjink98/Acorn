@@ -16,7 +16,16 @@
             height: 100px;
             background-color: orange;
         }
+
+        .swiper {
+            width: 600px;
+            height: 300px;
+        }
     </style>
+    <!-- https://swiperjs.com -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 </head>
 
 <body>
@@ -33,22 +42,45 @@
             <div class="name"></div>
         </div>
     </div>
-
     <div class="container">
         <!-- 요소의 일부분으로써 사용 -->
-        <div class="container__name"></div> 
+        <div class="container__name"></div>
         <div class="item">
             <div class="item__name"></div>
         </div>
     </div>
-
+    <hr>
     <div class="btn primary"></div>
     <div class="btn success"></div>
     <div class="btn error"></div>
-    
+
     <div class="btn--primary"></div>
     <div class="btn--success"></div>
-    <div class="btn--error"></div>    
+    <div class="btn--error"></div>
+
+    <!-- Slider main container -->
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+
+        </div>
+
+    </div>
 </body>
 
 </html>
+
+<script>
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'vertical',
+        loop: true,
+        autoplay: true
+
+
+    });
+</script>
