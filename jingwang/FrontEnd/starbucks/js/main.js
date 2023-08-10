@@ -2,11 +2,11 @@ const searchEl = document.querySelector('.search');
 const searchInputEl = document.querySelector('input');
 
 // 돋보기 아이콘 눌러도 검색이 되게 구현
-searchEl.addEventListener('click',()=>{
+searchEl.addEventListener('click', () => {
     searchInputEl.focus();
 });
 
-searchInputEl.addEventListener("focus",()=>{
+searchInputEl.addEventListener("focus", () => {
     // input에 focus가 됐으면 focused라는 클래스 추가
     searchEl.classList.add('focused')
     // 통합검색 placeholder 속성 추가
@@ -14,7 +14,7 @@ searchInputEl.addEventListener("focus",()=>{
 });
 
 // focus를 잃었을 때
-searchInputEl.addEventListener("blur",()=>{
+searchInputEl.addEventListener("blur", () => {
     // input에 focus가 사라지면 focused라는 클래스 제거
     searchEl.classList.remove('focused')
     // 통합검색 placeholder 속성 제거
@@ -36,12 +36,12 @@ const badgeE1 = document.querySelector('header .badges')
 
 // gsap cdn 검색
 // 애니메이션 자연스럽게
-window.addEventListener('scroll', _.throttle(()=>{
+window.addEventListener('scroll', _.throttle(() => {
     // console.log(window.scrollY);
-    if(window.scrollY > 500 )
+    if (window.scrollY > 500)
         // gsap.to(요소, 지속시간, 옵션)
-        gsap.to(badgeE1, .6, {opacity:0, display:'none'})
-    else gsap.to(badgeE1, .6, {opacity:1, display:'block'})
+        gsap.to(badgeE1, .6, { opacity: 0, display: 'none' })
+    else gsap.to(badgeE1, .6, { opacity: 1, display: 'block' })
 }, 300))
 
 // Visual Image를 순차적으로 나타나게 하는 기능
@@ -49,8 +49,8 @@ const fadeEls = document.querySelectorAll('.visual .fade-in');
 // forEach 반복으로 실행
 // delay : 각각의 요소들을 개별적으로 따로따로
 // cnt가 1증가 할때마다 .7초 씩 지연
-fadeEls.forEach((el, cnt)=>{
-    gsap.to(el, 1, {opacity:1, delay:(cnt + 1) * .7})
+fadeEls.forEach((el, cnt) => {
+    gsap.to(el, 1, { opacity: 1, delay: (cnt + 1) * .7 })
 })
 
 // 슬라이드 요소 관리
@@ -74,13 +74,13 @@ new Swiper('.promotion .swiper-container', {
     pagination: {
         el: '.swiper-pagination',
         clickable: true
-      },
-    
-      // Navigation arrows. 화살표
-      navigation: {
+    },
+
+    // Navigation arrows. 화살표
+    navigation: {
         nextEl: '.swiper-next',
         prevEl: '.swiper-prev',
-      }
+    }
 })
 
 // Promotion 토글
@@ -90,20 +90,20 @@ const promotionEl = document.querySelector(".promotion")
 const promotionToggleBtn = document.querySelector(".toggle-promotion")
 let isHidePromotion = false;
 
-promotionToggleBtn.addEventListener('click', ()=>{
-    if(isHidePromotion){
+promotionToggleBtn.addEventListener('click', () => {
+    if (isHidePromotion) {
         promotionEl.classList.remove("hide");
         isHidePromotion = false;
     }
-    else{
+    else {
         promotionEl.classList.add("hide");
         isHidePromotion = true;
     }
 })
 
 // 떠다니는(부유하는) 요소를 만드는 함수
-function rand(min, max){
-    return parseFloat((Math.random() * (max-min) + min).toFixed(2))
+function rand(min, max) {
+    return parseFloat((Math.random() * (max - min) + min).toFixed(2))
 }
 function floatingObject(selector, delay, size) {
     gsap.to(selector, rand(1.5, 2.5), {
@@ -117,3 +117,16 @@ function floatingObject(selector, delay, size) {
 floatingObject('.floating1', 1, 15);
 floatingObject('.floating2', .5, 15);
 floatingObject('.floating3', 1.5, 20);
+
+// Product를 순차적으로 나타나게 하는 기능
+const spyEls = document.querySelectorAll('section.scroll-spy')
+// 요소들 반복 처리!
+spyEls.forEach(function (spyEl) {
+  new ScrollMagic
+    .Scene({ // 감시할 장면(Scene)을 추가
+      triggerElement: spyEl, // 보여짐 여부를 감시할 요소를 지정
+      triggerHook: .8 // 화면의 80% 지점에서 보여짐 여부 감시
+    })
+    .setClassToggle(spyEl, 'show') // 요소가 화면에 보이면 show 클래스 추가
+    .addTo(new ScrollMagic.Controller()) // 컨트롤러에 장면을 할당(필수!)
+})
