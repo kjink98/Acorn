@@ -6,7 +6,7 @@ body {
     line-height: 1.4;
     font-size: 16px;
     /* 스크롤바 생기게 하기 */
-    height: 3000px;
+    /* height: 3000px; */
 }
 
 img {
@@ -137,6 +137,7 @@ header .sub-menu ul.menu {
 }
 
 header .sub-menu ul.menu li {
+    /* header .sub-menu ul.menu li::before 의 부모 역할 */
     position: relative;
 }
 
@@ -156,12 +157,12 @@ header .sub-menu ul.menu li::before {
     margin: auto 0;
 }
 
+/* 맨 앞은 안보이게 */
 header .sub-menu ul.menu li:first-child::before {
     display: none;
 }
 
 header .sub-menu ul.menu li a {
-    /* background-color: white; */
     font-size: 13px;
     /* 실수로 다른 곳을 클릭하지 않도록 여백을 줌 */
     padding: 11px 16px;
@@ -214,7 +215,7 @@ header .sub-menu .search.focused .material-icons {
     /* 투명도 */
     opacity: 0;
 }
-
+/* 2023.08.09 복습 */
 header .main-menu {
     display: flex;
     /* 부모인 inner가 기준 */
@@ -436,20 +437,20 @@ header .badges .badge {
     margin-right: 20px;
 }
 
-.notice .notice-line .inner .inner__left .swiper{
+.notice .notice-line .inner .inner__left .swiper-container{
     /* 공간 최대 늘리기 */
     height: 62px;
     flex-grow: 1;
 }
 
-.notice .notice-line .inner .inner__left .swiper .swiper-slide{
+.notice .notice-line .inner .inner__left .swiper-container .swiper-slide{
     /* 높이가 있어야 수직정렬이 가능 */
     height: 62px;
     display: flex;
     align-items: center;
 }
 
-.notice .notice-line .inner .inner__left .swiper .swiper-slide a{
+.notice .notice-line .inner .inner__left .swiper-container .swiper-slide a{
     color: #fff;
 }
 
@@ -501,9 +502,14 @@ header .badges .badge {
     background-color: #f6f5ef;
     position: relative;
     overflow: hidden;
+    transition: height .4s;
 }
 
-.notice .promotion .swiper{
+.notice .promotion.hide{
+    height: 0;
+}
+
+.notice .promotion .swiper-container{
     /* width: 2477px; */
     /* 819px 슬라이드 3개와 그 사이 여백 10px씩 */
     /* 단위가 바뀌어도 자동으로 계산 */
@@ -588,9 +594,124 @@ header .badges .badge {
 /* --------------------------------------------------------------------- */
 
 /* REWARDS */
-.rewards{}
+.rewards{
+    position: relative;
+    
+}
+
+.rewards .bg-left{
+    background-color: #272727;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+}
+
+.rewards .bg-right{
+    background-color: #d5c798;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 
 .rewards .inner {
     background-image: url("../images/rewards.jpg");
     height: 241px;
+}
+
+.rewards .btn-group {
+    width: 250px;
+    display: flex;
+    /* 만약 들어갈 공간이 없으면 밑으로 배치 */
+    flex-wrap: wrap;
+    position: absolute;
+    right: 0;
+    bottom: 24px;
+    
+}
+
+.rewards .btn-group .btn.sign-up{
+    margin-right: 10px;
+}
+
+.rewards .btn-group .btn.sign-in{
+    width: 110px;
+}
+
+.rewards .btn-group .btn.gift{
+    margin-top: 10px;
+    /* 최대로 늘리기 */
+    flex-grow: 1;
+}
+
+/* YOUTUBE */
+.youtube{
+    height: 700px;
+    position: relative;
+    background-color: #333;
+    overflow: hidden;
+}
+
+.youtube .youtube__area{
+    /* FHD : 1920 * 1080 */
+    width: 1920px; 
+    background-color: orange;
+    position: absolute;
+    /* 16비율 */
+    left: 50%;
+    margin-left: calc(1920px / -2);
+    /* 9비율 */
+    top: 50%;
+    margin-top: calc(1920px * 9 / 16 / -2);
+}
+
+.youtube .youtube__area::before{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+}
+
+.youtube .youtube__cover{
+    background-image: url("../images/video_cover_pattern.png");
+    background-color: rgba(0, 0, 0, .3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#player{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /* 자동 조정 */
+    top: 0;
+    left: 0;
+}
+
+.youtube .inner{
+    height: 700px;
+}
+
+.youtube .floating1 {
+    position: absolute;
+    top: 50px;
+    left: 0;
+}
+
+.youtube .floating2 {
+    position: absolute;
+    top: 350px;
+    left: 50px;
+}
+
+/* .youtube에 히든속성이 있어서 짤림 */
+.youtube .floating3 {
+    position: absolute;
+    bottom: -200px;
+    right: 0;
 }

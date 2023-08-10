@@ -54,13 +54,13 @@ fadeEls.forEach((el, cnt)=>{
 })
 
 // 슬라이드 요소 관리
-new Swiper('.notice-line .swiper', {
+new Swiper('.notice-line .swiper-container', {
     direction: 'vertical',
     loop: true,
     autoplay: true
 })
 
-new Swiper('.promotion .swiper', {
+new Swiper('.promotion .swiper-container', {
     direction: 'horizontal', // horizontal이 기본값, 생략 가능
     slidesPerView: 3, // 한번에 보여줄 슬라이드 개수
     loop: true,
@@ -82,3 +82,38 @@ new Swiper('.promotion .swiper', {
         prevEl: '.swiper-prev',
       }
 })
+
+// Promotion 토글
+// 나타날건지 사라질건지 표시만 자바스크립트에서
+// 실제 구현은 css 에서
+const promotionEl = document.querySelector(".promotion")
+const promotionToggleBtn = document.querySelector(".toggle-promotion")
+let isHidePromotion = false;
+
+promotionToggleBtn.addEventListener('click', ()=>{
+    if(isHidePromotion){
+        promotionEl.classList.remove("hide");
+        isHidePromotion = false;
+    }
+    else{
+        promotionEl.classList.add("hide");
+        isHidePromotion = true;
+    }
+})
+
+// 떠다니는(부유하는) 요소를 만드는 함수
+function rand(min, max){
+    return parseFloat((Math.random() * (max-min) + min).toFixed(2))
+}
+function floatingObject(selector, delay, size) {
+    gsap.to(selector, rand(1.5, 2.5), {
+        y: size,
+        repeat: -1, // 무한반복
+        yoyo: true,
+        delay: rand(0, delay),
+        ease: Power1.easeInOut
+    })
+}
+floatingObject('.floating1', 1, 15);
+floatingObject('.floating2', .5, 15);
+floatingObject('.floating3', 1.5, 20);
