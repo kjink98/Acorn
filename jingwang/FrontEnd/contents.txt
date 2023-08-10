@@ -103,7 +103,7 @@ CSS (Cascading Style Sheet)
 			b) 복합 선택자
 				- 일치 선택자(Basic Combinator) : 태그.클래스명
 				- 자식 선택자(Child Combinator) : 태그 > 클래스명
-				- 하위(후손) 선택자(Descendant Combinator) : 태그 .클래스명
+				- 하위(후손) 선택자(Descendant Combinator) : 태그 클래스명
 				- 인접 형제 선택자(Adjacent Sibling Combinator) : .클래스명 + 태그
 				- 일반 형제 선택자(General Sibling Combinator) : .클래스명 ~ 태그
 				selector2.html
@@ -189,7 +189,7 @@ CSS (Cascading Style Sheet)
 					/* border 4px+4px, padding 20px+20px 총 48px를 빼야 두번째 div랑 크기가 같아짐   */
 					/*   width: 52px;
 					  height: 52px; */
-					/* 자동으로 맞춰짐  */
+					/* 자동으로 맞춰짐  */ 
 					  box-sizing: border-box;
 					  border: 4px solid red;
 					  padding: 20px;
@@ -435,7 +435,7 @@ JavaScript
 			- Boolean
 			- Undefined
 			- Null
-			- 값형 - 값을 저장
+			- 값형 - 값을 저장 
 			※ 객체: 복잡한 데이터를 쉽게 쓸 수 있게 묶어놓은 데이터
 			- Object
 			- Array
