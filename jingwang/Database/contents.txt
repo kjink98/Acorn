@@ -1,0 +1,87 @@
+1. 데이터베이스 & DBMS
+	- 방대한 데이터를 효율적으로 관리하기 위해 컴퓨터에 통합, 저장한 것
+	- 특정 조직의 여러 사용자가 공유하여 사용할 수 있도록 통합해서 저장한 운영 데이터의 집합
+	- 데이터베이스 관리 시스템이라는 프로그램을 이용하여 관리
+	(1) DB에 저장된 데이터의 특징
+		1) 공유 데이터(Shared Data)
+		2) 통합 데이터(Integrated Data)
+			- 최소의 중복과 통제 가능한 중복만 허용하는 데이터
+		3) 저장 데이터(Stored Data)
+		4) 운영 데이터(Operational Data)
+	
+	(2) 운영 방식
+		1) 로컬 DB
+			- Access, sqllite, ...
+		2) 네트워크 DB
+			- Oracle, SqlServer, DB2, MySQL, MariaDB, Informix, ...
+	(3) 학습 대상
+		1) Administrator
+		2) Devoloper
+	(4) 저장 형태에 따른 구분
+		1) 계층형 DB(HDB) - tree // 트리형 구조로 하는데 데이터가 많으면 너무 무거움
+		2) 네트워크형 DB(NDB) - graph // 계층형 구조에서 끊어진 연결을 다 이어주는 건데 실제로 구현하기엔 너무 어려움
+		3) 관계형 DB(RDB) - table(*) // 테이블형태로 저장
+		4) 객체 지향형 DB // 어렵다
+		5) 객체 관계형 DB
+		
+		※ 저장 단위
+		필드(컬럼, 속성) < 레코드(튜플) < 테이블(파일) < DB
+	(5) 용어
+		1) Data Persistence
+		2) Dataware House : 정보에 입각한 의사결정을 내릴 수 있도록 분석 가능한 정보의 레포지토리
+		3) Data Mining : 대규모로 저장된 데이터 안에서 체계적이고 자동적으로 통계적 규칙이나 패턴을 찾아내는 것
+2. DBMS 설치
+	(1) 제어판 - 서비스 확인
+	(2) 원격 접속 프로그램(클라이언트 유틸리티)
+		1) 무료 : Sqldeveloper(윈도우), Sqlplus(콘솔), ...
+		2) 유료 : Toad, Sqlgate, ...
+	(3) Sqlplus
+		1) 접속
+			sqlplus
+			아이디:
+			패스워드:
+			
+			sqlplus 사용자id/패스워드
+			
+			sqlplus 사용자id
+			패스워드:
+			
+			// 다른 사람 거에 접속할 때 (ip나 도메인)
+			sqlplus 사용자id/패스워드@host명
+			
+			// 접속을 끊지 않은 상태에서 다른 사용자 접속
+			conn 아이디/패스워드
+	(4) Sample 계정 : scott
+		- @C:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin
+		- alter user scott identified by 1111;
+	(5) 계정 관리
+		- 사용자 test1 추가
+			create user test1 identified by 1111;
+		- 사용할 수 있는 테이블 조회
+		select * from tab;
+		- 접속 권한 부여
+			관리자 접속
+			grant connect to test1;
+		- 관리자 비번 분실
+			system as sysdba
+3. SQL(Structured Query Language)
+- 관계형 데이터베이스의 조작과 관리에 사용되는 데이터베이스 질의용 언어
+- 원하는 데이터가 무엇인지만 기술하는 비절차적 언어
+- 인터프리터 방식(JavaScript) <-> 컴파일(여러 줄을 모아 한 번에 실행. C언어, JAVA)
+	(1) SQL 분류
+		1) DDL (Data Definition Language)
+			- 데이터 정의어
+			- 데이터베이스 개체를 생성/삭제/변경하는 역할
+			- CREATE, DROP, ALTER
+		2) DML (Data Manipulation Language)
+			- 데이터 조작어
+			- DB의 기본 연산인 CRUD를 할 수 있는 언어
+			- INSERT, UPDATE, DELETE
+		3) DCL (Data Control Language)
+			- 데이터 제어어
+			- DB를 관리(권한 부여, 권한 제거, 분산 처리, 백업, 복원, ...)
+			- GRANT, REVOKE, ...
+		4) QL (QUERY LANGUAGE)
+			- SELECT
+	(2) SELECT 문법
+		DESC 테이블명;
