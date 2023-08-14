@@ -23,6 +23,7 @@ searchInputEl.addEventListener("blur", () => {
 
 const badgeE1 = document.querySelector('header .badges')
 
+const toTopEl = document.querySelector('#to-top')
 // lodash cdn 검색
 // 열, 객체 및 문자열 반복 / 복합적인 함수 생성
 // throttle : 속도 조절
@@ -38,11 +39,31 @@ const badgeE1 = document.querySelector('header .badges')
 // 애니메이션 자연스럽게
 window.addEventListener('scroll', _.throttle(() => {
     // console.log(window.scrollY);
-    if (window.scrollY > 500)
-        // gsap.to(요소, 지속시간, 옵션)
+    if (window.scrollY > 500){
         gsap.to(badgeE1, .6, { opacity: 0, display: 'none' })
-    else gsap.to(badgeE1, .6, { opacity: 1, display: 'block' })
+        // 상단으로 스크롤 버튼 보이기!
+        gsap.to(toTopEl, .2, {
+            x: 0
+          })
+    }
+        // gsap.to(요소, 지속시간, 옵션)
+        
+    else {
+        gsap.to(badgeE1, .6, { opacity: 1, display: 'block' })
+        // 상단으로 스크롤 버튼 숨기기!
+        gsap.to(toTopEl, .2, {
+            x: 100
+          })
+    }
 }, 300))
+
+// 상단으로 스크롤 버튼을 클릭하면,
+toTopEl.addEventListener('click', function () {
+    // 페이지 위치를 최상단으로 부드럽게(0.7초 동안) 이동.
+    gsap.to(window, .7, {
+      scrollTo: 0
+    })
+  })
 
 // Visual Image를 순차적으로 나타나게 하는 기능
 const fadeEls = document.querySelectorAll('.visual .fade-in');
@@ -82,6 +103,19 @@ new Swiper('.promotion .swiper-container', {
         prevEl: '.swiper-prev',
     }
 })
+
+new Swiper('.awards .swiper-container', {
+    // direction: 'horizontal', // 수평 슬라이드
+    autoplay: true, // 자동 재생 여부
+    loop: true, // 반복 재생 여부
+    spaceBetween: 30, // 슬라이드 사이 여백
+    slidesPerView: 5, // 한 번에 보여줄 슬라이드 개수
+    // slidesPerGroup: 5, // 한 번에 슬라이드 할 개수(전체 개수로 나뉘어야 함)
+    navigation: { // 슬라이드 이전/다음 버튼 사용 여부
+      prevEl: '.awards .swiper-prev', // 이전 버튼 선택자
+      nextEl: '.awards .swiper-next' // 다음 버튼 선택자
+    }
+  })
 
 // Promotion 토글
 // 나타날건지 사라질건지 표시만 자바스크립트에서
@@ -130,3 +164,10 @@ spyEls.forEach(function (spyEl) {
     .setClassToggle(spyEl, 'show') // 요소가 화면에 보이면 show 클래스 추가
     .addTo(new ScrollMagic.Controller()) // 컨트롤러에 장면을 할당(필수!)
 })
+
+
+/**
+ * 올해가 몇 년도인지 계산
+ */
+const thisYear = document.querySelector('.this-year')
+thisYear.textContent = new Date().getFullYear()
