@@ -1,3 +1,6 @@
+// MENU
+
+
 const searchE1 = document.querySelector('.search');
 const searchInputEl = document.querySelector('input');
 
@@ -18,3 +21,30 @@ searchInputEl.addEventListener("blur", ()=>{
     searchE1.classList.remove('focused')
     searchInputEl.setAttribute("placeholder", "")
 })
+
+
+
+// BADGE
+const badgeE1 = document.querySelector('header .badges');
+
+// throttle : 속도 조절
+window.addEventListener('scroll', _.throttle(() => {
+    // console.log(window.scrollY);
+    if (window.scrollY > 500){
+        gsap.to(badgeE1, .6, { opacity: 0, display: 'none' })
+        // 상단으로 스크롤 버튼 보이기!
+        gsap.to(toTopEl, .2, {
+            x: 0
+          })
+    }
+        // gsap.to(요소, 지속시간, 옵션)
+        
+    else {
+        gsap.to(badgeE1, .6, { opacity: 1, display: 'block' })
+        // 상단으로 스크롤 버튼 숨기기!
+        gsap.to(toTopEl, .2, {
+            x: 100
+          })
+    }
+    // 0.3초 간격으로 함수를 호출하겠다.
+}, 300))
