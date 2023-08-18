@@ -79,3 +79,72 @@ group by 1980;
 --	MANAGE		2450	 2975  	    2850	   8275
 --	PRESIDEN  	5000			               5000
 --	SALESMAN			 5600	               5600
+
+
+--1. Blake와 같은 부서에 있는 모든 직원의 사번, 이름, 입사일자 조회
+SELECT empno, ename, hiredate FROM emp WHERE deptno = (SELECT deptno FROM emp WHERE ename='BLAKE');
+--2. SELECT empno, ename, deptno, sal, comm FROM emp
+--WHERE (sal, comm) IN(SELECT sal, comm FROM emp WHERE deptno=30);
+--이 쿼리에서 보너스가 null인 사람도 출력될 수 있도록 수정하시오.
+SELECT empno, ename, deptno, sal, comm FROM emp
+WHERE (sal, comm) IN (SELECT sal, comm FROM emp WHERE deptno=30 OR comm IS NULL);
+--
+--3. 평균 급여 이상을 받는 직원들의  사번, 이름을 조회. 단, 급여가 많은 순으로 정렬
+SELECT empno, ename FROM emp WHERE sal > (SELECT AVG(sal) FROM emp) ORDER BY sal DESC;
+--
+--4. 이름에 T자가 들어가는 직원이 근무하는 부서에서 근무하는 직원의 사번, 이름, 급여 조회
+SELECT empno, ename, sal FROM emp WHERE ename IN (SELECT ename FROM emp WHERE ename LIKE '%T%');
+--5. 부서의 위치가 dallas인 모든 직원에 대해 사번, 이름, 급여, 업무조회
+SELECT empno, ename, sal, job FROM emp WHERE deptno IN (SELECT deptno FROM dept WHERE loc = 'DALLAS');
+--6. King에게 보고하는 모든 직원의 이름과 부서, 업무, 급여를 조회
+SELECT ename, deptno, job, sal FROM emp WHERE mgr IN (SELECT mgr FROM emp WHERE mgr = 7839);
+--7. 급여가 30번 부서의 최저급여보다 높은 직원의 사번, 이름, 급여 조회
+SELECT empno, ename, sal FROM emp WHERE sal > (SELECT MIN(sal) FROM emp WHERE deptno = 30);
+--
+--8. 10번부서에서 30번 부서의 직원과 같은 업무를 하는 직원의 이름과 업무를 조회
+SELECT ename, job FROM emp WHERE deptno = 10 AND job IN (SELECT job FROM emp WHERE deptno = 30); 
+--9. 가장 최근에 입사한 직원의 이름과 부서, 업무, 급여를 조회
+SELECT ename, deptno, job, sal FROM (SELECT * FROM emp  ORDER BY hiredate DESC) WHERE ROWNUM = 1; 
+
+--************************** JOIN 문제 *********************************
+--1. Newyork에서 근무하는 직원의 사번, 이름, 업무, 부서명을 조회
+select * from dept;
+SELECT empno, ename, job, dname FROM emp e JOIN dept d ON d.loc = 'NEW YORK';
+--2. 보너스를 받는 직원에 대해 이름, 부서명, 근무지를 조회
+SELECT ename, dname, loc FROM emp e JOIN dept d ON e.comm IS NOT NULL AND e.comm != 0;
+--3. 이름 중간에 L자가 있는 직원의 이름, 업무, 부서명, 근무지를 조회
+SELECT ename, job, dname, loc FROM emp e JOIN dept d ON e.ename LIKE '%L%';
+--4. 각 직원들에 대해 그들의 관리자보다 먼저 입사한 직원의 이름, 입사일, 
+SELECT ename, hiredate FROM emp WHERE hiredate < ANY (SELECT e2.hiredate FROM emp e1 JOIN emp e2 ON e1.mgr = e2.empno);
+--
+--5. 말단사원의 사번, 이름, 업무, 부서번호, 근무지를 조회
+-- 보고하는 직원이 없는 사원, 입사일이 제일 늦은 사람 -- miller
+SELECT e2.empno, e2.ename, e2.job, e2.deptno, loc
+FROM emp e1 JOIN emp e2 
+ON e1.mgr IS NULL AND e2.hiredate = (SELECT MAX(hiredate) FROM emp)
+JOIN dept 
+ON e2.deptno = dept.deptno;
+--*. 테이블을 생성한다.
+CREATE TABLE tblBook(
+author varchar2(20),
+title varchar2(20)
+);
+--
+INSERT INTO tblBook VALUES('최주현', '하늘과 땅');
+INSERT INTO tblBook VALUES('최주현', '바다');
+INSERT INTO tblBook VALUES('유은정', '바다');
+INSERT INTO tblBook VALUES('박성우', '문');
+INSERT INTO tblBook VALUES('최주현', '문');
+INSERT INTO tblBook VALUES('박성우', '천국');
+INSERT INTO tblBook VALUES('최지은', '천국');
+INSERT INTO tblBook VALUES('최주현', '천국');
+INSERT INTO tblBook VALUES('박성우', '고슴도치');
+INSERT INTO tblBook VALUES('서금동', '나');
+--
+--6. 한권의 책에 대해 두명 이상의 작가가 쓴 책을 검색
+--책이름 작가명 작가명
+select * from tblBook;
+SELECT DISTINCT t1.title AS 책이름, t1.author AS 작가명
+FROM tblBook t1
+WHERE EXISTS (SELECT * FROM tblBook t2 WHERE t2.title = t1.title AND t2.author != t1.author)
+ORDER BY t1.title;
