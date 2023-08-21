@@ -526,3 +526,232 @@
 			-- 비표준
 			SELECT tblA.id, tblA.value FROM tblA, tblB, tblC WHERE tblA.id = tblB.id AND tblB.id = tblC.id;
 			
+8. Transaction
+	(1) 개념 및 특징
+		1) Transaction이란 데이터베이스 내에서 하나의 그룹으로 처리되어야 하는 명령문들을 모아 놓은 작업 단위
+		2) 데이터의 일관성과 무결성을 보장하기 위해 반드시 트랜잭션 관리가 필요
+		3) All or Nothing
+		4) 동기화(Synchronize) :  두 개 이상의 데이터베이스 간 데이터를 동일하게 유지하는 것
+	(2) 명령어
+		1) rollback
+		2) commit
+		3) savepoint, begin transaction, end transaction, ...
+		
+9. Data Integrity
+	잘못된 데이터로부터 지켜내자!
+	(1) What? How?
+		1) 실체(Entity) 무결성
+		※ DB에서 Entity는 거의 테이블을 이야기함
+			- 중복된 데이터 방지
+			- Primary Key, Unique
+		2) 영역(Domain) 무결성
+			- 범위
+			- Check
+		3) 참조 무결성
+			- 참조
+			- Foreign Key
+	(2) 컬럼의 특성
+		1) NN(Not Null)
+			- Primary Key
+			- not null
+			- default
+		2) ND(No Duplicate)
+			- Primary Key
+			- Unique
+			- Sequence
+		3) NC(No Change)
+			- Foreign Key
+	--------------------------------------------------------
+	*. 테이블 작성
+		CREATE TABLE tblExam(
+			id number null,
+			name varchar2(10) null
+		);
+	*. Primary Key
+		- 하나의 테이블에 단 한 개만 사용 가능
+		- 여러 개의 필드를 묶어서 설정 가능
+		
+		INSERT INTO tblExam(name) VALUES('홍길동');
+		INSERT INTO tblExam VALUES(1, '홍길동');
+		INSERT INTO tblExam VALUES(1, '홍길동');
+		
+		ALTER TABLE tblExam ADD CONSTRAINT pk_id PRIMARY KEY(id);
+		
+		DROP TABLE tblExam;
+		
+		CREATE TABLE tblExam(
+			id number CONSTRAINT pk_id PRIMARY KEY,
+			name varchar2(10),
+			age char(1),
+			addr varchar2(20)
+		);
+		
+		CREATE TABLE tblExam(
+			id number,
+			name varchar2(10),
+			age char(1),
+			addr varchar2(20),
+			CONSTRAINT pk_id PRIMARY KEY(id)
+		);
+		
+		ALTER TABLE tblExam DROP CONSTRAINT pk_id;
+		※ varchar2(10) : 가변 길이. 미리 안 만들고 데이터를 계산해서 최대 10자리까지 할당
+		char(10) : 고정 길이.  미리 메모리 10자리를 만들어 놓고 할당
+		
+		CREATE TABLE tblExam(
+			id number not null,
+			name varchar2(10)
+		);
+		
+		ALTER TABLE tblExam ADD age number not null;
+		DESC tblExam;
+		
+		ALTER TABLE tblExam MODIFY name varchar(20) not null;
+		DESC tblExam;
+		
+		ALTER TABLE tblExam DROP COLUMN age;
+		
+		*. UNIQUE
+			- 중복 방지
+			- 하나의 테이블에 여러 개 사용 가능
+			
+			DROP TABLE tblExam;
+			CREATE TABLE tblExam(
+				id number not null,
+				name varchar2(10),
+				tel varchar2(15),
+				CONSTRAINT uk_id UNIQUE(id),
+				CONSTRAINT uk_tel UNIQUE(tel)			
+			);
+			
+			INSERT INTO tblExam VALUES(1, '홍길동', null);
+			INSERT INTO tblExam VALUES(1, '홍길동', null);
+			INSERT INTO tblExam VALUES(2, '홍길동', null);
+			
+			DROP TABLE IF EXIST tblExam;
+			
+			*. DEFAULT
+			
+			DROP TABLE tblExam;
+			
+			CREATE TABLE tblExam(
+				id number not null,
+				name varchar2(10) default '무명씨',
+				point number default 0			
+			);
+			
+			INSERT INTO tblExam(id) VALUES(1);
+			
+			*. SEQUENCE
+				-- CREATE SEQUENCE seq_num;
+				CREATE SEQUENCE seq_num START WITH 2;
+				INSERT INTO tblExam VALUES(seq_num.nextVal, '홍길동', 10);
+				INSERT INTO tblExam VALUES(seq_num.nextVal, '임꺽정', 10);
+				INSERT INTO tblExam VALUES(seq_num.nextVal, 'Tom', 10);
+				
+				DROP SEQUENCE seq_num;
+			
+		*. CHECK
+			DROP TABLE tblExam;
+			
+			CREATE TABLE tblExam(
+				id number,
+				name varchar2(10),
+				city varchar2(10),
+				age number
+			);
+			
+			ALTER TABLE tblExam
+				-- ADD CONSTRAINT ck_city CHECK(city='서울' OR city='경기');
+				ADD CONSTRAINT ck_city CHECK(city IN ('서울', '경기'));
+				
+			
+			INSERT INTO tblExam VALUES(seq_num.nextVal, '홍길동', '서울', 20);
+			INSERT INTO tblExam VALUES(seq_num.nextVal, '임꺽정', '제주', 20);
+			
+			-- 나이를 20 ~ 60세까지만 입력받을 수 있게 제약 추가
+			ALTER TABLE tblExam
+				ADD CONSTRAINT ck_age CHECK(age BETWEEN 20 AND 60);
+				
+			INSERT INTO tblExam VALUES(seq_num.nextVal, 'Tom', '경기', 71);
+			
+		*. DD(Data Dictionary)
+			SELECT constraint_name, table_name FROM USER_CONSTRAINTS;
+			
+		*. FOREIGN KEY
+			CREATE TABLE dept(
+				deptno char(3),
+				dname varchar2(20)
+			);
+			
+			INSERT INTO dept VALUES ('100', '영업부');
+			INSERT INTO dept VALUES ('110', '마케팅부');
+			
+			CREATE TABLE emp(
+				empno number,
+				ename varchar2(10),
+				hiredate date,
+				deptno char(3)
+			);
+			
+			ALTER TABLE dept ADD CONSTRAINT pk_deptno PRIMARY KEY(deptno);
+			
+			ALTER TABLE emp ADD CONSTRAINT fk_deptno FOREIGN KEY(deptno)
+				REFERENCES dept(deptno);
+				
+			INSERT INTO emp VALUES(1, 'tom', sysdate, '100');
+			INSERT INTO emp VALUES(2, 'jerry', sysdate, '150');
+			
+			UPDATE dept
+			SET deptno='200'
+			WHERE deptno='100';
+			
+			-- 아직 참조하지 않은 데이터는 변경 가능
+			UPDATE dept
+			SET deptno='120'
+			WHERE deptno='110';
+			
+			DROP TABE dept;
+			
+			*. TableExam
+			CREATE TABLE POST(
+				POST1 CHAR(3),
+				POST2 CHAR(3),
+				ADDR VARCHAR2(60) NOT NULL,
+				CONSTRAINT pk_post PRIMARY KEY(POST1, POST2)
+			)
+			
+			INSERT INTO POST VALUES ('100', '010', '경기도 성남시 분당구 정자동');
+			
+			CREATE TABLE MEMBER(
+				ID NUMBER(4),
+				NAME VARCHAR2(10) NOT NULL,
+				SEX CHAR(1),
+				JUMIN1 CHAR(6),
+				JUMIN2 CHAR(7),
+				TEL VARCHAR2(15),
+				POST1 CHAR(3),
+				POST2 CHAR(3),
+				ADDR VARCHAR2(60),
+				CONSTRAINT pk_id PRIMARY KEY(ID),
+				CONSTRAINT uk_jumin UNIQUE(JUMIN1,JUMIN2),
+				CONSTRAINT ck_sex CHECK(SEX IN (1, 2)),
+				CONSTRAINT fk_post FOREIGN KEY(POST1, POST2) 
+				REFERENCES POST(POST1, POST2)
+			);
+			
+			INSERT INTO MEMBER (ID, NAME, SEX, JUMIN1, JUMIN2, TEL, POST1, POST2) VALUES(1234, '홍길동', '1', '990101', '1232344', '712-1234', '100','010');
+10. VIEW
+	(1) 물리적인 테이블을 근거로 하는 논리적인 가상 테이블
+	
+
+11. INDEX
+
+
+12. Stored Procedure
+
+
+13. Trigger
+
+
+14. DB 설계(모델링)
