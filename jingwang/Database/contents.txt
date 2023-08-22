@@ -743,14 +743,241 @@
 			INSERT INTO MEMBER VALUES(1234, '홍길동', '1', '990101', '1232344', '712-1234', '100','010', NULL);
 10. VIEW
 	(1) 물리적인 테이블을 근거로 하는 논리적인 가상 테이블
-	
-
+		- 실제 테이블을 가지고 여러 관점에서 다양하게 사용할 수 있게 하는 개념
+	(2) 목적
+		1) 사용자의 편의
+		2) 보안성
+	(3) 문법
+		CREATE [OR REPLACE] VIEW 뷰이름 [{컬럼, ...}]
+		AS
+		SELECT문
+	(4) 주의할 점 : DML
+		1) View를 통해 입력되지 않은 컬럼에 대한 설정
+		2) View를 통해 계산된 컬럼이나 파생된 컬럼의 수정
+		3) View를 통해 여러 테이블을 수정
+		4) 범위를 벗어난 수정
+		(원본에는 없는 컬럼을 수정하면 오류 발생)
+	----------------------------------------------------------
+	*. Scott으로 접속
+		CREATE VIEW vw_emp1
+		AS
+		SELECT empno, ename, deptno FROM emp WHERE deptno = 30;
+		
+		-- 뷰 생성을 위한 권한 부여
+		GRANT CREATE VIEW TO scott;
+		
+		SELECT * FROM vw_emp1;
+		
+		- DD
+		DESC user_views;
+		SELECT view_name, text FROM user_views;
+		
+		-- 복합뷰
+		CREATE VIEW vw_emp2
+		AS
+		SELECT empno, ename, sal, emp.deptno, dname, loc
+		FROM emp JOIN dept ON emp.deptno = dept.deptno
+		ORDER BY empno DESC;
+		----------------------------------------------------------
+		-- 범위를 벗어난 수정
+		CREATE OR REPLACE VIEW vw_emp3
+		AS
+		SELECT empno, ename, job, sal FROM emp
+		WHERE sal BETWEEN 1500 AND 3000;
+		
+		
+		/*
+		7499 ALLEN                SALESMAN                 1600
+		7566 JONES                MANAGER                  2975
+		7698 BLAKE                MANAGER                  2850
+		7782 CLARK                MANAGER                  2450
+		7844 TURNER               SALESMAN                 1500
+		7902 FORD                 ANALYST                  3000
+		*/
+		
+		CREATE OR REPLACE VIEW vw_emp3
+		AS
+		SELECT empno, ename, job, sal FROM emp
+		WHERE sal >= 1500 AND sal <= 3000 WITH CHECK OPTION;
+		
+		-- WITH CHECK OPTION: 혹시나 범위 밖으로 수정 되면 안되게 막아줌
+		
+		UPDATE vw_emp3
+		SET sal = 1000
+		WHERE empno = 7499;
+		
+		-- WITH READ ONLY
+		CREATE OR REPLACE VIEW vw_emp3
+		AS
+		SELECT empno, ename, job, sal FROM emp
+		WHERE sal >= 1500 AND sal <= 3000 WITH READ ONLY;
+		
+		----------------------------------------------------------
+		-- 입사일이 빠른 사람 5명을 조회
+		CREATE VIEW vw_emp4
+		AS
+		SELECT empno, ename, job, hiredate FROM (
+		SELECT * FROM emp emp2 ORDER BY emp2.hiredate ASC)
+		WHERE ROWNUM <= 5;
 11. INDEX
-
-
+	(1) SQL명령문의 처리속도를 향상시키기 위해서 컬럼에 생성하는 객체
+	(2) 장점
+		1) 검색속도가 빨라진다
+		2) 시스템에 걸리는 부하를 줄여서 시스템 전체 성능을 향상 시킨다
+	(3) 단점
+		1) 인덱스를 생성하는데 시간이 걸린다
+		2) 인덱스를 위한 추가적인 공간이 필요하다
+		3) 데이터의 DML이 자주 일어날 경우에는 오히려 성능이 저하된다
+	(4) 생성 방법
+		1) CREATE INDEX 
+		2) 제약조건에 의해 자동 생성
+	(5) 확인 방법
+		1) DD
+			- USER_INDEXED, USER_IND_COLUMNS
+			- SELECT index_name, table_name, column_name
+			FROM user_ind_columns WHERE table_name in ('EMP', 'DEPT');
+		2) Execute Plan
+			- Sqldeveloper > 계획 설명
+	(6) 인덱스 사용여부 판단
+		1) 인덱스를 사용해야 하는 경우
+			- 테이블에 행의 수가 많을 때
+			- WHERE 문에 해당 컬럼이 많이 사용 될 때
+			- 검색 결과가 전체 데이터의 2% ~ 4% 정도일  때
+			- JOIN에 자주 사용되는 컬럼이나 NULL을 포함하는 컬럼이 많은 경우
+		2) 인덱스를 사용하지 말아야 하는 경우
+			- 테이블의 행의 수가 적을 때
+			- WHERE 문에 해당 컬럼이 자주 사용되지 않을 때
+			- 검색 결과가 전체 데이터의 10% ~ 15% 이상 일 때
+			- 테이블에 DML 작업이 많은 경우
+		----------------------------------------------------------
+		-- emp 테이블 복사
+			CREATE TABLE emp_copy AS SELECT * FROM emp;
+			SELECT constraint_name, table_name FROM USER_CONSTRAINTS;
+			-- 제약 조건은 복사 되지 않음
+			
+		-- 데이터 불리기
+			INSERT INTO emp_copy SELECT * FROM emp_copy;
+			
+		-- 검색할 데이터 입력
+			INSERT INTO emp_copy(empno, ename) VALUES (1234, 'hong');
+			
+		-- 시간 체크
+			SET TIMING ON
+			
+		-- 인덱스가 없는 상태에서 검색
+			SELECT empno, ename FROM emp_copy WHERE ename = 'hong'; -- 00:00:00.09
+			
+		-- 인덱스 생성 후 검색
+			CREATE INDEX idx_empcopy_ename ON emp_copy(ename); -- 00:00:00.61
+			SELECT empno, ename FROM emp_copy WHERE ename = 'hong'; -- 00:00:00.04
+			
 12. Stored Procedure
-
-
+	(1) 정의 : 자주 사용하는 쿼리문을 미리 컴파일하여 필요할 때 호출
+	(2) 문법
+		CREATE [OR REPLACE] PROCEDURE 프로시저명 [(파라미터, ...)]
+		IS
+		BEGIN
+			코드
+		END;
+	(3) 절차적인 구조
+		[DECLARE
+			선언부]
+		BEGIN
+			코드 작성
+		[EXCEPTION
+			예외처리]
+		END;
+	----------------------------------------------------------
+	*. 사번이 7902인 사원의 급여를 3500으로 수정하는 프로시저 작성
+		CREATE OR REPLACE PROCEDURE usp_sal
+		IS
+		BEGIN
+			UPDATE emp
+			SET sal = 3500
+			WHERE empno = 7902;
+		END;
+		/
+		※ edit : 바로 직전 시행한 코드에 대해 편집 가능
+		
+		exec usp_sal;
+		
+	*. 위의 예제를 매개변수를 사용하여 개선
+		CREATE OR REPLACE PROCEDURE usp_sal(p_empno in number, p_sal in number)
+		IS
+		BEGIN
+			UPDATE emp
+			SET sal = p_sal
+			WHERE empno = p_empno;
+		END;
+		/
+		
+		exec usp_sal(7902, 3000);
+		
+	*. 위의 예제를 매개변수를 사용하여 개선
+		CREATE OR REPLACE PROCEDURE usp_sal(p_empno in number, p_sal in number)
+		IS
+		BEGIN
+			UPDATE emp
+			SET sal = p_sal
+			WHERE empno = p_empno;
+			
+			IF sql%notfound THEN
+				dbms_output.put_line('없는 사원번호입니다.');
+			ELSE
+				dbms_output.put_line(sql%rowcount || '명의 자료가 수정됨');
+			END IF;
+		END;
+		/
+		
+		-- sql%notfound : 결과를 찾지 못했다 -> 아무것도 업데이트를 안했다
+		
+		-- 메세지 출력
+		SET SERVEROUTPUT ON;
+		
+		exec usp_sal(999, 3000);
+		----------------------------------------------------------
+		*. 특정한 수에 7%의 세금을 계산하여 그 결과를 돌려받을 수 있는 프로시저 작성
+		CREATE OR REPLACE PROCEDURE usp_tax(p_num in number, p_result OUT number)
+		IS
+		BEGIN
+			p_result := p_num * 0.07;
+		END;
+		/
+		
+		DECLARE
+			v_result NUMBER;
+		BEGIN
+			usp_tax(10000, v_result);
+			DBMS_OUTPUT.PUT_LINE('결과:' || v_result);
+		END;
+		----------------------------------------------------------
+		*. 이름을 입력받아 그 직원의 부서명과 급여를 검색하는 프로시저
+		CREATE OR REPLACE PROCEDURE usp_search
+		(
+		p_ename IN emp.ename%type,
+		p_dname OUT dept.dname%type,
+		p_sal OUT emp.sal%type
+		)
+		IS
+			v_deptno emp.deptno%type;
+		BEGIN
+			SELECT sal, deptno INTO p_sal, v_deptno FROM EMP WHERE ename = upper(p_ename);
+			SELECT dname INTO p_dname FROM dept WHERE deptno = v_deptno;
+		END;
+		
+		-- IS : 변수 선언 부분
+		-- INTO : 검색된 결과값을 변수에 대입
+		
+		-- 테스트
+		var g_dname varchar2(14)
+		var g_sal number
+		
+		exec usp_search('Ford', :g_dname, :g_sal);
+		print :g_dname;
+		print :g_sal;
+		----------------------------------------------------------
+		*.
+		
 13. Trigger
 
 
