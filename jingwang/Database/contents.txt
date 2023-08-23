@@ -976,9 +976,111 @@
 		print :g_dname;
 		print :g_sal;
 		----------------------------------------------------------
-		*.
+		*. 숫자를 입력받아 전화번호 형식으로 리턴하는 프로시저
+		CREATE OR REPLACE PROCEDURE usp_tel(p_tel IN OUT varchar2)
+		IS
+		BEGIN
+			p_tel := substr(p_tel, 1, 3) || '-' || substr(p_tel, 4);
+		END;
 		
+		VAR v_tel VARCHAR2(10);
+		BEGIN
+		  :v_tel := '1234567';
+		END;
+		exec usp_tel(:v_tel);
+		/
+		-- 결과 출력
+		PRINT v_tel;
+		
+		*. 사원 등록 프로시저
+		사원의 이름, 업무, 직속상사, 급여를 입력받는다.
+		부서번호는 직속상사의 부서번호
+		보너스는 SALESMAN일 경우 0, 그 외에는 null로  처리
+		
+		-- 사번은 8000번 부터
+		CREATE SEQUENCE seq_empno START WITH 8000;
+		
+		CREATE OR REPLACE PROCEDURE usp_register(
+			p_name IN emp.ename%type,
+			p_job IN emp.job%type,
+			p_mgr IN emp.mgr%type,
+			p_sal IN emp.sal%type
+		)
+		IS
+			v_deptno emp.deptno%type;
+			v_comm emp.comm%type;
+		BEGIN
+			-- 직속상사 번호 알아내서 v_deptno로 집어 넣어주기
+			SELECT deptno INTO v_deptno FROM emp WHERE empno=p_mgr;
+			
+			-- 보너스 SALESMAN일 경우 0, 그 외에는 null로  처리
+			IF p_job = 'SALESMAN' THEN
+				v_comm := 0;
+			ELSE
+				v_comm := null;
+			END IF;
+			
+			INSERT INTO emp(empno, ename, job, mgr, hiredate, sal, comm, deptno) VALUES(seq_empno.nextVal, p_name, p_job, p_mgr, sysdate, p_sal, v_comm, v_deptno);
+		END;
+		
+		usp_register('Tom', 'CLERK', 7902, 1500);
+		
+		select * from emp;
 13. Trigger
-
-
+	(1) 이벤트에 의해 자동으로 호출되어 실행되는 프로시저
+	(2) 문법
+		CREATE OR REPLACE TRIGGER 트리거명 {BEFORE | AFTER}
+			트리거 이벤트 ON 테이블명 [반복문]
+		BEGIN
+			코드
+		END;
+	(3) DD : user_tirggers
+	(4) 임시 테이블
+		NEW(:new), OLD(:old)
+	----------------------------------------------------------
+	*. emp 테이블에서 급여를 수정할 때 현재의 값보다 적게 수정할 수 없고, 현재의 값보다 10% 이상 높게 수정할 수 없도록 제한하는 트리거 작성
+	
+		CREATE OR REPLACE TRIGGER tri_emp_update -- 트리거가 시행되는데
+			BEFORE UPDATE ON emp  -- emp 업데이트 전에
+			FOR EACH ROW WHEN(NEW.sal < OLD.sal OR NEW.sal >= OLD.sal * 1.1) -- 조건이 맞으면 코드 시행
+		BEGIN
+			raise_application_error(-20506, '수정된 값이 잘못되었다.');
+		END;
+		-------------
+		UPDATE emp
+		SET sal = 1500
+		WHERE ename = 'FORD';
+		
+		DESC user_triggers;
+		SELECT trigger_name, table_name FROM user_triggers;
+		DROP TRIGGER tri_emp_update;
+		
+		*. emp 테이블을 사용할 수 있는 시간은 월요일부터 금요일까지이며 09시부터 18시까지만 사용할 수 있는 트리거 작성
+			CREATE OR REPLACE TRIGGER tri_resource
+				BEFORE UPDATE ON INSERT OR DELETE ON emp
+			BEGIN
+				-- dy: 요일
+				IF TO_CHAR(sysdate, 'dy') in ('토', '일', '수') 
+				OR TO_NUMBER(TO_CHAR(sysdate, 'HH24')) NOT BETWEEN 9 AND 18
+				THEN 
+					raise_application_error(-20506, '작업시간이 아닙니다.');
+				END IF;
+			END;
+		
 14. DB 설계(모델링)
+	(1) 프로그램 개발 과정 (폭포수 주기방식)
+		요구사항 수집
+		요구사항 분석 - ERD(Entity Relation Diagram)
+			개념적 설계
+			논리적 설계
+			물리적 설계
+		코딩
+		테스트
+		배포
+		유지보수
+	(2) 정규화
+		1) 제1정규화 : 속성값은 반드시 원자값이어야 한다
+		2) 제2정규화 : 
+			- 기본키가 복합키일 때, 복합키의 일부분이 다른 속성의 결정자인지 여부 판단
+			- 모든 키가 아닌 컬럼은 기본키 전체에 의조적이어야 한다
+		3) 제3정규화 : 키가 아닌 컬럼은 다른 키가 아닌 컬럼에 의존적이어서는 안된다
