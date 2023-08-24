@@ -1,0 +1,17 @@
+1. 자바 개발 도구
+	(1) 컴파일러
+		- JDK(Java Developer Kit) : 자바로 프로그램을 만듦
+		- JRE(Java Runtime Environment) : 만들어진 걸 실행시키는 용도
+		- v.17
+	(2) 환경변수 등록
+	// java파일이 어느경로에 있던 상관없이 컴파일 하고 실행시키려고 환경변수 path에 아래 툴 경로를 지정
+		- JAVA_HOME
+		- PATH
+		- 테스트
+			javac -version
+			java -version
+2. Java 대표 기술
+	(1) Java SE
+	(2) Java EE : 분산, Web, 안드로이드
+	(3) Java ME : Embeded
+	(4) FX, ...
