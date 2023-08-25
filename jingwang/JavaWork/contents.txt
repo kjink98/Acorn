@@ -2,7 +2,7 @@
 	(1) 컴파일러
 		- JDK(Java Developer Kit) : 자바로 프로그램을 만듦
 		- JRE(Java Runtime Environment) : 만들어진 걸 실행시키는 용도
-		- v.17
+		- v.17 (LTS : 장기 지원 서비스)
 	(2) 환경변수 등록
 	// java파일이 어느경로에 있던 상관없이 컴파일 하고 실행시키려고 환경변수 path에 아래 툴 경로를 지정
 		- JAVA_HOME
@@ -11,7 +11,36 @@
 			javac -version
 			java -version
 2. Java 대표 기술
-	(1) Java SE
+	(1) Java SE : 응용 프로그램(도스용, 윈도우용)
 	(2) Java EE : 분산, Web, 안드로이드
 	(3) Java ME : Embeded
 	(4) FX, ...
+3. 문자 인코딩
+	- 명령 프롬프트
+		chcp 65001 : UTF-8
+		chcp 949 : 기본 한글 윈도우 방식
+4. 변수와 데이터 타입
+	(1) 데이터 타입
+		1) 기본 데이터 타입(비객체 데이터 타입) // 한 개의 데이터만 저장
+			- 정수형
+				byte(1byte), short(2byte), int(4byte, default), long(8byte)
+			- 실수형
+				float(4byte), double(8byte, default)
+			- 문자형
+				char(2byte)
+			- 논리형
+				boolean : true, false
+		2) 객체 데이터 타입
+			- User Define
+			- Built in
+	(2) 변수
+		1) 임시 기억 공간
+		2) 반드시 선언 및 초기화
+		3) 반드시 선언한 곳에서만 사용할 수 있다(유효 범위)
+			- stack(임시적, 일시적) //LIFO 구조 <--> heap(장기적)
+	(3) 연산자
+		1) 강제 형변환 연산자(캐스팅 연산자)
+			변수 = (데이터 타입)값;
+			
+	※ javac -d ../bin 클래스.java // 클래스.java의 클래스파일을 bin 폴더에 저장
+	※ java -cp ../bin 클래스 // bin에 있는 클래스파일을 실행
