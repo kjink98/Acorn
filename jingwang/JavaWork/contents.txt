@@ -113,3 +113,70 @@
 		2) build.xml이 있는 위치에서 ant 프로그램 실행
 7. 배열
 (1) 같은 이름으로 정의된 연속적인 공간
+(2) 배열의 응용
+	1) 검색 기능
+		- 순차 검색(Sequential)
+		- 이분(이진) 검색(Binary Search)
+	2) 정렬 기능
+		- 버블, 선택, 삽입, 퀵
+		- 버블 정렬 : 서로 이웃하는 것끼리 비교하여 교환
+		- 선택 정렬 : 기준을 선택해서 비교하여 교환
+		-------------------------------
+		버블 정렬
+		6	3	7	5
+		
+		3	6	7	5
+		3	6	7	5
+		3	6	5	7
+		
+		3	6	5	7
+		3	5	6	7
+		
+		3	5	6	7
+		
+		선택 정렬
+		6	3	7	5
+		
+		3	6	7	5
+		3	6	7	5
+		3	6	7	5
+		
+		3	6	7	5
+		3	5	7	6
+		
+		3	5	6	7
+(3) 자바는 배열을 객체로 취급한다.
+(4) 다차원 배열(2차원 배열 이상)
+(5) 불규칙 배열
+(6) String
+	- Method
+		- charAt(int index) 
+		- compareTo(String anotherString)
+		- compareToIgnoreCase(String str)
+		- concat(String str)
+		- contains(CharSequence s)
+		- endsWith(String suffix)
+		- startsWith(String prefix)
+		- equals(Object anObject)
+		- equalsIgnoreCase(String anotherString)
+		- getBytes()
+		- indexOf(int ch)
+		- isBlank()
+		- isEmpty()
+		- join(CharSequence delimiter, CharSequence... elements)
+		- lastIndexOf(int ch)
+		- length()
+		- matches(String regex)
+		- replace(char oldChar, char newChar)
+		- replaceAll(String regex, String replacement)
+*****	- split(String regex) 
+		- strip()
+		- substring(int beginIndex)
+		- substring(int beginIndex, int endIndex)
+		- toLowerCase()
+		- toUpperCase()
+		- toString()
+		- trim()
+		- valueOf(boolean b)
+		1) 불변성
+		2) StringBuffer, StringBuilder
