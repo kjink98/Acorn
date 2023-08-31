@@ -5,8 +5,8 @@ public class Sungjuk_v1{
 	
 	public static void swap(int a[], int i, int j){
 		int temp = a[i];
-		a[i] = a[j+1];
-		a[j+1] = temp;
+		a[i] = a[j];
+		a[j] = temp;
 	}
 	public static void main(String[] args){
 		String[] names = {"홍길동", "임꺽정", "신돌석"};
@@ -57,25 +57,44 @@ public class Sungjuk_v1{
 		// 출력
 		
 		System.out.println("***성적 결과***");
-		System.out.println("학번\t국어\t영어\t총점\t평균\t학점");
+		System.out.println("학번\t이름\t국어\t영어\t총점\t평균\t학점");
 		System.out.println("-----------------------------------------------");
 		for(int i=0; i<no.length; i++) {
-			System.out.println(no[i] + "\t" + kor[i] + "\t"
+			System.out.println(no[i] + "\t" + names[i] + "\t" + kor[i] + "\t"
 				+ eng[i] + "\t" + tot[i] + "\t" +
 				avg[i] + "\t" + grade[i]);
 		}
 		
 		// 정렬 후 출력
 		
-		for(int i=0; i<avg.length-1; i++){
-			for(int j=i; j<avg.length-1; j++){
-				if(avg[i] > avg[j+1])
-					swap(avg, i, j);
-			}
-		}
 		
-		for(int i=0; i<no.length; i++){
-			System.out.print(avg[i] + "\t");
+		for(int i=0; i<no.length-1; i++){
+			for(int j=i+1; j<no.length; j++){
+				if(avg[i] < avg[j]){
+					swap(no, i, j);
+					swap(kor, i, j);
+					swap(eng, i, j);
+					swap(tot, i, j);
+					swap(avg, i, j);
+					
+					int temp = grade[i];
+					grade[i] = grade[j];
+					grade[j] = (char)temp;
+					
+					String stemp = names[i];
+					names[i] = names[j];
+					names[j] = stemp;
+				} // if 종료
+			} // for(j) 종료
+		} // for(i) 종료
+		
+		System.out.println("***성적 결과***");
+		System.out.println("학번\t이름\t국어\t영어\t총점\t평균\t학점");
+		System.out.println("-----------------------------------------------");
+		for(int i=0; i<no.length; i++) {
+			System.out.println(no[i] + "\t" + names[i] + "\t" + kor[i] + "\t"
+				+ eng[i] + "\t" + tot[i] + "\t" +
+				avg[i] + "\t" + grade[i]);
 		}
 		
 	}

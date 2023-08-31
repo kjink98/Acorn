@@ -4,7 +4,7 @@ public class Encode {
 		String key = "axdk?*!z";
 		
 		// 메시지를 암호화한 값
-		
+	
 		// 암호화된 메시지를 복호화
 	}
 }

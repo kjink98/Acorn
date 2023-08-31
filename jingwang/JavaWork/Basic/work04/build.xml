@@ -5,7 +5,7 @@
 	</target>
 	
 	<target name="run" depends="compile">
-		<java classname="Sungjuk_v1">
+		<java classname="Sungjuk_v3">
 			<classpath>
 				<pathelement path="./bin"/>
 			</classpath>
