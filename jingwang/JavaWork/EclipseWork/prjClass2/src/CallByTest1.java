@@ -52,6 +52,7 @@ public class CallByTest1 {
 }
 */
 
+/*
 public class CallByTest1 {
 	int i;
 	double d;
@@ -80,7 +81,28 @@ public class CallByTest1 {
 		
 		CallByTest1 call = new CallByTest1(i, d, c, b, s);
 		call.display();
+		*/
+
+class ArgData {
+	//DTO 패턴 (Data Transfer Object)
+	int i = 4;
+	double d = 3.14;
+	char c = '가';
+	boolean b = true;
+	String s = "홍길동";
+}
+
+public class CallByTest1 {
+	void display(ArgData data) {
+		System.out.println(data.i + ", " + data.d
+				+ ", " + data.c + ", " + data.b + ", " + data.s);
+	}
+
+	public static void main(String[] args) {
+		ArgData data = new ArgData();
+		
+		CallByTest1 call = new CallByTest1();
+		call.display(data);
 	}
 
 }
-
