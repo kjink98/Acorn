@@ -150,13 +150,13 @@
 (5) 불규칙 배열
 (6) String
 	- Method
-		- charAt(int index) 
-		- compareTo(String anotherString)
-		- compareToIgnoreCase(String str)
-		- concat(String str)
-		- contains(CharSequence s)
-		- endsWith(String suffix)
-		- startsWith(String prefix)
+		- charAt(int index) : String으로 저장된 문자열 중에서 한 글자만 선택해서 char타입으로 변환
+		- compareTo(String anotherString) : 두 개의 값을 비교하여 int 값으로 변환
+		- compareToIgnoreCase(String str) : 두 개의 값을 비교하여 int 값으로 변환하는데, 대소문자 무시
+		- concat(String str): 문자열 합치기
+		- contains(CharSequence s) : 대상 문자열에 특정 문자열이 포함되어 있는지 확인
+		- endsWith(String suffix) 해당 String 객체가 인자로 전달된 String으로 끝난다 true, 그렇지 않다면 false
+		- startsWith(String prefix) : 해당 String 객체가 인자로 전달된 String으로 시작된다면 true, 그렇지 않다면 false
 		- equals(Object anObject)
 		- equalsIgnoreCase(String anotherString)
 		- getBytes()
