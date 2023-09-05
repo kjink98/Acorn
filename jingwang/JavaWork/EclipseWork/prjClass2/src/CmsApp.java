@@ -7,6 +7,7 @@ public class CmsApp {
 		kim.display();
 		
 		CmsExt lee = new CmsExt(2, "이순신", 'A', "서울시 강남구");
-		lee.print();
+//		lee.print();
+		lee.display();
 	}
 }
