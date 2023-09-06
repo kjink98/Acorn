@@ -1,5 +1,3 @@
-package interface1;
-
 import java.util.Scanner;
 
 interface Volume {
