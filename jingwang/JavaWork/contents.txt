@@ -420,6 +420,29 @@ https://docs.oracle.com/en/java/javase/17/docs/api/index.html
 하나의 프로세스 안에서 각각 실행되는 작업의 단위
 (1) 프로그램 vs 프로세스(프로그램이 실행되고 있는 상태) (프로세서: CPU)
 	1) Multi Process : 하나의 프로그램이 여러 개 실행되거나 두개 이상 다수의 프로세서(CPU)가 협력적으로 하나 이상의 작업을 동시에 처리하는 것이다. (병렬처리)
-	2) Multi Thread : 다중 작업
+	2) Multi Thread : 다중 작업, 동시성
 (2) 모든 프로그램은 반드시 기본적으로 한 개의 스레드를 가지고 있다
 	- main()
+(3) 스레드 생성 방법
+	1) Thread 클래스
+		Thread 클래스를 상속받으면 다른 클래스를 상속받을 수 없음
+	2) Runnable 인터페이스
+		1개의 메소드 만 갖는 함수형 인터페이스
+		재사용성이 높고 코드의 일관성을 유지
+(4) LifeCycle
+(5) 스레드의 강제 종료
+	1) stop() // 바로 종료. 가급적이면 사용 안함
+	2) interrupt() // stop보다는 약간 텀을 줌
+	3) 직접 제어(flag) // 표시를 해서 가장 문제가 없을 시점에 끝냄. 내가 조정
+(6) 스레드의 종료 시점
+	1) isAlive()
+	2) join()
+(7) 동기화
+	동기화 상태일때에는 sleep 대신 wait
+	1) synchronized
+	2) 처리 방법
+		- method
+		- block
+			synchronized(인스턴스 주소){
+				코드
+			}
