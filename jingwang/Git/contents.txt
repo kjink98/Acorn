@@ -94,6 +94,15 @@
 	
 	원격으로 서버에서 브랜치 삭제
 	$ git push --delete <서버주소> <브랜치명>
+
+	원격으로 서버에서 브랜치 삭제
+	$ git push --delete <서버주소> <브랜치명>
+	
+	서버 브랜치 확인
+	$ git branch -r : 서버 브랜치 확인
+	
+	서버의 특정 브랜치 다운로드
+	$ git checkout -t <서버 브랜치>
 6. 협업
 (1) Fork 
 	- https://github.com/octocat/Spoon-Knife
