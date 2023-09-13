@@ -1,9 +1,0 @@
-insertAdjacenElement(위치, 새로운 요소);
-					
-<!-- beforebegin -->
-<div class="target">
-<!-- afterbegin -->
-    내용
-<!-- beforeend -->
-</div>
-<!-- afterend -->
