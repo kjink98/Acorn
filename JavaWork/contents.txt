@@ -330,6 +330,7 @@ https://docs.oracle.com/en/java/javase/17/docs/api/index.html
 (5) 다중 상속을 지원
 (6) implements
 11. 패키지(Package)
+	사용할 때 클래스 패스로 이용해 어떤 위치에 있던 사용 가능하게 할 수 있음
 (1) 묶음(폴더) : 클래스
 (2) 효과
 	1) 필요한 클래스를 적재적소에 사용 가능

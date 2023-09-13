@@ -4,3 +4,45 @@ WEB PROGRAMMING
 (1) 웹 서버
 	- IIS, Apache, Tomcat, NginX, ...
 	- WebSphere, WebLogic, Jeus, JBoss, ... (WAS 라고 함)
+(2) 웹 프로젝트
+	프로젝트 폴더
+		WEB-INF
+			classes
+			lib
+			web.xml
+(3) 내가 만든 웹 페이지를 톰캣을 통해 실행
+	1) Tomcat 폴더의 webapps 폴더에 프로젝트 폴더를 복사
+	2) Tomcat 폴더의 conf폴더에 있는 server.xml에 프로젝트 위치 등록
+		<Context path="접속 경로" docBase="실제 프로젝트 경로" workDir="워크 스페이스"/>
+2. 서블릿(Servlet)
+https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
+(1) 특징
+	1) 자바로 만든 application(서버에서만 실행)
+	2) 클라이언트와 소통 = 네트워크
+	3) 별도의 라이브러리가 필요 : servlet-api.jar
+	4) javax.servlet.HttpServlet을 상속받아 작성
+		protected void	doGet(HttpServletRequest req, HttpServletResponse resp)
+		protected void	doPost(HttpServletRequest req, HttpServletResponse resp)
+
+		※ web.xml
+		<servlet-name>에는 변수이름
+		<servlet-class>에는 클래스 이름
+		<servlet-mapping> : 일반 사용자가 어떻게 연결하게 하는지 지정해주는 부분
+(2) 요청(request) 방식
+	1) GET
+		- 하이퍼링크 전송 방식, URL전송 방식
+		- 전송 방식이 다양
+		- 기본 전송 방식
+		- 소량의 데이터 전송
+		- 전송되는 데이터가 노출
+		- 조회 목적
+			<form method="get" action="/servlet2/test1">
+				<input type="submit" value="폼 전송" />
+			</form>
+			에서 method 부분을 생략하면 get방식으로 
+	2) POST
+		- 폼 전송 방식
+		- 전송방식이 단 한가지
+		- 대량의 데이터 전송
+		- 전송되는 데이터가 노출되지 않음
+		- 데이터 변경 목적

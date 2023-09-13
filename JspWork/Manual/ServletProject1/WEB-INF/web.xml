@@ -26,5 +26,16 @@
   <description>
      Welcome to Tomcat
   </description>
+	
+	<!-- FirstServlet test1 = new FirstServlet() -->
+	<servlet>
+		<servlet-name>test1</servlet-name>
+		<servlet-class>FirstServlet</servlet-class>
+	</servlet>
 
+	<!-- http://localhost:9999/servlet1/test1 -->
+	<servlet-mapping>
+		<servlet-name>test1</servlet-name>
+		<url-pattern>/test1</url-pattern>
+	</servlet-mapping>
 </web-app>

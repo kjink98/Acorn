@@ -27,4 +27,16 @@
      Welcome to Tomcat
   </description>
 
+	<!-- IndexServlet test1 = new IndexServlet() -->
+	<servlet>
+		<servlet-name>test1</servlet-name>
+		<servlet-class>IndexServlet</servlet-class>
+	</servlet>
+
+	<!-- http://localhost:9999/servlet2/test1 -->
+	<servlet-mapping>
+		<servlet-name>test1</servlet-name>
+		<url-pattern>/test1</url-pattern>
+	</servlet-mapping>
+
 </web-app>
