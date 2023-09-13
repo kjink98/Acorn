@@ -1,0 +1,14 @@
+
+public class ExcDemo1 {
+
+	public static void main(String[] args) {
+		int[] arr = new int[3];
+		
+		System.out.println("Exception 실행 예제...");
+		
+		arr[7] = 10;
+		
+		System.out.println("이 문장이 보이는가?");
+	}
+
+}

@@ -1,0 +1,28 @@
+package charstream;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class FileTest2 {
+   public static void main(String[] args) throws IOException {
+      // TODO 키보드로부터 입력받아 파일로 출력
+      FileReader fout = new FileReader("C:\\jingwang\\JavaWork\\Test\\test3.txt");
+      BufferedReader br = new BufferedReader(fout);
+      String input = null;
+      while(true) {
+         input = br.readLine();
+         
+         if(input == null) {
+            break;
+         }
+         System.out.println(input);
+      }
+      fout.close();
+   }
+}
+
+/*
+*  java Jcopy a.txt b.txt
+*  java에서 Jcopy클래스를 만들어서 a텍스트를 b텍스트로 복사하는 프로그램
+*/

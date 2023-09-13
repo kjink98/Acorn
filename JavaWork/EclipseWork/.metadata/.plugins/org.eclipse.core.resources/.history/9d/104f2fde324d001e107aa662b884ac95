@@ -1,0 +1,19 @@
+package byteStream;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+public class FileTest1 {
+
+	public static void main(String[] args) throws FileNotFoundException{
+		// TODO 파일로부터 입력 받아 콘솔로 출력
+		// fin에 file 주소 저장
+		FileInputStream fin = new FileInputStream("C:\\jingwang\\JavaWork\\test.txt");
+		
+		int input = 0;
+		while(input != -1) {
+			input = fin.read(); // fin에서 읽어온 글자를 input에 저장
+		}
+	}
+
+}

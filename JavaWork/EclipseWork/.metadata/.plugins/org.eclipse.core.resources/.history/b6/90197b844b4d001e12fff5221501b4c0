@@ -1,0 +1,26 @@
+package byteStream;
+
+import java.io.DataOutput;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class BinaryDataTest {
+
+	public static void main(String[] args) throws IOException {
+		// TODO DataInputStream, DataOutputStream
+		 FileOutputStream fout = new FileOutputStream("C:\\jingwang\\JavaWork\\Test\\test4.txt");
+	
+		 // FileOutputStream이라는 객체를 통해서 보완
+		 // 문자나 바이트 형식의 문자만 읽고 쓸 줄 아는 걸 데이터 변환까지 해주어서 파일을 읽고 쓰는 클래스
+		 DataOutputStream dout = new DataOutputStream(fout); 
+		 dout.writeChar('가');
+		 dout.writeInt(100);
+		 dout.writeDouble(3.14);
+		 dout.writeBoolean(true);
+		 
+		 dout.close();
+		 fout.close();
+	}
+
+}

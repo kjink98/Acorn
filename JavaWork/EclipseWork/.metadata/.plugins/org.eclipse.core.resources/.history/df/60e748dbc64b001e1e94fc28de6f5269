@@ -1,0 +1,214 @@
+import java.util.Scanner;
+
+interface Volume {
+	void volumeUp(int vol);
+	void volumeDown(int vol);
+	void mute(int vol);
+}
+
+interface Power {
+	void powerOn();
+	void powerOff();
+	
+}
+
+class TV implements Volume, Power{
+	private int vol;
+	private boolean power = false;
+	
+	@Override
+	public void volumeUp(int vol) {
+		if(!this.power) {
+			System.out.println("TV를 켜주세요");
+		} else {
+			this.vol += vol;
+			if(this.vol > 50) {
+				System.out.println("최대 음량입니다.");
+			} else{
+				System.out.println("현재 TV 볼륨을 " + this.vol + "만큼 올렸습니다.");
+			}
+		}
+	}
+	
+	@Override
+	public void volumeDown(int vol) {
+		if(!this.power) {
+			System.out.println("TV를 켜주세요");
+		} else {
+			this.vol -= vol;
+			if(this.vol <= 0) {
+				System.out.println("최소 음량입니다.");
+			} else {
+				System.out.println("현재 TV 볼륨을 " + this.vol + "만큼 내렸습니다.");				
+			}
+		}
+		
+	}
+	
+	public void mute(int vol) {
+		if(this.vol == 0) {
+			System.out.println("음소거 상태 입니다.");
+		}
+	}
+	
+	@Override
+	public void powerOn() {
+		if(this.power) {
+			System.out.println("TV 켜짐");
+			this.power = true;
+		} else {
+			System.out.println("TV가 켜져있습니다.");
+		}
+	}
+	
+	@Override
+	public void powerOff() {
+		if(this.power) {
+			System.out.println("TV 꺼짐");
+			this.power = true;
+		} else {
+			System.out.println("TV가 꺼져있습니다.");
+		}
+	}
+}
+
+class Radio implements Volume, Power{
+	private int vol;
+	private boolean power = false;
+	
+	@Override
+	public void volumeUp(int vol) {
+		if(!this.power) {
+			System.out.println("라디오를 켜주세요");
+		} else {
+			this.vol += vol;
+			if(this.vol > 50) {
+				System.out.println("최대 음량입니다.");
+			} else{
+				System.out.println("현재 라디오 볼륨을 " + this.vol + "만큼 올렸습니다.");
+			}
+		}
+	}
+	
+	@Override
+	public void volumeDown(int vol) {
+		if(!this.power) {
+			System.out.println("라디오를 켜주세요");
+		} else {
+			this.vol -= vol;
+			if(this.vol <= 0) {
+				System.out.println("최소 음량입니다.");
+			} else {
+				System.out.println("현재 라디오 볼륨을 " + this.vol + "만큼 내렸습니다.");				
+			}
+		}
+		
+	}
+	
+	@Override
+	public void mute(int vol) {
+		if(this.vol == 0) {
+			System.out.println("음소거 상태 입니다.");
+		}
+	}
+	
+	@Override
+	public void powerOn() {
+		if(this.power) {
+			System.out.println("라디오 켜짐");
+			this.power = true;
+		} else {
+			System.out.println("라디오가 켜져있습니다.");
+		}
+	}
+	
+	@Override
+	public void powerOff() {
+		if(this.power) {
+			System.out.println("라디오 꺼짐");
+			this.power = true;
+		} else {
+			System.out.println("라디오가 꺼져있습니다.");
+		}
+	}
+}
+
+class Choice {
+	void productChoice() {
+		System.out.println("제품을 선택하세요");
+		System.out.println("1. TV");
+		System.out.println("2. 라디오");
+		System.out.println("3. 종료");
+		System.out.println("선택 :");
+	}
+	
+	void volumeChoice() {
+		System.out.println("볼륨 조절");
+		System.out.println("1. 소리증가");
+		System.out.println("2. 소리감소");
+		System.out.println("3. 음소거");
+		System.out.println("선택 : ");
+	}
+}
+
+public class InterfaceTest3 {
+
+	public static void main(String[] args) {
+		// TODO 인터페이스 응용 프로그램
+		/*
+		 * 1. Power 인터페이스를 작성하여 오버라이딩한다.
+		 * 2. 소리를 높일 때 50 이상 넘지 않게 한다.
+		 * 3. 소리를 낮출 때 0 미만으로 줄일 수 없게 한다. (0은 음소거 기능)
+		 * 4. 소리를 켜거나 줄일 때 반드시 전원이 켜져 있을 때에만 가능하게 한다.
+		 * 
+		 * **** 실행 예시
+		 * 제품 선택
+		 * 1. tv
+		 * 2. radio
+		 * 선택 : _
+		 * 
+		 * tv 전원을 켜시겠습니까?(y/n) :
+		 * 전원이 켜져 있다면
+		 * 1. 소리 증가
+		 * 2. 소리 감소
+		 * 3. 음소거
+		 * 선택 : 
+		 */
+		Scanner sc = new Scanner(System.in);
+		TV tv = new TV();
+		Radio radio = new Radio();
+		Choice choice = new Choice();
+		String choicePower;
+		
+		// CHOICE PRODUCT
+		choice.productChoice();
+		int choiceProduct = sc.nextInt();
+		System.out.println("선택 : " + choiceProduct);
+		
+		// POWER SWITCH
+		if(choiceProduct == 1) {
+			System.out.println("TV 전원을 켜시겠습니까? (y/n)");
+			choicePower = sc.next();
+			if (choicePower.equals("y")){
+				tv.powerOn();
+				while(true) {
+					System.out.println("볼륨 조절");
+					System.out.println("1. 소리증가");
+					System.out.println("2. 소리감소");
+					System.out.println("3. 음소거");
+					System.out.println("선택 : ");
+					
+					System.out.println();
+				}
+			}
+		} else if (choiceProduct == 2) {
+			System.out.println("라디오 전원을 켜시겠습니까? (y/n)");
+			choicePower = sc.next();
+		} else 
+			System.out.println("TV와 라디오 중 선택해주세요");
+		
+		
+	}
+	
+
+}

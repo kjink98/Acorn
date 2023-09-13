@@ -1,0 +1,12 @@
+package byteStream;
+
+public class FileTest2Exam {
+
+	public static void main(String[] args) {
+		/*
+		*  java Jcopy a.txt b.txt
+		*  java에서 Jcopy클래스를 만들어서 a텍스트를 b텍스트로 복사하는 프로그램
+		*/
+	}
+
+}

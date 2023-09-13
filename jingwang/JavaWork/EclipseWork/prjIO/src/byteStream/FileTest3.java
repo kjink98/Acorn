@@ -1,4 +1,4 @@
-package byteStream;
+package bytestream;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

@@ -1,0 +1,19 @@
+class AutoMachine {
+	// 어떤 음료수를 넣었는지
+	void putDrink(String drink) {
+		
+	}
+	
+	// 음료수를 꺼내 먹는 기능
+	void getDrink() {
+		
+	}
+}
+public class ThreadTest6 {
+
+	public static void main(String[] args) {
+		// TODO wait, notify
+
+	}
+
+}

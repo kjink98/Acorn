@@ -1,0 +1,11 @@
+package byteStream;
+
+public class ByteTest2 {
+	static void StreamTest() {
+		
+	}
+	public static void main(String[] args) {
+		
+	}
+
+}

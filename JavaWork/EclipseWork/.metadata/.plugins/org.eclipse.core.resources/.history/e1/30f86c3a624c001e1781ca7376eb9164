@@ -1,0 +1,16 @@
+import java.util.ArrayList;
+
+public class CollectionTest2 {
+
+	public static void main(String[] args) {
+		// TODO List계열의 클래스들
+		
+		ArrayList list = new ArrayList();
+		list.add("carrie");
+		list.add("kairo");
+		list.add("kabbin");
+		list.add("kairo");
+		list.add("terry");
+	}
+
+}

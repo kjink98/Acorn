@@ -1,0 +1,9 @@
+
+public class FileTest {
+
+	public static void main(String[] args) {
+		// TODO File 클래스
+
+	}
+
+}

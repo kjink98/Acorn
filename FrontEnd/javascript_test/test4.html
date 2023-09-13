@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test4</title>
+</head>
+<body>
+    <div class="parent">
+      <!-- 주석 -->
+      <div class="child">1</div>
+      텍스트1
+      <div id="child2" class="child">2</div>
+      텍스트2
+      <div id="child3" class="child">3</div>
+    </div>
+  </body>
+</html>
+    <script>
+        const parent = document.querySelector(".parent");
+        const secondDiv = parent.children[0];
+        const thirdDiv = parent.children[1];
+        const divArr = [parent.children[0], parent.children[1]]
+        const divArrReverse = divArr.reverse();
+
+        divArrReverse.forEach(div => {
+            console.log("textContent : " + div.textContent.trim() + ", id : " + div.getAttribute('id'));
+            
+        });
+    </script>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="log.js"></script>
+    <script>
+        function fnLoad(){
+            log("첫 번째 메시지");
+            log("두 번째 메시지");
+        }
+        // 앞으로는 태그에 이벤트를 추가시키지 말고
+        // window 함수를 사용
+        window.onload = function(){
+            fnLoad();
+        }
+    </script>
+</head>
+<body>
+    <div id="debugConsole" style="border:1px solid red"></div>
+</body>
+</html>

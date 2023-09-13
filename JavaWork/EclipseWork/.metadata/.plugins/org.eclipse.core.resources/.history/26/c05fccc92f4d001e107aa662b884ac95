@@ -1,0 +1,10 @@
+package byteStream;
+
+public class FileTest1 {
+
+	public static void main(String[] args) {
+		// TODO 파일로부터 입력 받아 콘솔로 출력
+
+	}
+
+}

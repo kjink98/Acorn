@@ -1,0 +1,9 @@
+
+public class DataCalendarTest {
+
+	public static void main(String[] args) {
+		// TODO Date클래스와 Calendar 클래스의 차이점
+		java.util.Date date = new java.util.Date();
+	}
+
+}

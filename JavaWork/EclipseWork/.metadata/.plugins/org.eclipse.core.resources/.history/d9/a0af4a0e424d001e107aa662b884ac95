@@ -1,0 +1,11 @@
+package byteStream;
+
+public class FileTest2 {
+
+	public static void main(String[] args) {
+		// TODO 키보드로부터 입력받아 파일로 출력
+		
+
+	}
+
+}

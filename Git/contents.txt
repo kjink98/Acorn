@@ -1,0 +1,115 @@
+※ SCM(Software Configuration Management) : 소프트웨어 형상 관리
+	- 소프트웨어의 변경사항을 추적하고 통제하는 작업
+	- Subversion, git, ...
+1. 설치
+	- https://git-scm.com
+2. git 프로그램 실행 방식
+(1) CUI(CLI) : 명령어 기반
+	- 윈도우의 cmd(명령 프롬프트), 파워쉘
+	- 리눅스의 Bash shell
+(2) GUI(Window)
+	- SourceTree, TortoiseGUI, 각 IDE에 내장되어 있는 plugin
+3. 로컬에서 실습
+(1) git을 설치하고 가장 먼저 해야할 일(환경 설정)
+	$ git config --global user.name "John Doe"
+	$ git config --global user.email johndoe@example.com
+(2) 프로젝트 초기화
+	1) 프로젝트 폴더로 이동
+	2) $ git init
+(3) 세 가지 상태
+	1) Working Directory 상태
+		git status -> Untracked Files ...
+	2) Staging Area 상태
+		$ git add 파일명
+		$ git add 파일명, 파일명
+		$ git add *.txt, *.gif, a*.*
+		$ git add --all 또는 git add .
+		
+		$ git status -> Changes to be committed
+	3) Commit 상태
+		$ git commit
+		
+		※ 편집기를 Notepad++을 사용하고 싶으면
+		$ git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst -nosession"
+		
+	$ git log
+	
+	※커밋 되기 전에 add 했을 때 취소하고 싶을 때
+	$ git rm --cached test1.txt
+	
+	※편집기 안 거치고 커밋
+	$ git commit -m "두 번째 커밋입니다."
+
+	※수정 후와 차이점 (무대에 올려 놓기 전에 비교)
+	$ git diff
+	
+	※ (무대에 있는 것 비교)
+	$ git diff --staged
+4. 원격에서 실습
+	- 직접 서버를 구축
+	- 웹 서버 업체를 이용 : github, bitbucket, gitlab, codebase, cloudforge, ...
+(1) Remote Repository 준비
+	- https://github.com/kjink98/FirstProject.git
+(2) 원격으로 연결된 저장소(서버) 확인
+	$ git remote
+	$ git remote -v (자세하게)
+(3) 원격 연결
+	$ git remote add <별명> <서버주소>
+	------------------------------
+	$ git remote add origin https://github.com/kjink98/FirstProject.git
+(4) Remote Repository로 업로드(소스 올리기)
+	$ git push <업로드할 서버 주소> <올릴 데이터가 있는 로컬 저장소 이름>
+	--------------------------------------------------------
+	$ git push origin master
+(5) Remote Repository에서 다운로드 (소스 가져오기)	
+※ 서버에서 파일을 올렸을 경우 로컬에서 동기화 되지 않으면 다른 파일을 푸시 할 때 오류가 남 (데이터가 다르니)
+	1) $ git pull <다운로드 할 서버 주소> <데이터를 받을 장소>
+		pull : fetch + merge
+			fetch : 다운로드 받아온다
+			merge : 합친다
+	-------------------------------------------
+		$ git pull origin master
+	2) $ git fetch <다운로드 할 서버 주소> <데이터를 받을 장소>
+		$ git merge <합칠 데이터 주소>
+	-----------------------------------------------
+		$ git fetch origin master
+			※ FETCH_HEAD : 임시 장소
+		$ git merge FETCH_HEAD
+	3) $git clone <서버주소>
+5. Branch 
+	※ [master (root-commit) 997da7c] 첫 번째 커밋 --> 에서 997da7c는 해시 주소를 나타냄
+		git log를 통해 더 자세한 주소 해시코드를 볼 수 있음
+		
+	브랜치 만들기
+	$ git branch <브랜치명>
+	
+	브랜치 확인
+	$ git branch
+	
+	브랜치 바꾸기
+	$ git checkout <브랜치명>
+	
+	브랜치 삭제
+	$ git branch -d <브랜치명>
+	
+	원격으로 서버에서 브랜치 삭제
+	$ git push --delete <서버주소> <브랜치명>
+	
+	서버 브랜치 확인
+	$ git branch -r : 서버 브랜치 확인
+	
+	서버의 특정 브랜치 다운로드
+	$ git checkout -t <서버 브랜치>
+6. 협업
+(1) Fork 
+	- https://github.com/octocat/Spoon-Knife
+(2) Colaboration
+	- 팀장은 remote repository 생성 후 팀원들을 초대한다.
+	- 팀장은 기본 템플릿을 작성해서 업로드
+	- 팀원들은 템플릿을 다운로드 받아 브랜치를 생성하여 임의의 작업 수행
+		- 처음에는 clone으로 받고 그 다음부터는 pull로 받는다
+	----------------------------------------------------
+	- 팀원들은 임의의 작업을 수행 후 브랜치 업로드
+	- 팀장은 팀원들의 브랜치를 받아서 머지 후 다시 master 업로드
+	- 팀원들은 자기가 올린 브랜치를 삭제 후 확인
+		- 반드시 팀장이 머지했다는 메시지를 받은 후 수행한다

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fnAddress(si, gu, gun) {
+            let addr = si + " " + gu + " " + gun;
+            // alert(addr);
+            // 자바스크립트에서 html로 접근하는 방법
+            // document.f.addr.value = addr;
+
+            // opener는 부모주소를 가르킴
+            opener.document.f.addr.value = addr;
+            window.close();
+        }
+    </script>
+</head>
+<body>
+    <a href="#" onclick="fnAddress('서울시', '종로구', '효자동')">서울시 종로구 효자동</a><br/>
+    <a href="#" onclick="fnAddress('서울시', '강남구', '역삼동')">서울시 강남구 역삼동</a><br/>
+    <a href="#" onclick="fnAddress('서울시', '강동구', '천호동')">서울시 강동구 천호동</a><br/>
+    <br/>
+    <form name="f">
+        <input type="text" name="addr" />
+    </form>
+</body>
+</html>

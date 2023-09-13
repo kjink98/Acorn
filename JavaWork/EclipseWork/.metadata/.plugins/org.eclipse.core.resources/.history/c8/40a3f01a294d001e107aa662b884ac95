@@ -1,0 +1,9 @@
+package byteStream;
+
+public class ByteTest1 {
+
+	public static void main(String[] args) {
+		
+	}
+
+}

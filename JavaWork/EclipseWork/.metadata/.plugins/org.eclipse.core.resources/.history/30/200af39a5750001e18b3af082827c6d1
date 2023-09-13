@@ -1,0 +1,9 @@
+
+public class ThreadTest4 {
+
+	public static void main(String[] args) {
+		// TODO 스레드의 종료 시점
+
+	}
+
+}

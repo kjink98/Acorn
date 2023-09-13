@@ -1,0 +1,29 @@
+package charstream;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStream;
+
+public class FileTest1 {
+
+	public static void main(String[] args){
+		// TODO 파일로부터 입력 받아 콘솔로 출력
+		try {
+			BufferedReader br = new BufferedReader(
+				new FileReader("C:\\jingwang\\JavaWork\\Test\\test.txt"));
+		
+		String input = null;
+		while((input = br.readLine()) != null) {
+			System.out.println(input);
+			br.close();
+		} 
+		}catch(IOException e){
+			System.out.println(e);
+		}
+		
+		
+	
+
+}
+}

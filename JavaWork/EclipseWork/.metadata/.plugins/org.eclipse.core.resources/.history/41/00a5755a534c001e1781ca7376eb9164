@@ -1,0 +1,11 @@
+
+public class StringTokenizerTest {
+
+	public static void main(String[] args) {
+		// TODO 문자열 분리
+		String data = "홍길동, 임꺽정, 신돌석, 강감찬";
+		
+		data.split(",");
+	}
+
+}

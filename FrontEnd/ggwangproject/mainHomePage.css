@@ -1,0 +1,30 @@
+body{
+    /* kbo 사진 넣기 */
+    /* background-color: cornflowerblue; */
+    height: 100vh;
+    display: flex;
+}
+.container{
+    /* 팀명 */
+    padding: 50px 0px;
+}
+
+.container .ssgLanders{
+    /* ssg 배너 */
+    margin: 500px 700px;
+    min-width: 500px;
+    min-height: 100px;
+    border-radius: 30px;
+    border: solid black;
+    position: absolute;
+}
+
+.container .ssgLanders .txt-ssgLanders{
+    /* ssg 링크 */
+    margin: 10px 180px;
+	padding: 10px;
+    position: absolute;
+    font-size: 10px;
+    background-attachment: fixed;
+    
+}

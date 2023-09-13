@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            const parent = document.querySelector(".parent");
+            const children = document.querySelectorAll(".child");
+            
+            // children.forEach(e1 => {
+            //     e1.addEventListener("click", ev=>{
+            //         console.log(ev.target.textContent);
+            //     })
+            // }) 
+
+            parent.addEventListener("click", ev => {
+                const ch = ev.target.closest(".child"); // css 속성 .child 를 가진 가장 가까운 조상
+                if(ch){ // 더 확실하게 하기 위해
+                    console.log(ch.textContent);
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="parent">
+        <div class="child">1</div>
+        <div class="child">2</div>
+        <div class="child">3</div>
+        <div class="child">4</div>
+    </div>
+</body>
+</html>

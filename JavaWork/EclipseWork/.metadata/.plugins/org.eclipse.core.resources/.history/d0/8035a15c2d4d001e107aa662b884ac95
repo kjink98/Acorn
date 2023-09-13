@@ -1,0 +1,20 @@
+package byteStream;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+public class ByteTest2 {
+	static void StreamTest(InputStream in, OutputStream out) throws IOException{
+		int input = System.in.read();
+		
+		while(input != -1) { // (컨트롤 + z 를 누르면 -1)
+			System.out.print((char)input);
+			input = System.in.read();
+		}
+	}
+	public static void main(String[] args) throws IOException{
+		StreamTest(System.in, System.out);
+	}
+
+}

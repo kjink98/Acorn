@@ -1,0 +1,30 @@
+package charstream;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+
+public class FileTest1 {
+
+	public static void main(String[] args) throws IOException{
+		// TODO 파일로부터 입력 받아 콘솔로 출력
+		// fin에 file 주소값 저장
+		FileInputStream fin = new FileInputStream("C:\\jingwang\\JavaWork\\Test\\test.txt");
+		BufferedReader br = new BufferedReader(new InputStreamReader(fin));
+		String input = br.readLine();
+		while(input != null) { // 
+			input = br.readLine();
+
+			OutputStream os = System.out;
+			
+
+			os.write(Integer.parseInt(input));
+			// 확장된 출력(숫자까지 나오게) (남아있을 문자들을 위해)
+			os.flush();
+		}
+		fin.close(); // 쓸모없는 메모리 닫기
+	}
+
+}

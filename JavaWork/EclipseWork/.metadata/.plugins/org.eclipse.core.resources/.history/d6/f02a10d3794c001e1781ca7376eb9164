@@ -1,0 +1,23 @@
+class GenericDemo {
+	int value;
+	
+	public GenericDemo(int val) {
+		value = val;
+	}
+	
+	int getValue() {
+		return value;
+	}
+}
+public class GenericTest2 {
+
+	public static void main(String[] args) {
+		// TODO Template 기능
+		GenericDemo demo1 = new GenericDemo(10);
+		System.out.println(demo1.getValue());
+
+		GenericDemo demo2 = new GenericDemo(3.14);
+		System.out.println(demo2.getValue());
+	}
+
+}

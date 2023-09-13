@@ -1,0 +1,9 @@
+
+public class ThreadTest2 {
+
+	public static void main(String[] args) {
+		// TODO Runnable 인터페이스를 상속받아 스레드를 만드는 방법
+		
+	}
+
+}

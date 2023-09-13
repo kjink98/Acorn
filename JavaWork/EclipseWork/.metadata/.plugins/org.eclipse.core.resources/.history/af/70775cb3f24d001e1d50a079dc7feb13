@@ -1,0 +1,28 @@
+package charstream;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStream;
+
+public class FileTest1 {
+
+	public static void main(String[] args) throws IOException{
+		// TODO 파일로부터 입력 받아 콘솔로 출력
+		BufferedReader br = new BufferedReader(
+				new FileReader("C:\\jingwang\\JavaWork\\Test\\test.txt"));
+		
+		String input = br.readLine();
+		while(input != null) { // 
+			input = br.readLine();
+
+			OutputStream os = System.out;
+			
+
+			os.write(Integer.parseInt(input));
+			// 확장된 출력(숫자까지 나오게) (남아있을 문자들을 위해)
+			System.out.print(input); 
+		}
+	}
+
+}

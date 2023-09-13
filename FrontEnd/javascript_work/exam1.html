@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // prompt를 통해 입력받은 숫자만큼 반복을 돌면서
+        // 짝수의 합과 홀수의 합을 출력
+
+        
+        
+        function hap (){
+            let num = window.prompt("값을 입력하세요.");
+            let eSum = 0;
+            let oSum = 0;
+            for(let i=0; i<=num; i++){
+                if(i%2 === 0) eSum += i;
+                else oSum += i;
+            }
+            console.log("짝수의 합은 " + eSum + ", 홀수의 합은 " + oSum);
+        }
+        hap();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

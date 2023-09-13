@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 전체 선택자 */
+        * {font-size: 20pt;color: blue; margin: 10px;}
+        
+        /* 클래스 선택자 */
+        /* .class명 */
+        /* .winter {font-size:30pt; color:chocolate; font-weight: 600;}
+        .summer {font-size:16pt; color:hotpink; font-weight: 900; font-family: 궁서;}
+        .rain {width:150px; height: 100px; background-color: aqua;} */
+
+        /* id는 중복된 속성이 있으면 안됨 */
+        #winter {font-size:30pt; color:chocolate; font-weight: 600;}
+        #summer {font-size:16pt; color:hotpink; font-weight: 900; font-family: 궁서;}
+        #rain {width:150px; height: 100px; background-color: aqua;}
+    </style>
+</head>
+<body>
+    <!-- <h1 class="winter">현재 디자인이 적용될 문장</h1>
+    <span class="winter rain">안녕하세요~ 홍길동님</span>
+    <h1 class="summer">여기도 같은 디자인으로 적용</h1>
+    아무 디자인도 적용되지 않는 문장
+    <div class="summer rain">내용</div> -->
+    
+    <h1 id="winter">현재 디자인이 적용될 문장</h1>
+    <span id="winter">안녕하세요~ 홍길동님</span>
+    <h1 id="summer">여기도 같은 디자인으로 적용</h1>
+    아무 디자인도 적용되지 않는 문장
+    <div id="summer">내용</div>
+</body>
+</html>

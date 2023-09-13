@@ -1,0 +1,20 @@
+import java.util.HashMap;
+
+public class CollectionTest3 {
+
+	public static void main(String[] args) {
+		// TODO Map
+		HashMap map = new HashMap();
+		map.put("k1", "홍길동");
+		map.put("k2", "임꺽정");
+		map.put("k3", "유비");
+		map.put("k4", "관우");
+		map.put("k5", "장비");
+		
+		// 중복 x 중복된 키 넣으면 마지막에 넣은걸로 대체
+		System.out.println("데이터 개수 : " + map.size());
+		System.out.println(map);
+		
+	}
+
+}

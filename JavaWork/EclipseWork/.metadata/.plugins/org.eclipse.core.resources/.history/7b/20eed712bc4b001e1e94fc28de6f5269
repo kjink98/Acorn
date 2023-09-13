@@ -1,0 +1,12 @@
+import java.util.Random;
+
+public class RandomTest {
+
+	public static void main(String[] args) {
+		// TODO 난수 처리
+		Random rnd = new Random();
+		
+		System.out.println(rnd.nextInt());
+	}
+
+}

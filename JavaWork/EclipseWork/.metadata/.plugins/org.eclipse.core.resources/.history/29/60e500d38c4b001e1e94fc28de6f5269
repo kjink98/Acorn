@@ -1,0 +1,20 @@
+interface Interf1{
+	int a = 1;
+}
+
+interface Interf2{
+	int b = 2;
+}
+
+interface Interf3{
+	int c = 3;
+}
+
+public class InterfaceTest2 {
+
+	public static void main(String[] args) {
+		// TODO 인터페이스 다중 상속
+		System.out.println(Interf1.a + ", " + Interf2.b + ", " + Interf3.c);
+	}
+
+}

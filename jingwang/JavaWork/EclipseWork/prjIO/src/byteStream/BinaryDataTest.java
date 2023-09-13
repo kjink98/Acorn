@@ -1,4 +1,4 @@
-package byteStream;
+package bytestream;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
