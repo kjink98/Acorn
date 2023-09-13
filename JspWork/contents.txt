@@ -1,0 +1,6 @@
+WEB PROGRAMMING
+==================
+1. 준비 사항
+(1) 웹 서버
+	- IIS, Apache, Tomcat, NginX, ...
+	- WebSphere, WebLogic, Jeus, JBoss, ... (WAS 라고 함)
