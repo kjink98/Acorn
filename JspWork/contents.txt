@@ -57,3 +57,6 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 		- 데이터 변경 목적
 (4) 데이터를 가져오는 메서드
 	1) String getParameter(String name)
+	2) String[] getParameterValues()
+	3) java.util.Enumeration<String> getParameterNames()
+	4) java.util.Map<String, String[]> getParameterMap()
