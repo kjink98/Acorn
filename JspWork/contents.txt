@@ -18,7 +18,7 @@ WEB PROGRAMMING
 https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 (1) 특징
 	1) 자바로 만든 application(서버에서만 실행)
-	2) 클라이언트와 소통 = 네트워크
+	2) 클라이언트와 소통 (= 네트워크)
 	3) 별도의 라이브러리가 필요 : servlet-api.jar
 	4) javax.servlet.HttpServlet을 상속받아 작성
 		protected void	doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -28,7 +28,16 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 		<servlet-name>에는 변수이름
 		<servlet-class>에는 클래스 이름
 		<servlet-mapping> : 일반 사용자가 어떻게 연결하게 하는지 지정해주는 부분
-(2) 요청(request) 방식
+(2) 서블릿을 구성하는 3대 클래스
+※ HTTP : HTML을 이용해 웹에서 주고 받을 수 있는 통신 규약
+※ 데이터를 보낼 때 한 번에 보내지 않고 나눠서 조각조각 보냄 (한 조각이 잘 못 됐을 때 그 조각만 다시 보냄) 여기서 그 조각을 패킷이라고 말함
+※ HttpServletRequest : 사용자가 정보를 받게 해주는 클래스
+※ HttpServletResponse : 사용자가 정보를 보낼 떄 포장해주는 클래스
+※ resp.getWriter(); : 사용자에게 정보를 보낼 수 있게 객체를 전달시키는 용도
+	1) HttpServlet <- GenericServlet <- Servlet
+	2) HttpServletRequest <- ServletReqeust
+	3) HttpServletResponse <- ServletResponse
+(3) 요청(request) 방식
 	1) GET
 		- 하이퍼링크 전송 방식, URL전송 방식
 		- 전송 방식이 다양
@@ -46,3 +55,5 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 		- 대량의 데이터 전송
 		- 전송되는 데이터가 노출되지 않음
 		- 데이터 변경 목적
+(4) 데이터를 가져오는 메서드
+	1) String getParameter(String name)
