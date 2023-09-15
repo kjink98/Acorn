@@ -60,3 +60,43 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 	2) String[] getParameterValues()
 	3) java.util.Enumeration<String> getParameterNames()
 	4) java.util.Map<String, String[]> getParameterMap()
+(5) LifeCycle
+	1) init() : 처음에 서블릿 객체가 호출 될 때 생성되는 메서드
+		서블릿 객체는 단 하나만 생성.
+		두 번째로 접속하면 Service() 메서드 호출
+	2) service()
+		service(){
+			if(get방식으로 요청){
+				doGet();
+			} else if(post방식으로 요청){
+				doPost();
+			}
+			...
+		}
+	3) destroy()
+		서버가 종료될 때 호출
+(6) header 정보 가져오기
+(7) 웹 프로그래밍에서 중요한 기술 2가지
+	1) 페이지 이동 기술
+		- Front End
+			<a href=""> </a>
+			<meta>
+			location.href
+			history
+		- Back End(Server)
+			...
+	2) Data Persistance
+		- Cookie
+			클라이언트 측 기술
+				자기 컴퓨터로만 해야 정보가 저장돼있음
+			텍스트만 저장
+			4kb
+			만료 기간
+		- Session
+			서버측 기술
+				어느 컴퓨터로 접속해도 정보가 저장돼있음
+	※ http : 비연결 지향성
+		연결 지향성 : 미리 선로를 깔아놓고 데이터를 주고받는 방식 
+			- 데이터를 안정성 있게 주고 받을 수 있음
+			- TCP/IP
+		비연결 지향성 : 필요할 때만 연결을 해서 주고받는 방식
