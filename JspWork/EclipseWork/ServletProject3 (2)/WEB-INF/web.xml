@@ -27,7 +27,7 @@
 	</description>
 
 	<welcome-file-list>
-		<welcome-file>homework.html</welcome-file>
+		<welcome-file>session.html</welcome-file>
 	</welcome-file-list>
 
 	<!-- 객체 생성 -->

@@ -100,3 +100,20 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 			- 데이터를 안정성 있게 주고 받을 수 있음
 			- TCP/IP
 		비연결 지향성 : 필요할 때만 연결을 해서 주고받는 방식
+(8) 기본 문서 지정
+
+(9) 배포
+===========================================================
+3. JSP(Java Server Page)
+(1) 클라이언트 코드와 자바 코드를 한 페이지 내에 작성 가능
+	- HTML 안에 Java코드를 포함시키는 방법
+	- .jsp로 저장
+(2) ScriptElement : HTML 안에 Java코드를 포함시키기 위한 도구
+	1) <%! ... %> : Declaration(선언부)
+	2) <% ... %> : Scriptlet(처리부)
+	3) <%= ... %> : Expression(표현부)
+(3) Directive
+(4) Implicit Object
+(5) ActionTag
+(6) Java Beans
+(7) EL
