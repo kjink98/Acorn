@@ -112,8 +112,34 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 	1) <%! ... %> : Declaration(선언부)
 	2) <% ... %> : Scriptlet(처리부)
 	3) <%= ... %> : Expression(표현부)
-(3) Directive
+(3) Directive : 지시를 내리기 위한 도구
+	<%@page 속성들.. %>
+	<%@include file="" %>
+	<%@taglib 속성들.. %>	
 (4) Implicit Object
+	-- 입출력 관련
+	1) request : HttpServletRequest
+	2) response : HttpServletResponse
+	3) out : javax.servlet.jsp.JspWriter
+			PrintWriter out = resp.getWriter();
+			
+	-- 서블릿 관련
+	4) page
+	5) config
+	
+	-- context 관련
+	- 전역변수
+	6) session : HttpSession (세션 하나 자체가 프로젝트랑 똑같은 형태임) 프로젝트 내 어디에서든 꺼냈다가 뺄 수 있음. 서로 다른 파일이여도 상관 없음. 최대한 안전하게 사용 가능. (사용자마다 메모리가 만들어짐)
+	7) application : javax.servlet.ServletContext (처음 시작할 때만 공동 메모리가 만들어짐) 가장 오랫동안 쓸 수 있음. 웹 프로젝트 하나당 하나의 공간 (모든 사용자가 공유)
+	- 지역변수
+	8) pageContext
+	request
+	------------------------
+		setAttribute("속성명", 값)
+		getAttrubute("속성명")
+		removeAttribute("속성명")
+	-- 예외 처리
+	9) exception
 (5) ActionTag
 (6) Java Beans
 (7) EL

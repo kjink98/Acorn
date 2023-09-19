@@ -165,7 +165,7 @@
 		
 
 		
-      <Context docBase="ServletProject3" path="/ServletProject3" reloadable="true" source="org.eclipse.jst.jee.server:ServletProject3"/></Host>
+      <Context docBase="ImplicitObjectApp" path="/ImplicitObjectApp" reloadable="true" source="org.eclipse.jst.jee.server:ImplicitObjectApp"/></Host>
     </Engine>
   </Service>
 </Server>
