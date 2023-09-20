@@ -16,5 +16,7 @@
 	<h2>pageContext 값 확인</h2>
 	<%=	pageContext.getAttribute("i")%>
 	<!-- 같은 페이지가 아니여서 안나옴 -->
+	
+	
 </body>
 </html>

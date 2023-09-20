@@ -128,18 +128,31 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 	5) config
 	
 	-- context 관련
-	- 전역변수
-	6) session : HttpSession (세션 하나 자체가 프로젝트랑 똑같은 형태임) 프로젝트 내 어디에서든 꺼냈다가 뺄 수 있음. 서로 다른 파일이여도 상관 없음. 최대한 안전하게 사용 가능. (사용자마다 메모리가 만들어짐)
-	7) application : javax.servlet.ServletContext (처음 시작할 때만 공동 메모리가 만들어짐) 가장 오랫동안 쓸 수 있음. 웹 프로젝트 하나당 하나의 공간 (모든 사용자가 공유)
+	- 전역변수 (가장 작은 범위)pageContext - request - session - application(가장 넓은 범위)
+	6) session : HttpSession (세션 하나 자체가 프로젝트랑 똑같은 형태임) 프로젝트 내 어디에서든 꺼냈다가 뺄 수 있음. 접속한사용자만. 서로 다른 파일이여도 상관 없음. 최대한 안전하게 사용 가능. (사용자마다 메모리가 만들어짐), 클라이언트가 접속 할 때 세션 메모리 생성. 사용자가 아무런 동작을 하지 않았을 때(웹서버가 관리하는 시간) 객체 소멸, 접속을 끊었을 때
+	7) application : javax.servlet.ServletContext (처음 시작할 때만 공동 메모리가 만들어짐) 가장 오랫동안 쓸 수 있음. 웹 프로젝트 하나당 하나의 공간 (모든 사용자가 모든 범위에서 공유), 서버가 사용 가동 될 때 객체 생성, 서버가 종료할 때 객체 소멸
 	- 지역변수
-	8) pageContext
-	request
+	8) pageContext : 하나의 페이지에서 사용. 페이지 이동할 때 객체 소멸. 범위는 좁지만 가장 강력함. 나머지를 제어하는 기능을 갖고 있음
+	request : 요청, 응답 페이지에서 사용 가능 (요청을 할 때 객체 생성) (응답을 받았을 때 객체 소멸)
 	------------------------
 		setAttribute("속성명", 값)
 		getAttrubute("속성명")
 		removeAttribute("속성명")
 	-- 예외 처리
 	9) exception
+	
+	※ 데이터 유효성 체크
+		- 클라이언트 체크
+		- 서버 체크
 (5) ActionTag
+	1) Standard Action Tag : <jsp:태그명></jsp:태그명>
+		- <jsp:useBean> </jsp:useBean>
+		- <jsp:setProperty>
+		- <jsp:getProperty>
+		- <jsp:forward>
+		- <jsp:include>
+		- <jsp:params>, <jsp:param>
+	2) 사용자 정의 태그(Custom Action Tag)
+	3) JSTL
 (6) Java Beans
 (7) EL
