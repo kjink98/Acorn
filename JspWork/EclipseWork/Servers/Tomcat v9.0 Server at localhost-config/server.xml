@@ -165,7 +165,7 @@
 		
 
 		
-      <Context docBase="ImplicitObjectApp" path="/ImplicitObjectApp" reloadable="true" source="org.eclipse.jst.jee.server:ImplicitObjectApp"/><Context docBase="ActionTagApp" path="/ActionTagApp" reloadable="true" source="org.eclipse.jst.jee.server:ActionTagApp"/></Host>
+      <Context docBase="DbApp" path="/DbApp" reloadable="true" source="org.eclipse.jst.jee.server:DbApp"/></Host>
     </Engine>
   </Service>
 </Server>

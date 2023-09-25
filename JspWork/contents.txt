@@ -193,5 +193,11 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 		- session
 		- application
 	- Index Property
-		
-(7) EL
+(7) DB 연동
+	1) JDBC
+		- 드라이버 준비 : mvnrepository.com
+		- 표준 API
+			Connection
+			Statement
+			ResultSet
+(8) EL
