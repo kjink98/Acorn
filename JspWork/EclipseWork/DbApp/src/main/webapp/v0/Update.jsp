@@ -114,7 +114,7 @@
       수정시에는 비밀번호가 필요합니다.</td>
     </tr>
 	<tr>
-     <td colspan=2 height=5><hr size=1><%=pass %></td>
+     <td colspan=2 height=5><hr size=1></td>
     </tr>
 	<tr>
      <td colspan=2>

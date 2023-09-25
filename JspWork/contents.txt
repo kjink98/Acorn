@@ -198,6 +198,6 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 		- 드라이버 준비 : mvnrepository.com
 		- 표준 API
 			Connection
-			Statement
+			Statement 대신, PreparedStatement 사용
 			ResultSet
 (8) EL
