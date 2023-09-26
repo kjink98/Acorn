@@ -33,7 +33,6 @@
 	String subject = "";
 	String content = "";
 	String ip = "";
-	String pass= "";
 	int count = 0;
 	
 	
@@ -55,7 +54,6 @@
 			content = rs.getString("b_content");
 			ip = rs.getString("b_ip");
 			count = rs.getInt("b_count");
-			pass = rs.getString("b_pass");
 			}
 		} catch (Exception e) {
 			System.out.println("List.jsp: " + e);
@@ -81,6 +79,8 @@
 </table>
 
 <form name=form method=post action="UpdateProc.jsp" >
+<!-- 글 번호를 전달하는 부분이 없으므로 hidden 태그로 보내준다 -->
+<input type="hidden" name="b_num" value="<%=b_num%>" />
 <table width=70% cellspacing=0 cellpadding=7>
  <tr>
   <td align=center>

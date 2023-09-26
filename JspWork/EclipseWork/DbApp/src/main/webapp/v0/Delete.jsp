@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page import="java.sql.*" %>
 
 <html>
 <head><title>JSPBoard</title>
@@ -15,6 +16,61 @@
 </script>
 </head>
 <body>
+<%
+	request.setCharacterEncoding("utf-8");
+
+	String b_num = request.getParameter("b_num");
+	String pass = request.getParameter("pass");
+	
+	Connection con = null;
+	PreparedStatement stmt = null;
+	ResultSet rs = null;
+	
+	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	String id = "scott";
+	String pw = "1111";
+	
+	try{
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		con = DriverManager.getConnection(url, id, pw);
+		
+			
+		String sql = "select b_pass from tblboard where b_num=?";
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, b_num);
+		rs = stmt.executeQuery();
+		rs.next();
+		
+		if(pass.equals(rs.getString("b_pass"))){
+			sql = "delete from tblboard where b_num=?";
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, b_num);
+			stmt.executeUpdate();
+			
+		
+			response.sendRedirect("List.jsp");
+		}
+		else {
+%>
+	<script>
+		alert("비밀번호가 틀렸습니다.");
+		// update.jsp로 back 시키기
+		history.back();
+	</script>
+<%	
+		}
+		
+	}
+	catch(Exception e){
+		System.out.println("Delete.jsp: " + e);
+	}
+	finally{
+		if(stmt != null) stmt.close();
+		if(con != null)	con.close();
+		if(rs != null) rs.close();
+	}
+		
+%>
 <center>
 <br><br>
 <table width=50% cellspacing=0 cellpadding=3>
@@ -25,6 +81,7 @@
 </table>
 <table width=70% cellspacing=0 cellpadding=2>
 <form name=form method=post action="Delete.jsp" >
+<input type="hidden" name="b_num" value=<%=b_num%> />
  <tr>
   <td align=center>
    <table align=center border=0 width=91%>

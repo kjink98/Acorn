@@ -43,7 +43,7 @@
 			email = rs.getString("b_email");
 			home = rs.getString("b_homepage");
 			subject = rs.getString("b_subject");
-			content = rs.getString("b_content");
+			content = rs.getString("b_content").replace("\n", "<br>");
 			ip = rs.getString("b_ip");
 			count = rs.getInt("b_count");
 			}
@@ -87,11 +87,11 @@
 						<td bgcolor=#ffffe8 colspan=3><%=subject %></td>
 					</tr>
 					<tr>
-						<td colspan=4><%=content %></td>
+						<td colspan=4><%=content%></td>
 					</tr>
 					<tr>
 						<td colspan=4 align=right>
-						<%=ip %>로 부터 글을 남기셨습니다./ 조회수 : <%=count %></td>
+						<%=ip %>로 부터 글을 남기셨습니다./ 조회수 : <%=count%></td>
 					</tr>
 				</table>
 			</td>
@@ -100,7 +100,7 @@
 			<td align=center colspan=2>
 				<hr size=1> [ <a href="javascript:list()">목 록</a> 
 				| <a href="Update.jsp?b_num=<%=b_num%>">수 정</a> | 
-				<a href="">삭 제</a> ]<br>
+				<a href="Delete.jsp?b_num=<%=b_num%>">삭 제</a> ]<br>
 			</td>
 		</tr>
 	</table>
