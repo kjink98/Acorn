@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="javax.sql.DataSource"%>
+<%@ page import="javax.naming.InitialContext"%>
+<%@ page import="javax.naming.Context"%>
 <%
 	request.setCharacterEncoding("utf-8");
 	String name = request.getParameter("name");
@@ -17,14 +20,13 @@
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
 	
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String id = "scott";
-	String pw = "1111";
+	Context ctx = new InitialContext();
+	DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/myoracle");
+	
 	
 	try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		con = DriverManager.getConnection(url, id, pw);
-	
+		con = ds.getConnection();
+		
 		String sql = "insert into tblboard(b_num, " + 
 			"b_name, b_email, b_homepage, b_subject, b_content, b_pass, b_count, "+ 
 			"b_ip, b_regdate, pos, depth) " + 
@@ -40,18 +42,20 @@
 		stmt.setString(7, request.getRemoteAddr());
 		stmt.executeUpdate();
 %>
-	reponse.sendReirect("List.jsp");
-<%
+		reponse.sendReirect("List.jsp");
+<%		
 		
 	} catch (Exception e) {
 		System.out.println("PostProc.jsp: " + e);
 	} finally {
 		// 닫혀 있을 때만 닫을 수 있게
-	
+		if (rs != null)
+			rs.close();
+
 		if (stmt != null)
-			stmt.close();
+		stmt.close();
 	
 		if (con != null)
-			con.close();
+		con.close();
 	}
 %>

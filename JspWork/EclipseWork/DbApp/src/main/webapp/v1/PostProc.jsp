@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="dbcp.DBConnectionMgr"%>
 <%
 	request.setCharacterEncoding("utf-8");
 	String name = request.getParameter("name");
@@ -16,15 +17,13 @@
 	// Statement를 개선해서 나온 PreparedStatement 씀
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
+	DBConnectionMgr pool = null;
 	
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String id = "scott";
-	String pw = "1111";
 	
 	try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		con = DriverManager.getConnection(url, id, pw);
-	
+		pool = DBConnectionMgr.getInstance();
+		con = pool.getConnection();
+		
 		String sql = "insert into tblboard(b_num, " + 
 			"b_name, b_email, b_homepage, b_subject, b_content, b_pass, b_count, "+ 
 			"b_ip, b_regdate, pos, depth) " + 
@@ -40,18 +39,13 @@
 		stmt.setString(7, request.getRemoteAddr());
 		stmt.executeUpdate();
 %>
-	reponse.sendReirect("List.jsp");
-<%
+		reponse.sendReirect("List.jsp");
+<%		
 		
 	} catch (Exception e) {
 		System.out.println("PostProc.jsp: " + e);
 	} finally {
 		// 닫혀 있을 때만 닫을 수 있게
-	
-		if (stmt != null)
-			stmt.close();
-	
-		if (con != null)
-			con.close();
+		pool.freeConnection(con, stmt, rs);
 	}
 %>

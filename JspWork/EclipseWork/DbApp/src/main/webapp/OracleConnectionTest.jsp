@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.DriverManager"%>
 <%@ page import="java.sql.Connection"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,5 +21,12 @@
 	%>
 	
 	DB 연결 주소 : <%= conn %>
+	<%
+		conn.close();
+	%>
+	<hr>
+	
+	<h1>DBCP 연결 테스트</h1>
+	
 </body>
 </html>

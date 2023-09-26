@@ -194,10 +194,19 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 		- application
 	- Index Property
 (7) DB 연동
-	1) JDBC
+	1) JDBC (Java DateBase Connectivity)
 		- 드라이버 준비 : mvnrepository.com
 		- 표준 API
 			Connection
 			Statement 대신, PreparedStatement 사용
 			ResultSet
+	2) DBCP (DataBase Connection Pool)
+		- 지속적인 연결 시도(성능부분의 악화 초래)
+		- 중복된 코드
+		- 구현 방법
+			- 직접 작성
+			- 외부 라이브러리
+			- WAS에서 제공
+	3) JNDI(Java Naming and Directory Interface)
+		- 디렉터리 서비스에서 제공하는 데이터 및 객체를 발견하고 참고하기 위한 자바 API
 (8) EL
