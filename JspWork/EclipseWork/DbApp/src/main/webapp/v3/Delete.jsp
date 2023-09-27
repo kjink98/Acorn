@@ -1,8 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="java.sql.*"%>
-<%@ page import="javax.sql.DataSource"%>
-<%@ page import="javax.naming.InitialContext"%>
-<%@ page import="javax.naming.Context"%>
+<%@ page import="mybean.*"%>
+<%@ page import="java.util.*"%>
 
 <html>
 <head>
@@ -19,6 +17,7 @@
 	}
 </script>
 </head>
+<jsp:useBean id="dao" class="mybean.BoardDao" />
 <body>
 	<%
 	request.setCharacterEncoding("utf-8");

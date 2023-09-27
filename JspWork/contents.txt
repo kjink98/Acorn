@@ -210,3 +210,16 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 	3) JNDI(Java Naming and Directory Interface)
 		- 디렉터리 서비스에서 제공하는 데이터 및 객체를 발견하고 참고하기 위한 자바 API
 (8) EL
+
+
+4. BootStrap
+(1) UI 프레임워크
+(2) html, css, javascript
+(3) 버전
+	1) 1.x : desktop
+	2) 2.x : desktop 위주, mobile
+	3) 3.x : mobile 위주
+	4) 4.x
+	5) 5.x
+(4) https://getbootstrap.com
+(5) 반응형 웹
