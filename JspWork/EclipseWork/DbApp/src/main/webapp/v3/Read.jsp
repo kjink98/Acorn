@@ -1,8 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="java.sql.*"%>
-<%@ page import="javax.sql.DataSource"%>
-<%@ page import="javax.naming.InitialContext"%>
-<%@ page import="javax.naming.Context"%>
+<%@ page import="mybean.BoardDao"%>
+<%@ page import="mybean.Board"%>
 <html>
 <head>
 <title>JSPBoard</title>
@@ -12,13 +10,6 @@
 <body>
 	<%
 	String b_num = request.getParameter("b_num");
-
-	Connection con = null;
-	Statement stmt = null;
-	ResultSet rs = null;
-
-	Context ctx = new InitialContext();
-	DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/myoracle");
 	
 	// DB로 부터 가져올 변수
 	String name = "";
@@ -30,37 +21,19 @@
 	String ip = "";
 	int count = 0;
 	
-	try {
-		con = ds.getConnection();
-		
-		String sql = "select * from tblboard where b_num=" + b_num;
-		stmt = con.createStatement();
-		rs = stmt.executeQuery(sql);
-		
-		// db에서 받아오기
-		if(rs.next()){
-			name = rs.getString("b_name");
-			regdate = rs.getString("b_regdate");
-			email = rs.getString("b_email");
-			home = rs.getString("b_homepage");
-			subject = rs.getString("b_subject");
-			content = rs.getString("b_content").replace("\n", "<br>");
-			ip = rs.getString("b_ip");
-			count = rs.getInt("b_count");
-			}
-		} catch (Exception e) {
-			System.out.println("List.jsp: " + e);
-		} finally {
-			// 닫혀 있을 때만 닫을 수 있게
-			if (rs != null)
-				rs.close();
-
-			if (stmt != null)
-			stmt.close();
-		
-			if (con != null)
-			con.close();
-		}
+	BoardDao dao = new BoardDao();
+	Board dto = dao.getBoard(b_num);
+	
+	
+	name = dto.getB_name();
+	regdate = dto.getB_regdate();
+	email = dto.getB_email();
+	home = dto.getB_homepage();
+	subject = dto.getB_subject();
+	content = dto.getB_content();
+	ip = dto.getB_ip();
+	count = dto.getB_count();
+	
 	%>
 	<br>
 	<br>

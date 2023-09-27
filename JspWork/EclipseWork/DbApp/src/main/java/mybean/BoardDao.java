@@ -111,6 +111,36 @@ public class BoardDao {
 		
 	}
 	
+	// Read.jsp
+	public Board getBoard(String b_num) {
+		Board board = new Board();
+		String sql = "select * from tblboard where b_num=?";
+		
+		try {
+			con = ds.getConnection();
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, board.getB_num());
+			rs = stmt.executeQuery();
+			
+			if(rs.next()){
+				board.setB_name(rs.getString("b_name"));
+				board.setB_regdate(rs.getString("b_regdate"));
+				board.setB_email(rs.getString("b_email"));
+				board.setB_homepage(rs.getString("b_homepage"));
+				board.setB_subject(rs.getString("b_subject"));
+				board.setB_content(rs.getString("b_content").replace("\n", "<br>"));
+				board.setB_ip(rs.getString("b_ip"));
+				board.setB_count(rs.getInt("b_count"));
+				}
+		}
+		catch(Exception e) {
+			System.out.println("getBoard : " + e);
+		}
+		finally {
+			freeConnection();
+		}
+		return  board;
+	}
 	
 	
 }
