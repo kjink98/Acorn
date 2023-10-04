@@ -16,83 +16,97 @@ public class BoardDao {
 	private PreparedStatement stmt;
 	private ResultSet rs;
 	private DataSource ds;
-	
+
 	//생성자에다 DB연결
 	public BoardDao() {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/myoracle");
-		}
-		catch(Exception err) {
-			System.out.println("BoardDao: " + err);
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/myoracle");
+		} catch (Exception err) {
+			System.out.println("BoardDao:" + err);
 		}
 	}
-	
-	public void freeConnection()  {
-		if(rs != null)
+
+	public void freeConnection() {
+		if (rs != null)
 			try {
 				rs.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		if(stmt != null)
+		if (stmt != null)
 			try {
 				stmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		if(con != null)
+		if (con != null)
 			try {
 				con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 	}
-	
-	// List.jsp (DB랑 연결해서 DB 데이터를 List에 담아 리턴해주기)
-	public List getBoardList() {
-		String sql = "select b_num, b_subject, b_name, b_regdate, b_count from tblboard";
-		// 전체 리스트를 넘기기 위해(동기화 처리)
+
+	// List.jsp, Update.jsp
+	public Vector getBoardList(String keyField, String keyWord) {
+		String sql = null;
+		
+		if(keyWord==null || keyWord.isEmpty()) {
+			sql = "select b_num, b_subject, b_name, b_regdate, b_count from tblboard order by b_num desc";
+		}
+		else {
+			sql = "select b_num, b_subject, b_name, b_regdate, b_count from tblboard where " + keyField +
+					" like '%" + keyWord +
+					"%' order by b_num desc";
+		}
+		
 		Vector vector = new Vector();
+
 		try {
 			con = ds.getConnection();
-			
 			stmt = con.prepareStatement(sql);
 			rs = stmt.executeQuery();
 
-			// 데이터 개수만큼 반복 돌기
 			while (rs.next()) {
-				// bean 객체 생성
 				Board board = new Board();
-				board.setB_num(rs.getInt("b_num"));
 				board.setB_subject(rs.getString("b_subject"));
-				board.setB_name(rs.getString("b_name"));
-				board.setB_regdate(rs.getString("b_regdate"));
 				board.setB_count(rs.getInt("b_count"));
-				
+				board.setB_name(rs.getString("b_name"));
+				board.setB_num(rs.getInt("b_num"));
+				board.setB_regdate(rs.getString("b_regdate"));
+
 				vector.add(board);
 			}
-		}
-		catch(Exception e) {
-			System.out.println("List.jsp: " + e);
-		}
-		finally {
+		} catch (Exception e) {
+			System.out.println("getBoardList.jsp: " + e);
+		} finally {
 			freeConnection();
-		}
+		} 
 		return vector;
 	}
-	
+	public void updatePos(Connection con) {
+		try {
+			// 먼저 입력된 pos 값이 있으면 +1을 시킴
+			String sql = "update tblboard set pos = pos + 1";
+			stmt = con.prepareStatement(sql);
+			stmt.executeUpdate();
+		}
+		catch(Exception err) {
+			System.out.println("updatePos : " + err);
+		}
+	}
 	// PostProc.jsp
 	public void setBoard(Board board) {
-		String sql = "insert into tblboard(b_num, " + 
-				"b_name, b_email, b_homepage, b_subject, b_content, b_pass, b_count, "+ 
-				"b_ip, b_regdate, pos, depth) " + 
-				"values(seq_b_num.nextVal, ?,?,?,?,?,?, 0, ?, sysdate, 0, 0)";
+		String sql = "insert into tblboard(b_num," + "b_name, b_email, b_homepage, b_subject, b_content, "
+				+ "b_pass, b_count, b_ip, b_regdate, pos, depth) "
+				+ "values(seq_b_num.nextVal, ?,?,?,?,?,?, 0, ?, sysdate, 0, 0)";
 		try {
-			// db 접속
 			con = ds.getConnection();
+			
+			updatePos(con);
+			
 			stmt = con.prepareStatement(sql);
-			// 첫 번째 물음표에 전달하겠다.
 			stmt.setString(1, board.getB_name());
 			stmt.setString(2, board.getB_email());
 			stmt.setString(3, board.getB_homepage());
@@ -101,46 +115,81 @@ public class BoardDao {
 			stmt.setString(6, board.getB_pass());
 			stmt.setString(7, board.getB_ip());
 			stmt.executeUpdate();
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("setBoard : " + e);
-		}
-		finally {
+		} finally {
 			freeConnection();
 		}
-		
 	}
-	
-	// Read.jsp
-	public Board getBoard(String b_num) {
-		Board board = new Board();
-		String sql = "select * from tblboard where b_num=?";
-		
+
+	// Read.jsp, Update.jsp, Reply.jsp
+	public Board getBoard(int b_num) {
+		String sql;
+		Board result = new Board();
+
+		try {
+			con = ds.getConnection();
+
+			sql = "select * from tblboard where b_num=?";
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, b_num);
+			rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				result.setB_content(rs.getString("b_content"));
+				result.setB_count(rs.getInt("b_count"));
+				result.setB_email(rs.getString("b_email"));
+				result.setB_homepage(rs.getString("b_homepage"));
+				result.setB_ip(rs.getString("b_ip"));
+				result.setB_name(rs.getString("b_name"));
+				result.setB_num(rs.getInt("b_num"));
+				result.setB_pass(rs.getString("b_pass"));
+				result.setB_regdate(rs.getString("b_regdate"));
+				result.setB_subject(rs.getString("b_subject"));
+			}
+		} catch (Exception err) {
+			System.out.println("getBoard() : " + err);
+		} finally {
+			freeConnection();
+		}
+
+		return result;
+	}
+
+	// UpdateProc.jsp
+	public void updateBoard(Board dto) {
+		String sql = "update tblboard set b_name=?, b_email=?, " + "b_subject=?, b_content=? where b_num=?";
+
 		try {
 			con = ds.getConnection();
 			stmt = con.prepareStatement(sql);
-			stmt.setInt(1, board.getB_num());
-			rs = stmt.executeQuery();
-			
-			if(rs.next()){
-				board.setB_name(rs.getString("b_name"));
-				board.setB_regdate(rs.getString("b_regdate"));
-				board.setB_email(rs.getString("b_email"));
-				board.setB_homepage(rs.getString("b_homepage"));
-				board.setB_subject(rs.getString("b_subject"));
-				board.setB_content(rs.getString("b_content").replace("\n", "<br>"));
-				board.setB_ip(rs.getString("b_ip"));
-				board.setB_count(rs.getInt("b_count"));
-				}
-		}
-		catch(Exception e) {
-			System.out.println("getBoard : " + e);
-		}
-		finally {
+			stmt.setString(1, dto.getB_name());
+			stmt.setString(2, dto.getB_email());
+			stmt.setString(3, dto.getB_subject());
+			stmt.setString(4, dto.getB_content());
+			stmt.setInt(5, dto.getB_num());
+
+			stmt.executeUpdate();
+		} catch (Exception err) {
+			System.out.println("updateBoard() : " + err);
+		} finally {
 			freeConnection();
 		}
-		return  board;
 	}
-	
-	
+
+	// Delete.jsp
+	public void deleteBoard(int b_num) {
+		String sql = "delete from tblboard where b_num=?";
+
+		try {
+			con = ds.getConnection();
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, b_num);
+			stmt.executeUpdate();
+		} catch (Exception err) {
+			System.out.println("deleteBoard() : " + err);
+		} finally {
+			freeConnection();
+		}
+	}
 }

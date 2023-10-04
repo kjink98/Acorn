@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="mybean.BoardDao"%>
-<%@ page import="mybean.Board"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="dbcp.DBConnectionMgr" %>
 <html>
 <head>
 <title>JSPBoard</title>
@@ -8,10 +8,14 @@
 </head>
 
 <body>
-	<%
+<%
 	String b_num = request.getParameter("b_num");
-	
-	// DB로 부터 가져올 변수
+
+	Connection con = null;
+	Statement stmt = null;
+	ResultSet rs = null;
+	DBConnectionMgr pool = null;
+
 	String name = "";
 	String regdate = "";
 	String email = "";
@@ -21,20 +25,30 @@
 	String ip = "";
 	int count = 0;
 	
-	BoardDao dao = new BoardDao();
-	Board dto = dao.getBoard(b_num);
-	
-	
-	name = dto.getB_name();
-	regdate = dto.getB_regdate();
-	email = dto.getB_email();
-	home = dto.getB_homepage();
-	subject = dto.getB_subject();
-	content = dto.getB_content();
-	ip = dto.getB_ip();
-	count = dto.getB_count();
-	
-	%>
+	try{
+		pool = DBConnectionMgr.getInstance();
+		con = pool.getConnection();
+		
+		String sql = "select * from tblboard where b_num=" + b_num;
+		stmt = con.createStatement();
+		rs = stmt.executeQuery(sql);
+		
+		if(rs.next()){
+			name = rs.getString("b_name");
+			regdate = rs.getString("b_regdate");
+			email = rs.getString("b_email");
+			home = rs.getString("b_homepage");
+			subject = rs.getString("b_subject");
+			content = rs.getString("b_content").replace("\n", "<br>");
+			ip = rs.getString("b_ip");
+			count = rs.getInt("b_count");
+		}
+	}
+	catch(Exception e){ System.out.println("Read.jsp: " + e); }
+	finally{
+		pool.freeConnection(con, stmt, rs);
+	}
+%>
 	<br>
 	<br>
 	<table align=center width=70% border=0 cellspacing=3 cellpadding=0>
@@ -72,7 +86,8 @@
 		</tr>
 		<tr>
 			<td align=center colspan=2>
-				<hr size=1> [ <a href="javascript:list()">목 록</a> 
+				<hr size=1> [ <a href="javascript:list()">목 록</a> | 
+				<a href="Reply.jsp?b_num=<%=b_num%>">답변</a>
 				| <a href="Update.jsp?b_num=<%=b_num%>">수 정</a> | 
 				<a href="Delete.jsp?b_num=<%=b_num%>">삭 제</a> ]<br>
 			</td>
