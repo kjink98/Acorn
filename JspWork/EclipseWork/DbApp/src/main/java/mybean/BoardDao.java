@@ -53,12 +53,12 @@ public class BoardDao {
 		String sql = null;
 		
 		if(keyWord==null || keyWord.isEmpty()) {
-			sql = "select b_num, b_subject, b_name, b_regdate, b_count from tblboard order by b_num desc";
+			sql = "select * from tblboard order by pos";
 		}
 		else {
-			sql = "select b_num, b_subject, b_name, b_regdate, b_count from tblboard where " + keyField +
+			sql = "select * from tblboard where " + keyField +
 					" like '%" + keyWord +
-					"%' order by b_num desc";
+					"%' order by pos";
 		}
 		
 		Vector vector = new Vector();
@@ -75,6 +75,12 @@ public class BoardDao {
 				board.setB_name(rs.getString("b_name"));
 				board.setB_num(rs.getInt("b_num"));
 				board.setB_regdate(rs.getString("b_regdate"));
+				board.setPos(rs.getInt("pos"));
+				board.setDepth(rs.getInt("depth"));
+				board.setB_email(rs.getString("b_email"));
+				board.setB_homepage(rs.getString("b_homepage"));
+				board.setB_pass(rs.getString("b_pass"));
+				
 
 				vector.add(board);
 			}
@@ -146,6 +152,8 @@ public class BoardDao {
 				result.setB_pass(rs.getString("b_pass"));
 				result.setB_regdate(rs.getString("b_regdate"));
 				result.setB_subject(rs.getString("b_subject"));
+				result.setPos(rs.getInt("pos"));
+				result.setDepth(rs.getInt("depth"));
 			}
 		} catch (Exception err) {
 			System.out.println("getBoard() : " + err);
@@ -191,5 +199,56 @@ public class BoardDao {
 		} finally {
 			freeConnection();
 		}
+	}
+	
+	public void replyUpdatePos(Board board) {
+		try {
+			// pos > 선택한 부모의 글의 pos
+			con = ds.getConnection();
+			String sql = "update tblboard set pos = pos + 1 where pos > ?";
+			stmt = con.prepareStatement(sql);
+			// 부모의 pos
+			stmt.setInt(1, board.getPos());
+			stmt.executeUpdate();
+		}
+		catch(Exception err) {
+			System.out.println("replyUpdatePos : " + err);
+		} finally {
+			freeConnection();
+		}
+	}
+	// ReplyProc.jsp
+	public void replyBoard(Board board) {
+		String sql = "insert into tblboard(b_num," + "b_name, b_email, b_homepage, b_subject, b_content, "
+				+ "b_pass, b_count, b_ip, b_regdate, pos, depth) "
+				+ "values(seq_b_num.nextVal, ?,?,?,?,?,?, 0, ?, sysdate, ?, ?)";
+		try {
+			con = ds.getConnection();
+			
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, board.getB_name());
+			stmt.setString(2, board.getB_email());
+			stmt.setString(3, board.getB_homepage());
+			stmt.setString(4, board.getB_subject());
+			stmt.setString(5, board.getB_content());
+			stmt.setString(6, board.getB_pass());
+			stmt.setString(7, board.getB_ip());
+			// 부모의 포지션 값을 가져옴
+			stmt.setInt(8, board.getPos() + 1);
+			stmt.setInt(9, board.getDepth() + 1);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("setBoard : " + e);
+		} finally {
+			freeConnection();
+		}
+	}
+	
+	public String useDepth(int depth) {
+		String result = "";
+		for(int i = 0; i < depth*3; i++) {
+			result += "&nbsp;";
+		}
+		return result;
 	}
 }

@@ -2,6 +2,7 @@
 <%@ page import="mybean.Board" %>
 <jsp:useBean id="dao" class="mybean.BoardDao" />
 <%
+	// 부모 글번호 받기
 	int b_num = Integer.parseInt(request.getParameter("b_num"));
 	Board board = dao.getBoard(b_num);
 	
@@ -26,6 +27,8 @@
 		<table width=80% cellspacing=0 cellpadding=3 align=center>
 			<form name=post method=post action="ReplyProc.jsp">
 			<input type="hidden" name="b_ip" value="<%=request.getRemoteAddr() %>" />
+			<!-- 부모글 번호 넘겨주기 -->
+			<input type="hidden" name="b_num" value="<%=b_num %>" />
 				<tr>
 					<td align=center>
 						<table border=0 width=100% align=center>

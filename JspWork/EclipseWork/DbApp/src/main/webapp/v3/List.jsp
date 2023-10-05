@@ -13,11 +13,11 @@
 	}
 
 	int totalRecord = 0; // 총 글의 개수
-	int numPerPage = 5; // 한 페이지당 보여질 글의 개수
-	int totalPage = 0; // 총 페이지 수
+	int numPerPage = 20; // 한 페이지당 보여질 글의 개수
+	int totalPage = 0; // 총 페이지 수. 계산해서 나와야하니까 우선 0. 딱 맞아 떨어지게
 	int nowPage = 0; // 현재 페이지
 	int beginPerPage = 0; // 페이지별 시작 번호
-	int pagePerBlock = 3; // 블럭 당 페이지 수
+	int pagePerBlock = 2; // 블럭 당 페이지 수
 	int totalBlock = 0; // 총 블럭 수
 	int nowBlock = 0; // 현재 블럭
 %>
@@ -119,7 +119,7 @@
 			<tr>
 				<td><%=board.getB_num()%></td>
 				<td>
-					
+					<%=dao.useDepth(board.getDepth()) %>
 					<%
 						if(board.getDepth() > 0){
 					%>
