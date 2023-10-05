@@ -221,7 +221,22 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 				bean 또는 map
 				EL 내장 객체
 				객체.프로퍼티 또는 객체[프로퍼티]
-
+			- 내장 객체
+				pageScope
+				requestScope
+				sessionScope
+				applicationScope
+				
+				param
+				paramValues
+				
+				header
+				headerValues
+				
+				cookie
+				initParam
+				
+				pageContext
 4. BootStrap
 (1) UI 프레임워크
 (2) html, css, javascript

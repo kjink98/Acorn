@@ -167,7 +167,7 @@
 		
       
 		  
-	  <Context docBase="BootStrapApp" path="/BootStrapApp" reloadable="true" source="org.eclipse.jst.jee.server:BootStrapApp"/><Context docBase="DbApp" path="/DbApp" reloadable="true" source="org.eclipse.jst.jee.server:DbApp"/></Host>
+	  <Context docBase="ELJSTLApp" path="/ELJSTLApp" reloadable="true" source="org.eclipse.jst.jee.server:ELJSTLApp"/></Host>
     </Engine>
   </Service>
 </Server>
