@@ -237,6 +237,31 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 				initParam
 				
 				pageContext
+	2) JSTL (Jsp Standard Tag Library)
+		- 역할 및 특징
+			EL 이나 표준 ActionTag으로 처리하기 힘든 부분 담당
+			연산, 조건, 반복 등
+		- 구분	
+			1)Core
+				- 관례적으로 prefix는 c
+				- 일반 프로그래밍에서 제공하는 것과 유사한 변수 선언, 실행 흐름의 제어 기능을 제공
+				- 페이지 이동 기술 제공(redirect, import, url)
+				- uri:http://java.sun.com/jsp/jstl/core
+			2)Formatting
+				- 관례적으로 prefix는 fmt
+				- 숫자, 날짜, 시간을 포맷팅하는 기능과 국제화, 다국어 기능을 제공
+				- uri:http://java.sun.com/jsp/jstl/fmt
+			3)Database
+				- DB의 데이터를 수정/삭제/삽입/입력/조회하는 기능을 제공
+				- uri:http://java.sun.com/jsp/jstl/sql
+			4)XML
+				- XML문서를 처리할 때 필요한 기능을 제공
+				- uri:http://java.sun.com/jsp/jstl/xml
+			5)Function
+				- 문자열을 처리하는 함수를 제공
+				- uri:http://java.sun.com/jsp/jstl/fn
+		- 라이브러리
+			jstl.jar, standardjar > taglibs-standard-impl-1.2.5.jar, taglibs-standard-spec-1.2.5.jar
 4. BootStrap
 (1) UI 프레임워크
 (2) html, css, javascript
