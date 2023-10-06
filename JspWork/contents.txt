@@ -249,7 +249,7 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 				- uri:http://java.sun.com/jsp/jstl/core
 			2)Formatting
 				- 관례적으로 prefix는 fmt
-				- 숫자, 날짜, 시간을 포맷팅하는 기능과 국제화, 다국어 기능을 제공
+				- 숫자, 날짜, 시간을 포맷팅하는 기능과 국제화, 다국어 기능을 제공 
 				- uri:http://java.sun.com/jsp/jstl/fmt
 			3)Database
 				- DB의 데이터를 수정/삭제/삽입/입력/조회하는 기능을 제공
@@ -273,3 +273,6 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 	5) 5.x
 (4) https://getbootstrap.com
 (5) 반응형 웹
+5. MVC 패턴 : Model View Controller
+	(1) Model1 Archetecture : jsp
+	(1) Model2 Archetecture : mvc
