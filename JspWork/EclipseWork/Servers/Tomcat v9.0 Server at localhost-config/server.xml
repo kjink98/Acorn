@@ -167,7 +167,7 @@
 		
       
 		  
-	  <Context docBase="ELJSTLApp" path="/ELJSTLApp" reloadable="true" source="org.eclipse.jst.jee.server:ELJSTLApp"/></Host>
+	  <Context docBase="ELJSTLApp" path="/ELJSTLApp" reloadable="true" source="org.eclipse.jst.jee.server:ELJSTLApp"/><Context docBase="team1project" path="/team1project" reloadable="true" source="org.eclipse.jst.jee.server:team1project"/><Context docBase="MVCApp" path="/MVCApp" reloadable="true" source="org.eclipse.jst.jee.server:MVCApp"/></Host>
     </Engine>
   </Service>
 </Server>
