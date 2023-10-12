@@ -20,15 +20,22 @@ public class DepartmentServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String depart = req.getParameter("depart");
+	    String command = req.getParameter("command");
+        String url = "";
+	    String depart = req.getParameter("depart");
 		
-		DepartmentBean bean = new DepartmentBean();
-		ArrayList list = bean.getAdvice(depart);
-		
-		req.setAttribute("advice", list);
-		RequestDispatcher view = 
-				req.getRequestDispatcher("views/depart_proc.jsp");
-		view.forward(req, resp);
-	}
-
+	    if(command.equals("DEPART")) {
+            url = "/WEB-INF/views/department.html";
+        }
+        else {
+            DepartmentBean bean = new DepartmentBean();
+            ArrayList list = bean.getAdvice(depart);
+            
+            req.setAttribute("advice", list);
+            url = "/WEB-INF/views/depart_proc.jsp";
+        }
+        
+        RequestDispatcher view = req.getRequestDispatcher(url);
+        view.forward(req, resp);
+    }
 }

@@ -64,7 +64,7 @@ public class BookController extends HttpServlet{
 			session.setAttribute("bookList", bookList);
 		}
 		else if(cmd.equals("CHECKOUT")) {
-			url = "views/checkout.jsp";
+		    url = "/WEB-INF/views/checkout.jsp";
 			
 			int sum = 0;
 			for(int i=0; i<bookList.size(); i++) {
@@ -74,7 +74,7 @@ public class BookController extends HttpServlet{
 			session.setAttribute("amount", sum);
 		}
 		else if(cmd.equals("DEL")) {
-			url = "views/bookshop.jsp";
+		    url = "/WEB-INF/views/bookshop.jsp";
 			// 몇 번째껄 삭제할 건지 순서
 			int idx = Integer.parseInt(req.getParameter("cnt"));
 			

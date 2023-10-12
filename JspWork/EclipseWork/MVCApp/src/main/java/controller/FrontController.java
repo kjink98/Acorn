@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,21 @@ public class FrontController extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-                               
+        String command = req.getParameter("command");
+        String url = "";
+        
+        if(command.equals("DEPART")) {
+            url = "/MVCApp/depart?command=DEPART";
+        }
+        else if(command.equals("BOOKSHOP")) {
+            url = "/MVCApp/bookshop?command=BOOKSHOP";
+        }
+        else if(command.equals("REGISTER")) {
+            url = "/MVCApp/mem?command=REGISTER";
+        }
+        
+        RequestDispatcher view = req.getRequestDispatcher(url);
+        view.forward(req, resp);             
     }
 
 }

@@ -12,14 +12,14 @@ public class FactoryBean {
     }
 
     public ICommand createInstance(String cmd) {
-        if (cmd.equals("MAIN")) {
-            return new MainCommand();
-        } else if (cmd.equals("CONFIRM")) {
-            return new ConfirmCommand();
-        } else if (cmd.equals("COMPLETE")) {
-            return new CompleteCommand();
-        } else {
+        if(cmd.equals("REGISTER")) {
             return new RegisterCommand();
+        }
+        else if(cmd.equals("CONFIRM")) {
+            return new ConfirmCommand();
+        }
+        else {
+            return new CompleteCommand();
         }
     }
 }
