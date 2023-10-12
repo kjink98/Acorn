@@ -276,3 +276,130 @@ https://javaee.github.io/javaee-spec/javadocs/javax/servlet/package-summary.html
 5. MVC 패턴 : Model View Controller
 	(1) Model1 Archetecture : jsp
 	(1) Model2 Archetecture : mvc
+5. AJAX (Asynchronous Javascript And Xml)
+(1) 비동기 처리 방식
+	클라이언트 사이드 렌더링 : 서버에서 데이터만 클라이언트에게 줌
+(2) 선수 기술
+	1) html, css, javascript
+	2) xml, json
+	3) XMLHttpRequest
+(3) onreadystatechange
+		- readystate
+			0(uninitialize) : 객체만 생성되고 아직 초기화가 안된 상태
+			1(loading) : open()이 호출되고 아직 send()까지는 호출되지 않은 상태
+			2(loaded) : send()가 호출되고 서버로부터 status와 헤더정보는 아직 도착하지 않은 상태
+			3(Interactive) : 서버로부터 데이터의 일부만 받은 상태
+			4(complete) : 서버로부터 데이터를 전부 받은 상태
+
+		- status
+			200 : OK
+			403 : Forbidden 접근 거부
+			404 : not found
+			500 : Internal Server error
+			....
+(4) XML
+	1) Extensible Markup Language
+	2) 메타 언어
+	3) 용도
+		- DB
+		- 데이터의 표준화
+		(이기종 시스템간의 정보교환, 웹서비스, 유비쿼터스등)
+
+	4) HTML과 XML
+		<h1>데이터</h1>
+		<age>데이터</age>
+
+	5) 문법
+		- DTD
+		- xml 스키마
+		- XSL
+
+	6) xml문서 종류
+		- well-formed xml document
+		- valid xml document
+
+	7) XML문서의 구조
+		Prologue - 1개
+		Element - 1개
+		Misc - 0개 이상
+
+	8) Element
+		- 작성 문법
+			모든 xml문서는 반드시 단 하나의 루트 엘리먼트를 갖는다.
+			루트는 여러개의 자식 엘리먼트를 가질 수 있고 또 그 자식도 자신의 자식을 가질 수 있다.
+
+		- 종류
+			내용을 가지는 엘리먼트
+			내용이 없는 엘리먼트
+
+		- 작성 규칙
+			시작태그와 끝태그는 반드시 짝을 이루어야 한다.
+			"<"는 값으로 사용불가
+			엘리먼트는 중첩되어 사용될 수 없다.
+
+		- 태그명 작성 규칙
+			이름은 문자로 시작하고 첫번째 문자로 특수문자 중에 "_"로 시작 가능
+			태그명에 공백 불가
+			특수문자중에서 "."은 사용가능하나 가급적 쓰지말자
+			태그명은 대소문자 구별
+			태그명은 xml로 시작불가
+
+		- 엘리먼트의 내용
+			문자 데이터
+			자식 엘리먼트
+			엔티티 또는 문자 참조
+			CDATA section
+			프로세싱 지시자
+			주석
+			공백
+
+	9) DTD
+		- 종류
+			내부 DTD
+			외부 DTD
+
+		- 구성요소
+			엘리먼트 선언
+			속성(Attribute) 선언
+			Entity 선언
+			Notation 선언
+			프로세싱 지시자
+			파라미터 엔티티 참조
+			주석
+			공백
+			Conditional Section
+
+		- 문서 유형 선언
+			<!DOCTYPE 루트엘리먼트 SYSTEM 또는 PUBLIC "식별자">
+			+-//dtd를 개발 및 유지보수 업체명//DTD명 및 버전번호//사용된 언어
+
+		- 엘리먼트 선언
+			<!ELEMENT 이름 컨텐트유형>
+			컨텐트 유형
+			#PCDATA : 내용으로 문자데이터만 갖는다.
+			자식엘리먼트
+			,
+			|
+			?
+			+
+			*
+			기호없음
+			EMPTY
+			MIXED : 문자 또는 자식엘리먼트
+			ANY
+
+		- Attribute 선언
+			<!ATTLIST 엘리먼트명 속성명 속성유형 디폴트>
+			속성 유형
+			CDATA : 문자 데이터
+			ENUMERATION : dtd에 나열된 값 중 하나가 와야 함
+			ID : 유일한 값을 지정
+			IDREF/IDRFES : ID값을 참조
+			NMTOKEN/NMTOKENS : 이름 작성 규칙을 준수하는 데이터만 사용
+			NOTATION : dtd에 명시적으로 선언된 notation명만 사용 가능
+			ENTITY : dtd에 명시적으로 선언된 entity만 사용 가능
+
+
+	10) JAVA
+		- DOM
+		- SAX

@@ -167,7 +167,7 @@
 		
       
 		  
-	  <Context docBase="ELJSTLApp" path="/ELJSTLApp" reloadable="true" source="org.eclipse.jst.jee.server:ELJSTLApp"/><Context docBase="team1project" path="/team1project" reloadable="true" source="org.eclipse.jst.jee.server:team1project"/><Context docBase="MVCApp" path="/MVCApp" reloadable="true" source="org.eclipse.jst.jee.server:MVCApp"/></Host>
+	  <Context docBase="ELJSTLApp" path="/ELJSTLApp" reloadable="true" source="org.eclipse.jst.jee.server:ELJSTLApp"/><Context docBase="team1project" path="/team1project" reloadable="true" source="org.eclipse.jst.jee.server:team1project"/><Context docBase="MVCApp" path="/MVCApp" reloadable="true" source="org.eclipse.jst.jee.server:MVCApp"/><Context docBase="AJAXApp" path="/AJAXApp" reloadable="true" source="org.eclipse.jst.jee.server:AJAXApp"/></Host>
     </Engine>
   </Service>
 </Server>

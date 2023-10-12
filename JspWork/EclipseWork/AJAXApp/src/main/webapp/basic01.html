@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+    let httpRequest = null;
+
+    function fnSubmit(){
+        // 서버와 연결
+        httpRequest = new XMLHttpRequest(); 
+        let name = document.getElementById("name").value;      
+        
+        httpRequest.open("GET", "basic01.jsp?name=" + name, true); 
+        httpRequest.onreadystatechange = fnCallback;
+        httpRequest.send(null);
+    }
+    
+    // 서버와 연결한 후 무슨 일을 할 건지
+    function fnCallback(){
+        alert(httpRequest.readyState);
+        
+        if(httpRequest.readyState == 4){
+            if(httpRequest.status == 200){
+                // 데이터 받아오기
+                let data = httpRequest.responseText;
+                // div 태그안에 집어넣겠다
+                let div = document.getElementById("display");
+                div.innerHTML = data;
+            } 
+            else{
+                alert("무언가 잘못되었음 : " + httpRequest.status);
+            }
+        }
+    }
+</script>
+</head>
+<body>
+    <input type="text" name="name" id="name" />
+    <!-- form 태그도 필요 없음 -->
+    <!-- 원래는 submit을 사용했는데 비동기 방식으로 button을 눌렀을 때 서버에 데이터를 전송한다 -->
+    <input type="button" value="전송" onclick="fnSubmit()"/>
+    <hr>
+    <!-- 서버로 부터 데이터만 받아온다 -->
+    <div id="display"></div>
+</body>
+</html>
