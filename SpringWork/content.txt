@@ -1,0 +1,50 @@
+1. 정의 : 엔터프라이즈 어플리케이션에서 필요로 하는 기능을 제공하는 프레임워크
+2. 특징
+	(1) EJB -> Spring
+	(2) IoC(Inversion of Control) 컨테이너
+		1) DI 패턴 지원
+		2) AOP 패턴 지원
+	(3) 전자정부 프레임워크
+3. https://spring.io
+	https://docs.spring.io/spring-framework/docs/5.3.30/reference/html/
+	https://docs.spring.io/spring-framework/docs/5.3.30/javadoc-api/
+4. 객체 지향 설계 원칙(SOLID)
+	(1) SRP(Single Responsibility)
+	(2) OCP(Open Close)
+	(3) LSP
+	(4) ISP
+	(5) DIP (Dependency Injection)
+5. 프로젝트 생성 방법
+(1) Maven
+	https://dlcdn.apache.org/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.zip
+	
+	다운로드 후 환경 변수 설정
+		M2_HOME
+		path - bin 파일
+	
+	DOS 창에서 mvn --version
+	
+	pom.xml이 있는 폴더에서 
+		mvn compile (다운로드)
+	
+		mvn package (압축)
+		
+	응용 프로젝트 생성
+	mvn archetype:generate
+	-DgroupId=[생성할 프로젝트의 group id]
+	-DartifactId=[생성할 프로젝트의 artifact id]
+	-DarchetypeArtifactId=maven-archytype-quickstart
+	
+	mvn archetype:generate -DgroupId=com.netsong7 -DartifactId=HelloWorld2 -DarchetypeArtifactId=maven-archetype-quickstart
+		archetype:generate : goal, 프로젝트 자체를 maven 너가 만들어줘라
+		groupId : 
+		artifactId : 프로젝트 이름
+		
+	이클립스에서 create maven 후 카탈로그를 internal로
+		그리고 artifact id를 quickstart나 webapp로
+(2) Gradle
+
+6. DI 패턴
+	(1) 의존성 주입 방법
+		- Constructor Argument Resolution
+		- Setter-based Dependency Injection

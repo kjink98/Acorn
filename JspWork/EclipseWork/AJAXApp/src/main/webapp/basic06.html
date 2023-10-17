@@ -20,7 +20,7 @@
         if(httpRequest.readyState == 4){
             if(httpRequest.status == 200){
                 // 객체 형태로 데이터 받아오기
-                let txtDoc = eval("(" + httpRequest.responseText + ")");
+                let txtDoc = eval("(" + httpRequest.responseText + ")");`
                 
                 alert(txtDoc[0].name + ", " + txtDoc[0].id + ", " + txtDoc[0].age);
             }
