@@ -9,22 +9,12 @@ public class App {
 
 	public static void main(String[] args) {
 		// 경로 설정. 설정 파일 읽어오기
-		ctx = new ClassPathXmlApplicationContext("config/basic04_config.xml");
+		ctx = new ClassPathXmlApplicationContext("config/basic05_config.xml");
 		
-		MessageBean bean = ctx.getBean("msgKr", basic04.MessageBean.class);
-		bean.sayHello("홍길동");
-		
-		bean = ctx.getBean("msgKr", basic04.MessageBean.class);
-		bean.sayHello("Tom");
-		
-		bean = ctx.getBean("mkr", basic04.MessageBean.class);
-		bean.sayHello("유비");
-		
-		bean = ctx.getBean("mskr", basic04.MessageBean.class);
-		bean.sayHello("관우");
-		
-		bean = ctx.getBean("kr", basic04.MessageBean.class);
-		bean.sayHello("장비");
+		// 부모 클래스로 가져오기
+		MessageBean bean = ctx.getBean("messageBean", MessageBean.class);
+		// 소비자는 편하게 sayHello만 가져오면 됨 (Ioc)
+		bean.sayHello();
 	}
 
 }

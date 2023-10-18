@@ -48,3 +48,28 @@
 	(1) 의존성 주입 방법
 		- Constructor Argument Resolution
 		- Setter-based Dependency Injection
+7. 빈 생성 방법
+	(1) XML
+		1) <bean>
+		2) 전용 태그
+			<context
+			<aop
+			<..
+	(2) 어노테이션 : 자동 인식
+		1) 빈 스캐닝(bean scanning)
+			특정 어노테이션이 붙은 클래스를 자동으로 찾아서 빈으로 등록해주는 방식
+		2) 빈 스캐너
+			빈 스캐닝 작업을 담당하는 오브젝트
+			디폴트 필터 : @Component
+	(3) 자바코드에 의한 빈 등록
+		1) @Configuration, @Bean
+		2) @Bean
+8. DI 방법
+	(1) XML
+		<property>, <constructor-arg>
+	(2) 자동 와이어링 방식
+		1) XML
+			- byName, byType
+		2) 어노테이션
+			- @Resource
+			- @Autowired

@@ -1,4 +1,4 @@
-package basic05;
+package basic08;
 
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ public class MessageBeanImpl implements MessageBean {
 	}
 	@Override
 	public void sayHello() {
-		String msg = greeting + "!~~ " + name + "님~~ 이제 당신은 " + age + "살 입니다.";
+		String msg = name + "님~~ 이제 당신은 " + age + "살 입니다.1";
 		System.out.println(msg);
 		
 		try {
