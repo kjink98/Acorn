@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        https://www.springframework.org/schema/context/spring-context.xsd">
+        https://www.springframework.org/schema/context/spring-context.xsd" default-autowire="byName">
        <!-- byname -->
         <!-- autowire="byName" : bean의 이름과 property의 이름이 같은걸 찾아서 매칭 -->
 	<!-- 
@@ -20,6 +20,7 @@
 	 -->
 	<!-- 이름이 다를 경우 -->
 	<!-- byType -->
+	<!-- 
 	<bean id="msg" class="basic08.MessageBeanImpl" autowire="byType">
 		<property name="name" value="홍길동"></property>
 		<property name="age" value="20"></property>
@@ -28,6 +29,22 @@
 	<bean id="outputter_rename" class="basic08.FileOutputter">
 		<property name="filePath" value="c:\\temp\\out.txt"></property>
 	</bean>
-
+	 -->
+	 <context:component-scan base-package="basic08"></context:component-scan>
+	 <bean id="msg" class="basic08.MessageBeanImpl">
+		<property name="name" value="홍길동"></property>
+		<property name="age" value="20"></property>
+	</bean>
+	
+	<bean id="outputter_rename" class="basic08.FileOutputter">
+		<property name="filePath" value="c:\\temp\\out.txt"></property>
+		<qualifier value="out1"></qualifier>
+	</bean>
+	
+	<bean id="outputter_rename2" class="basic08.FileOutputter2">
+		<property name="filePath" value="c:\\temp\\out.txt"></property>
+		<qualifier value="out2"></qualifier>
+	</bean>
+	 
 </beans>
 
