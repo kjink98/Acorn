@@ -96,3 +96,7 @@
 		- http://commons.apache.org/dbcp/configuration.html
 	(3) Hikari
 		- https://github.com/brettwooldridge/HikariCP
+		
+	설정파일
+		1. web.xml이 있는 위치에
+		2. 서블렛이름-servlet.xml 이라는 이름으로
