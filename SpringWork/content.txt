@@ -100,3 +100,24 @@
 	설정파일
 		1. web.xml이 있는 위치에
 		2. 서블렛이름-servlet.xml 이라는 이름으로
+11. Spring WebMVC
+	(1) DispatcherServlet
+		1) 스프링 컨테이너 생성
+		2) Front Controller의 역할 수행
+	(2) 스프링 MVC 핵심 구성 요소
+		1) HandlerMapping(org.springframework.web.servlet.handler)
+			- BeanNameUrlHandlerMapping : default
+			- SimpleUrlHandlerMapping
+			- RequestMappingHandlerMapping(org.springframework.web.servlet.mvc.method.annotation)
+			...
+		2) ViewResolver(org.springframework.web.servlet.view)
+			- InternalResourceViewResolver : default
+			- ResourceBundleViewResolver
+			- XmlViewResolver
+			- velocity.VelocityViewResolver
+			...
+		3) View (org.springframework.web.servlet.view)
+			- InternalResourceView : default
+			- JstlView
+			- VelocityView
+			...
