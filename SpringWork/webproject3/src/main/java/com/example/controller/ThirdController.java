@@ -11,6 +11,6 @@ public class ThirdController extends AbstractController{
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		return new ModelAndView("result").addObject("msg", "ThirdController");
+		return new ModelAndView("three").addObject("msg", "ThirdController");
 	}
 }

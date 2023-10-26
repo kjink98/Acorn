@@ -36,25 +36,13 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/spring/appServlet/beans-config.xml
-				/WEB-INF/spring/appServlet/handler-config.xml
-				/WEB-INF/spring/appServlet/resolver-config.xml
+				/WEB-INF/spring/appServlet/servlet-context.xml
 			</param-value>
 		</init-param>
 	</servlet>
 
-	<servlet>
-		<servlet-name>websevice</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-	</servlet>
 	<servlet-mapping>
 		<servlet-name>app</servlet-name>
 		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet-mapping>
-		<servlet-name>websevice</servlet-name>
-		<url-pattern>*.web</url-pattern>
 	</servlet-mapping>
 </web-app>

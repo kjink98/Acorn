@@ -18,12 +18,12 @@ public class IndexController extends AbstractController{
 	}
 }
 */
-
-@Controller
-public class IndexController {
-	@GetMapping("/")
-	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		return new ModelAndView("index");
-	}
-}
+//
+//@Controller
+//public class IndexController {
+//	@GetMapping("/")
+//	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
+//			throws Exception {
+//		return new ModelAndView("index");
+//	}
+//}

@@ -167,7 +167,7 @@
 		
 		
 		
-      <Context docBase="webproject3" path="/webproject3" reloadable="true" source="org.eclipse.jst.j2ee.server:webproject3"/></Host>
+      <Context docBase="finalproject" path="/finalproject" reloadable="true" source="org.eclipse.jst.j2ee.server:finalproject"/></Host>
     </Engine>
   </Service>
 </Server>
