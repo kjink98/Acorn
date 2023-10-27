@@ -9,3 +9,17 @@ CREATE table simpleBoard(
 )
 
 drop table simpleBoard;
+
+CREATE TABLE simpleMember(
+	id number not null,
+	email varchar2(50),
+	password varchar2(50),
+	name varchar2(50),
+	regdate date,
+	CONSTRAINT pk_email PRIMARY KEY(email)
+);
+
+CREATE SEQUENCE seq_bno;
+CREATE SEQUENCE seq_id;
+
+DROP SEQUENCE seq_id;

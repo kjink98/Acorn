@@ -121,3 +121,15 @@
 			- JstlView
 			- VelocityView
 			...
+12. MyBatis
+	(1) 특징
+		1) 자바코드로부터 SQL문을 분리해서 관리
+		2) 작성할 코드가 줄어서 생산성 향상 및 유지보수 편리
+	(2) 필요한 파일
+		1) Configuration 파일 : 환경 설정
+		2) Mapper 파일 : SQL문 작성
+	(3) MyBatis를 사용하기 위한 객체
+		1) SqlSessionFactory : SqlSession을 생성해서 제공
+		2) SqlSession : Sql명령을 수행하는데 필요한 메서드 제공 (MyBatis 제공)
+		3) SqlSessionFactoryBean : SqlSessionFactory를 Spring에서 사용하기 위한 Bean
+		4) SqlSessionTemplate : Sql명령을 수행하는데 필요한 메서드 제공 (MyBatis-Spring 제공) (thread-safe)

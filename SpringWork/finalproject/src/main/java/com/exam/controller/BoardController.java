@@ -2,7 +2,11 @@ package com.exam.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.exam.domain.Board;
 
 @Controller
 // Request로 class로 접근
@@ -17,12 +21,20 @@ public class BoardController {
 //	}
 	@GetMapping("/list")
 	public String list() {
-		return "/WEB-INF/views/board/list.jsp";
+		return "board/list";
 	}
 	@GetMapping("/write")
 	public String write() {
-		return "/WEB-INF/views/board/write.jsp";
+		return "board/write";
 	}
+	
+	// 오버라이딩
+	@PostMapping()
+	public String write(@ModelAttribute Board board) {
+		System.out.println("rwrwr");
+		return null;
+	}
+	
 	@GetMapping("/read")
 	public String read() {
 		return null;
