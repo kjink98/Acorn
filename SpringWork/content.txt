@@ -133,3 +133,6 @@
 		2) SqlSession : Sql명령을 수행하는데 필요한 메서드 제공 (MyBatis 제공)
 		3) SqlSessionFactoryBean : SqlSessionFactory를 Spring에서 사용하기 위한 Bean
 		4) SqlSessionTemplate : Sql명령을 수행하는데 필요한 메서드 제공 (MyBatis-Spring 제공) (thread-safe)
+		
+	※ ORM - 객체 관계 테이블
+		어플리케이션과 데이터베이스 연결 시 SQL언어가 아닌 어플리케이션 개발언어로 데이터베이스를 접근할 수 있게 해주는 툴

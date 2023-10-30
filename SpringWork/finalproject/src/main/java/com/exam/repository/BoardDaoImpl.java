@@ -15,14 +15,12 @@ public class BoardDaoImpl implements BoardDao {
 	private static final String NAMESPACE = "com.exam.mybatis.boardMapper";
 	@Override
 	public List<Board> getList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList(NAMESPACE + ".getList");
 	}
 
 	@Override
 	public Board read(int bNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne(NAMESPACE + ".read", bNo);
 	}
 
 	@Override

@@ -8,4 +8,12 @@
 		INSERT INTO simpleBoard(bNo, bTitle, bWriter, bContent)
 		VALUES(seq_bno.nextVal, #{bTitle}, #{bWriter}, #{bContent})
 	</insert>
+	
+	<select id="getList" resultType="Board">
+		SELECT * FROM simpleBoard ORDER BY bNo DESC
+	</select>
+	
+	<select id="read" resultType="Board" parameterType="int">
+		SELECT * FROM simpleBoard WHERE bNo=#{bNo}
+	</select>
 </mapper>
