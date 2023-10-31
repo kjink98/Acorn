@@ -28,8 +28,11 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public Member SelectWithPass(String email, String pw) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		RegisterRequest rr = new RegisterRequest();
+		rr.setEmail(email);
+		rr.setPassword(pw);
+		
+		return sqlSession.selectOne(NAMESPACE + ".selectWithPass", rr);
 	}
 
 }

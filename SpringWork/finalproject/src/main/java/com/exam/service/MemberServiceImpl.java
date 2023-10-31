@@ -26,8 +26,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public Member SelectWithPass(String email, String pw) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Member member = memberDao.SelectWithPass(email, pw);
+		return member;
 	}
 
 }

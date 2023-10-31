@@ -3,7 +3,7 @@
 <%@ page session="false"%>
 
 <c:set var="loginId" value="${pageContext.request.getSession(false) == null ? '' : pageContext.request.session.getAttribute('id') }"/>
-<c:set var="loginOut" value="${loginId == '' ? 'Login' : loginId }" />
+<c:set var="loginOut" value="${loginId == '' ? 'Login' : loginId.toString() }" />
 <c:set var="loginOutLink" value="${loginId == '' ? '/member/login' : '/member/logout' }" />
 <!DOCTYPE html>
 <html>
