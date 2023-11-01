@@ -141,3 +141,13 @@
 	(1) 프로젝트 작성 방법
 		1) IDE를 이용
 		2) https://start.spring.io
+	(2) 같이 사용하면 좋은 것들
+		1) DevTools
+		2) LiveReload++
+			https://chrome.google.com/webstore/detail/livereload%20%20/ciehpookapcdlakedibajeccomagbfab --> 자동 새로고침
+		3) Lombok
+			projectlombok.org --> 롬북 다운로드
+		4) H2
+	(3) Thymeleaf
+		1) 순수한 html파일을 사용
+		2) SSR

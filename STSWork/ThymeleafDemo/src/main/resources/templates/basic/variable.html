@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>variable.html</title>
+</head>
+
+<body>
+	<h1>Spring EL</h1>
+	<hr>
+
+	<ul>Object
+		<!-- lombok을 이용한 getter 메소드 -->
+		<li>[[${user.getUserName()}]]</li>
+		<!-- property 규칙 -->
+		<li>[[${user.userName}]]</li>
+		<li>[[${user['userName']}]]</li>
+	</ul>
+
+	<hr>
+
+	<ul>List
+		<li>[[${users[0].getUserName()}]]</li>
+		<li>[[${users[0].userName}]]</li>
+		<li>[[${users[0]['userName']}]]</li>
+	</ul>
+	
+	<ul>Map
+		<li>[[${userMap['userA'].getUserName()}]]</li>
+		<li>[[${userMap['userA'].userName}]]</li>
+		<li>[[${userMap['userA']['userName']}]]</li>
+	</ul>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>text-basic.html</title>
+</head>
+<body>
+	<h1>컨텐츠 데이터 출력하기</h1>
+	<hr>
+	Escape처리<br>
+	<ul>
+		<li><span th:text="${data}"></span></li>
+		<li>[[${data}]]</li>
+	</ul>
+	
+	<hr>
+	
+	Unescape처리<br>
+	<ul>
+		<li><span th:utext="${data2}"></span></li>
+		<li>[(${data2})]</li>	
+	</ul>
+	
+	<hr>
+	<!-- th:inline="none" 타임리프의 문법이 아니다. -->
+	<span th:inline="none">[[...]] 과 [(...)]</span>
+</body>
+</html>
