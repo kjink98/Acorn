@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>text-basic.html</title>
+</head>
+<body>
+	<h1>자바 스크립트</h1>
+	<script th:inline="javascript">
+		let username = [[${user.userName}]]	
+		let age = [[${user.age}]]
+		
+		let user = [[${user}]]
+		
+		alert(age)
+		
+		[# th:each="user : ${users}"]
+			let item[[${userStat.count}]] = [[${user}]]
+		[/]
+	</script>
+</body>
+</html>
