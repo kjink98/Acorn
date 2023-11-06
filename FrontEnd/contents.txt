@@ -843,3 +843,31 @@ div
 	
 	}
 </style>
+
+========================================================
+VUE (https://ko.vuejs.org)
+-----
+VueJS, ReactJS, AngularJS, Svelte, ...
+
+1. 특징
+	(1) SPA(Single Page Application)
+	(2) 컴퍼넌트
+2. 개발 환경 설정
+	(1) Node.js 설치, npm 설치
+		node --version
+		npm --version
+	(2) yarn 설치
+		npm install -g yarn
+	(3) Visual Studio Code 설치
+	(4) VS Code 확장 요소
+		1) Vetur
+		2) vue VSCode snippets
+		3) Live Server
+		4) vscode-icons
+		5) auto rename tag, auto closetag
+3. Vue 사용 방법
+	(1) vue.js 파일 이용
+		1) 다운로드 받은 후 링크
+		2) CDN
+4. 기본 구조
+	(1) Vue Instance

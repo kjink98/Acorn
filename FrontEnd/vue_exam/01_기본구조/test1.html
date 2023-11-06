@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>기본 구조</h2>
+        <!-- vue에서 처리한 결과를 보여줄 위치 -->
+        {{message}}
+    </div>
+    <!-- 
+        <script>
+            Vue.createApp({
+                data : function(){
+                    return { message : "Hello Vue~~"}
+                }
+            }).mount("#app")
+            // .mount : 어디에 결과값을 던져줄 것인가
+        </script>
+    -->
+    <!-- 직접 Vue에 접근하지 않고 Vue라는 변수를 만들어 접근 -->
+    <script>
+        const {createApp} = Vue
+        createApp({
+            data : function(){
+                return { message : "Hello Vue~~"}
+            }
+        }).mount("#app")
+    </script>
+</body>
+</html>
