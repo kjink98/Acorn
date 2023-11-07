@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <h1> v-if </h1>
+    <ul>
+        <li>보이기, 숨기기(display:*, display:"none")</li>
+        <li>태그는 삭제하지 않고 그대로 존재</li>
+    </ul>
+    <div id="app">
+        <button v-on:click="onToggle"> 토글 </button>
+        <template v-if="visible">
+            <div>test1</div>
+            <div>test2</div>
+            <div>test3</div>
+        </template>
+        <template v-else>
+            <div>else test1</div>
+            <div>else test2</div>
+            <div>else test3</div>
+        </template>
+        <br><br>
+
+        <div id="hakjum">
+            <div>
+                점수 입력 : <input type="text" v-model="value"/>
+            </div>
+            <div v-if="value == 'a'">a 입니다.</div>
+            <div v-else-if="value == 'b'">b 입니다.</div>
+            <div v-else-if="value == 'c'">c 입니다.</div>
+            <div v-else-if="value == 'd'">d 입니다.</div>
+            <div v-else>해당하는 값이 없습니다.</div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+        createApp({
+            // data 는 프로퍼티
+            data() {
+                return { visible: true, value:"" }
+            },
+            methods: {
+                onToggle() {
+                    this.visible = !this.visible
+                }
+            }
+        }).mount("#app")
+
+
+    </script>
+</body>
+
+</html>

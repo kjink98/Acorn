@@ -847,8 +847,10 @@ div
 ========================================================
 VUE (https://ko.vuejs.org)
 -----
-VueJS, ReactJS, AngularJS, Svelte, ...
-
+VueJS, ReactJS(라이브러리), AngularJS(프레임워크), Svelte, ...
+	※ 라이브러리와 프레임워크의 차이점
+		프레임워크는 모델하우스. 프레임워크가 제공하는 틀에 따라 코드 작성
+		라이브러리는 가구를 조립. 재료의 선택권이나 통제권은 사용자에게 있음
 1. 특징
 	(1) SPA(Single Page Application)
 	(2) 컴퍼넌트
@@ -869,5 +871,6 @@ VueJS, ReactJS, AngularJS, Svelte, ...
 	(1) vue.js 파일 이용
 		1) 다운로드 받은 후 링크
 		2) CDN
+	(2) vue-cli 이용
 4. 기본 구조
 	(1) Vue Instance

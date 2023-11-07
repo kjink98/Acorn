@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <h1> 심플 메모장 </h1>
+    <div id="app">
+        <div>
+            <span>메모 입력 : <input type="text" class="memo-name" v-model="newMemo" v-on:keydown.enter="addMemo" /></span>
+            <button class="btn-add-memo" @click="addMemo">추가</button>
+        </div>
+
+        <div class="list">
+            <ul>
+                <li v-for="memo in list">메모 = {{memo}}
+                    <button @click="deleteMemo(memo)">삭제</button>
+                    <button @click="updateMemo()">수정</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        var data = {
+            list: ["memo1", "memo2", "memo3"],
+            newMemo: ""
+        }
+        const { createApp } = Vue
+        createApp({
+            // data 는 프로퍼티
+            data() {
+                return data;
+            },
+            methods: {
+                addMemo() {
+                    if (this.newMemo.length == 0) {
+                        alert("값을 입력해 주세요")
+                        return;
+                    }
+                    this.list.push(this.newMemo)
+                    this.newMemo = ""
+                },
+                deleteMemo(targetMemo) {
+                    // targetMemo와 list[](원본)에 있는 내용을 비교
+                    // findIndex : 내가 찾고자 하는 위치를 알려줌
+                    let index = this.list.findIndex((memo) => {
+                        return memo == targetMemo
+                    })
+                    // -1 : 삭제할 데이터가 없다
+                    if(index != -1){
+                        this.list.splice(index, 1);
+                    }
+                },
+                updateMemo(index, targetMemo){
+                    
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

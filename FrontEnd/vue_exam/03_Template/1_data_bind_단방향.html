@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <h1> 단방향 바인딩 </h1>
+    <div id="app">
+        <!-- 어디에 데이터를 전달 받을 것인지 정한다 -->
+        count = {{count}}
+    </div>
+
+    <script>
+        const { createApp } = Vue
+        createApp({
+            // data 는 프로퍼티
+            data() {
+                // return {키:값}
+                // return 값
+                // 한 방향에서 데이터만 던져주는 단방향 바인딩
+                // return {count:1}
+                // 반응성 : 값을 수정하면 바로 반영됨
+                return { count: 2 }
+            },
+            // 라이프 사이클 추가
+            // 컴포넌트가 처음 만들어졌을 때 처리하겠다
+            created: function () {
+                this.addCount();
+            },
+            // 프로퍼티 추가
+            methods: {
+                addCount: function () {
+                    // setInterval(함수, 1000)
+                    setInterval(() => { this.count++; }, 1000)
+                }
+
+            }
+        }).mount("#app")
+
+
+    </script>
+</body>
+
+</html>
