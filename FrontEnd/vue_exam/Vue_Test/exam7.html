@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+
+    <h2>숫자 배열 조작과 구구단 출력</h2>
+    <!-- vue에서 처리한 결과를 보여줄 위치 -->
+    <div id="app">
+        <ul>
+            <li v-for="(item, index) in number_list">
+                {{item}}
+                <button @click="modifyNumber(index)">변경</button>
+                <button @click="deleteNumber(index)">삭제</button>
+            </li>
+            <br>
+            <button @click="addNumber()">추가</button>
+            <button @click="sortNumber()">소트</button>
+            <button @click="showResult">구구단 보이기</button>
+        </ul>
+        <br><br>
+        <!-- 구구단 출력 -->
+        <ul v-if="show">
+            <li v-for="item in number_list">
+                <p v-for="item2 in 9">{{item}} X {{item2}} = {{item*item2}}</p>
+            </li>
+        </ul>
+    </div>
+
+
+    <script>
+        const { createApp } = Vue
+        createApp({
+            data: function () {
+                return {
+                    number_list: [2, 3, 4, 5, 6, 7, 8, 9],
+                    show: false
+                }
+            },
+            methods: {
+                sortNumber() {
+                    this.number_list = this.number_list.filter(function (item, idx, array) {
+                        return array.indexOf(item) === idx;
+                    });
+                    this.number_list.sort(function(a,b){
+                        return (a<b ? -1:1)
+                    })
+                },
+                addNumber() {
+                    this.number_list.push(1);
+                },
+                deleteNumber(index) {
+                    this.number_list.splice(index, 1)
+                },
+                modifyNumber(index) {
+                    this.number_list.splice(index, 1, this.number_list[index] + 1)
+                },
+                showResult() {
+                    this.show = true
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

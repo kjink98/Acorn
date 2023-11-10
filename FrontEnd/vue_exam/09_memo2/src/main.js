@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import App from './step3/App.vue'
+import App from './step6/App.vue'
 
 import HeaderComponent from "./components/HeaderComponent"
 import FooterComponent from "./components/FooterComponent"

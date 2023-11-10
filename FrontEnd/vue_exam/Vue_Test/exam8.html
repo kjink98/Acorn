@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+
+    <h2></h2>
+    <!-- vue에서 처리한 결과를 보여줄 위치 -->
+    <div id="app">
+        <ul>
+            <li v-for="n in 10">{{n}} X 5 = {{n * 5}}</li>
+        </ul>
+    </div>
+
+
+    <script>
+        const { createApp } = Vue
+        createApp({
+            data: function () {
+                return {
+                    
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

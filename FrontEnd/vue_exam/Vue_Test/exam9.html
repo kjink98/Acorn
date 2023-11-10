@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+
+    <h2></h2>
+    <!-- vue에서 처리한 결과를 보여줄 위치 -->
+    <div id="app">
+        <p>{{count}}</p>
+        <input @click="add1()" type="button" value="1씩 증가" />
+    </div>
+
+
+    <script>
+        const { createApp } = Vue
+        createApp({
+            data: function () {
+                return {
+                    count : 0
+                }
+            },
+            methods : {
+                add1(){
+                    this.count += 1;
+                    
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

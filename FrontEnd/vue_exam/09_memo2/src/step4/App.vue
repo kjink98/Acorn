@@ -4,8 +4,8 @@
     </div>
     <hr>
     <div id="app">
-        <list-page :list="list" :setReadMemo="setReadMemo" v-if="mode == 'list'"></list-page>
-        <read-page :current-memo="selectedMemo" v-if="mode == 'read'"></read-page>
+        <list-page :list="list" :setReadMemo="setReadMemo" v-if="mode == MODE.LIST"></list-page>
+        <read-page :current-memo="selectedMemo" v-if="mode == MODE.READ"></read-page>
     </div>
     
 </template>
@@ -13,11 +13,7 @@
 <script>
 import ListPage from "./pages/ListPage.vue"
 import ReadPage from "./pages/ReadPage.vue"
-
-    const MODE = {
-        LIST : "list",
-        READ : "read"
-    }
+import {MODE} from "./common"
 
     export default {
         components:{
@@ -35,6 +31,11 @@ import ReadPage from "./pages/ReadPage.vue"
             setReadMemo(index){
                 this.selectedMemo = this.list[index]
                 this.mode = MODE.READ
+            }
+        },
+        computed : {
+            MODE(){
+                return MODE;
             }
         }
         
