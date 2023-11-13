@@ -920,3 +920,7 @@ VueJS, ReactJS(라이브러리), AngularJS(프레임워크), Svelte, ...
 	(2) 스타일
 		- 인라인 스타일
 		- 오브젝트 스타일
+		
+	: : v-bind
+	@ : v-on
+	# : v-slot
