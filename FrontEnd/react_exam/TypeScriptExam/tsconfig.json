@@ -1,0 +1,6 @@
+{
+    "compileOptions" : {
+        "noEmitOnError" : true,
+        "strictNullChecks" : true
+    }
+}
