@@ -37,6 +37,8 @@ const inter : {name:string, age:number} &
 // ---------------------------------------------
 
 // Type Alias & Interface
+
+// 1. Type Alias
 type NUM = number
 
 let num1:number = 1;
@@ -66,4 +68,19 @@ const mankind : MANKIND = {
     height:170,
     weight:70,
     name:"john"
+}
+
+// 2. Interface : 설계
+interface IMANKIND {
+    name: string;
+    age: number;
+    height: number;
+    weight: number;
+}
+
+const mankind_data:IMANKIND = {
+    name:"홍길동",
+    weight:80,
+    height:180,
+    age:30
 }

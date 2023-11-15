@@ -29,3 +29,15 @@ num1 = num2;
 function printValue2(value) {
     console.log(value);
 }
+var mankind = {
+    age: 20,
+    height: 170,
+    weight: 70,
+    name: "john"
+};
+var mankind_data = {
+    name: "홍길동",
+    weight: 80,
+    height: 180,
+    age: 30
+};
