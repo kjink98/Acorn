@@ -167,7 +167,7 @@
 		
 		
 		
-      <Context docBase="finalproject" path="/finalproject" reloadable="true" source="org.eclipse.jst.j2ee.server:finalproject"/></Host>
+      <Context docBase="Dogether" path="/Dogether" reloadable="true" source="org.eclipse.jst.jee.server:Dogether"/></Host>
     </Engine>
   </Service>
 </Server>

@@ -17,8 +17,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    // "noEmit": true, // 에러가 날 경우 js로 변환시키지 않음
+    "jsx": "react-jsx" // tsx => js, jsx => js
   },
   "include": [
     "src"

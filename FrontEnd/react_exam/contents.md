@@ -92,7 +92,7 @@
 - npm i react react-dom
 - npm i -D @types/react @types/react-dom
 
-[] webpack-dev-server
+[*] webpack-dev-server
 - npm install --save-dev webpack-dev-server
 - npx webpack serve
 - devServer.static
@@ -118,3 +118,66 @@
 ## (2) ReactElement
 자기가 표현하고 싶은 무언가를 담고있는 내용
 - React.createElement(type, [props], [...child])
+
+## (3) JSX
+- Javascript + XML : Action + View
+- 코드를 줄이고 View를 직관적으로 상상할 수 있게 도움을 준다.
+- 주의할 점
+    - Babel에 통해서 JSX -> JS로 Tranpilint이 필요하다.
+    - 시작과 끝태그가 반드시 한 쌍으로 묶여야 한다.
+    - 반드시 하나의 요소로 표현해야 한다.
+    - 중괄호를 이용하여 JS표현식을 사용할 수 있다.
+
+## (4) Commponent
+- input으로 props를 받고, output으로 Element를 내보내주는 것
+- 작성 방식
+    - Class Component
+        - 생성자로 props를 받고 render를 통해서 Element를 내보낸다.
+    - Function Component
+        - 매개변수로 props를 받고 리턴값으로 Element를 내보낸다.
+- 설계 방법
+    - Higher Order Component Pattern
+    - Compound Component Pattern
+    - Provider pattern
+    - Hook Parttern
+    - Atomic Disign Pattern
+
+# 8. Component 활용
+## (1) Props & State
+리액트로 동적페이지를 만들고 싶다면 Virtual DOM 업데이트 할 줄 알면 된다. 그 방법은 바로 Props & State를 변경하는 것이다.
+
+### 1) Props
+- 외부에서 주입되는 데이터로 부모 컴퍼넌트에서 자식 컴퍼넌트로 전달
+- 순수 JS객체로 컴퍼넌트안에서 수정되어서는 안된다.
+- 업데이트 방법 : 부모에서 다른 속성값을 주는 경우
+
+### 2) State
+- 컴퍼넌트에서 생성되며, 내부에서만 사용 가능한 값이다.
+- 순수 JS객체로 수정 가능하다.
+- 업데이트 방법 : setState() 사용
+
+### 3) 업데이트 과정
+- Diffing Algorithm
+
+리엑트에서는 New Element와 Old Element의 비교를 통해서 Virtual DOM을 변경하는 작업을 Reconciliation(재조정)이라고 한다.
+
+- 알고리즘
+    - Type이 다르면 이전 트리를 버리고 새로운 트리를 적용한다. 이 과정에서 자식 엘리먼트들도 모두 제거된다.
+    - 같은 타입의 DOM Element일 경우, 속성이 다른 내용에 대해서만 새롭게 수정한다. 자식은 재귀적으로 Diffing Algorithm을 따른다.
+    - 같은 타입의 Component Element인 경우에는 State는 유지되고 Props는 새로 만들어진 후 render를 호출해 비교한다.
+    - 여러 개의 동일한 엘리먼트가 같은 깊이에 존재한다면, key 속성을 통해서 업데이트의 대상을 추려낼 수 있다.
+
+## (2) Life Cycle
+- https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+### 1) Mounting
+constructor => render => Update Read DOM => componentDidMount
+
+### 2) Updating
+render => Update Real DOM => componentDidUpdate
+
+### 3) Unmounting
+componentWillUnmount
+
+### 4) Process
+props => component => render() => Element => 비교 알고리즘 => Virtual DOM => Real DOM
