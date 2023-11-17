@@ -181,3 +181,39 @@ componentWillUnmount
 
 ### 4) Process
 props => component => render() => Element => 비교 알고리즘 => Virtual DOM => Real DOM
+
+<br><br><br>
+<hr>
+
+# 9. Function Component
+## (1) Hooks
+- 기존의 클래스 컴퍼넌트는 View와 Logic이 붙어있기 때문에 이것을 잘라서 분리시키고, 로직은 로직만의 자유로움을 가질 수 있게 하는 것이 Hook의 역할이다.
+- View는 Function Component가 담당하고 Logic은 Hook이 담당한다.
+- Hooks 란 컴퍼넌트 외부로 렌더 로직을 분리하기 위한 수단으로 로직의 재사용성을 높이며 Function Component에 더 적합한 방식이다.
+
+## (2) Hooks API
+
+### 1) useState
+- Function Component는 기본적으로 상태를 관리할 수 있는 컴퍼넌트가 아니다.
+- Stateless => Stateful
+- [상태값, 상태변경함수 ] = useState(초기값)
+
+### 2) useEffect
+- Side Effect
+    - 네트워크 요청
+    - 직접적인 DOM 변경
+    - 로깅
+    - 타이머 설정
+    - 데이터 구독
+- DOM에 반영된 이후 필요한 작업들을 어디에선가 처리를 해줘야 하는데, 이 때 이것들을 처리해주는 API
+- useEffect(함수, [의존성])
+- 모든 Render마다 => 의존성 체크 => 함수 동작 => Effects 동작
+- 의존성은 Effects 발동 조건 : 배열 내의 데이터가 변경되었을 때에만 Effects 실행
+- Class Component와 Life Cycle 비교
+    - Class Component
+        - Mounting : constructor => render => componentDidMount
+        - Updating : render => componentDidUpdate
+        = Unmounting : componentWillUnmounting
+    - Function Component
+        - Mounting / Updating : Run(function body) => Effects 동작
+        - Unmounting : clean-up 동작
