@@ -4,6 +4,7 @@ interface CountDisplayProps{
     count:number;
 }
 function CountDisplay(props:CountDisplayProps): React.ReactElement{
+// const Counter:React.FC<CountDisplayProps> = ({count}) => {
     React.useEffect(() => {
         console.log("[Rendered] CountDisplay / useEffect")
     });

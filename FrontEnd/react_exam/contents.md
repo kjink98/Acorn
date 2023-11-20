@@ -217,3 +217,13 @@ props => component => render() => Element => 비교 알고리즘 => Virtual DOM 
     - Function Component
         - Mounting / Updating : Run(function body) => Effects 동작
         - Unmounting : clean-up 동작
+
+Memoization : 한 번 계산했던 결과값을 그대로 다시 사용하는 것
+
+### 3) useMemo
+- useMemo(함수, [의존성])
+- return value를 memoization한다.
+
+### 4) useCallback
+- useCallback(함수, [의존성])
+- function 자체를 memoization한다.

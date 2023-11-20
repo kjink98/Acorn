@@ -8,9 +8,12 @@ function useWindowWidth(){
     }
     React.useEffect(()=>{
         window.addEventListener('resize', handleResize);
-    }
 
-    );
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+    return width;
 }
 
 export default useWindowWidth;
