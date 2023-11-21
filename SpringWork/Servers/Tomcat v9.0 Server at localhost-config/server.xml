@@ -167,7 +167,7 @@
 		
 		
 		
-      <Context docBase="Dogether" path="/Dogether" reloadable="true" source="org.eclipse.jst.jee.server:Dogether"/></Host>
+      <Context docBase="jwbook" path="/jwbook" reloadable="true" source="org.eclipse.jst.jee.server:jwbook"/></Host>
     </Engine>
   </Service>
 </Server>
