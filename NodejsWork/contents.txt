@@ -1,0 +1,19 @@
+1. Node.js란?
+    - 자바스크립트 엔진
+    - 자바스크립트 런타임
+    - 웹 브라우저가 아니더라도 자바스크립트를 사용하기 위해서
+
+    (1) 엔진의 종류
+        - V8 : Chrome
+        - SpiderMonkey : Firefox
+        - JavascriptCore : Safari
+        - Chakra : IE
+    (2) Browser API & Node.js API
+        - 모두 사용할 수 있는 API
+            console.log(), ... 
+        - Browser API
+            window, ...
+        - Node.js API
+            Process, ... 
+        - convention 규칙에 따른 함수명
+            url, settimeout
