@@ -1,0 +1,43 @@
+1. 기본 명령어
+	show dbs;
+	use db명; 
+		- 있으면 연결, 없으면 만듦
+	show collections;
+	db;
+	
+2. Collection : createCollection(<name>[, <option>]), drop()
+	(1) collection 만드는 법 1
+		use testdb;
+		db.createCollection("books");
+		
+		db.books.insert({"title" : "mongodb배우기"});
+		db.books.insert({"title" : "mongodb정복", "author":"홍길동"});
+		db.books.find();
+	(2) collection 만드는 법 2
+		use testdb;
+		db.hobbies.insert({"name": "홍길동", "hobby":"낚시"});
+	(3) 삭제
+		db.books.drop();
+		
+		※ DB 삭제 : db.dropDatabase();
+
+3. Document : insert(), remove()
+	use testdb;
+	(1) 한 개씩 저장
+		db.books.insert({"title" : "java 정복"});
+		db.books.insert({"title" : "mongodb정복", "author":"홍길동"});
+	(2) 여러 개의 document 저장
+		db.books.insert([
+			{"title" : "book1", "author" : "유비", "price" : 10000},
+			{"title" : "book2", "author" : "관우", "price" : 7000},
+			{"title" : "book3", "author" : "장비", "price" : 12000}
+		]);
+	(3) 여러 개의 value를 저장
+		db.books.insert({
+			"title" : "book4",
+			"author" : "Tom",
+			"seller" : ["교보", "영풍", "종로"]
+			});
+	(4) 삭제
+		db.books.remove({"title" : "book4"});
+		db.books.remove({"_id" :  ObjectId("6577db235567818adf3eab2d")});
