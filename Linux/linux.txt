@@ -1,0 +1,268 @@
+2. 리눅스(Linux)
+(1) 가상화 프로그램
+	1) VM Ware
+		- Workstation Pro
+		- Player
+
+	2) VirtualBox : Oracle
+
+	3) Hyper-V
+
+(2) 기본 프로그램 준비
+	1) putty
+	2) winscp
+
+
+(3) 사용법
+	1) 기본 명령어1
+		dir
+		ls	ls -l(long)		ll	ls -a(all)		ls -la
+		cd ..	cd /
+
+
+	2) 원격 연결
+		- putty 사용
+			ifconfig 를 통해 서버 아이피 확인
+
+		- winscp 사용
+	
+	3) 기본 구조
+		home : 각 일반 계정별 공간
+		root : 관리자의 고유 공간
+		etc : config, passwd, ...
+		lib : shared library
+		usr : 각 사용자들이 사용할 수 있는 디렉토리들
+		var : 주로 로그파일과 같이 크기가 늘어나는 파일들
+		...
+	
+	4) 기본 명령어2
+		- touch : 파일 생성
+			touch 파일명
+			-------------------------
+			touch test.txt
+
+			gedit test.txt
+			vi test.txt
+
+		- cat : 파일의 내용 출력, head, tail
+			cat test.txt
+			head -3 test.txt
+
+		- echo : 출력
+			echo "I love linux"
+			echo "I love linux" > test.txt
+			echo "I love linux" >> test.txt
+
+		- mkdir, rmdir
+			mkdir dir1
+			mkdir dir2 dir3
+			mkdir dir1/dir1-1 dir1/dir1-2
+			ll dir1/
+			rmdir dir2 dir3
+
+		- cp, mv, rm
+			cp test.txt dir1/
+			ll dir1/
+			rmdir dir1 : 디렉토리가 비워져있지 않기 때문에 삭제 불가
+			rm test.txt
+			rm -rf dir1
+
+		- 검색 : find(파일), which(프로그램)
+			touch test.txt
+			루트로 이동 : cd /
+			find test.txt : 현재 위치에서 검색
+			find root/ -name test.txt
+			find / -name test.txt
+
+			which java
+			which python			
+
+	5) 사용자 및 그룹관리
+		- 사용자 추가
+			useradd user2
+			user2의 home 디렉토리 확인
+
+			사용자 계정과 패스워드 등의 정보 확인
+			vi /etc/passwd
+			사용자이름 : 암호 : 사용자아이디 : 소속그룹 : 전체이름 : 홈디렉토리 : 기본 쉘
+
+			비밀번호 확인
+			vi /etc/shadow
+			!! 은 비밀번호가 설정되지 않음을 표시
+
+			비밀번호 설정
+			passwd user2
+
+			접속자 전환(switch user)
+			su 사용자아이디
+
+		- 사용자 그룹
+			그룹정보 확인
+			cat /etc/group
+
+			그룹 생성
+			groupadd centosGroup
+				
+			그룹정보 마지막부터 5개 확인
+			tail -5 /etc/group
+
+			사용자를 추가하면서 가입시키기
+			useradd -g centosGroup user3
+			useradd -g centosGroup user4
+
+			home directory안에서 조회 (ls -l)
+
+			이미 추가되어있는 사용자를 그룹에 가입 시키기
+			usermod -aG centosGroup user2
+
+		- 사용자 및 그룹 삭제
+			userdel user2
+
+			home directory 조회
+
+			사용자 디렉토리 삭제
+			rmdir user2 ( 디렉토리가 비어있을때)
+			rm -rf user2 ( 디렉토리가 비어있지 않을때)
+
+			userdel -r user3
+			userdel -r user4
+
+			groupdel centosGroup
+
+
+	6) 사용 권한
+		- 권한의 종류
+			소유권
+			허가권
+
+		- 허가권(permission) : rwxrwxrwx : 현재 사용자권한, 그룹 사용자권한, 기타 사용자권한
+			home 디렉토리에서 작업
+			-------------------------------
+			현재 위치에서 파일 생성 : test.txt (내용도 간단히 입력)
+			touch test.txt
+			echo "abcdefg" > test.txt
+			ll
+			------------------------------
+			-rw-r--r--. 1 root root 8 ....
+
+			-/d : 디렉토리 구분
+			rw- : 현재 사용자 권한
+			r-- : 그룹 사용자
+			r-- : 기타 사용자
+			root : 소유자
+			root : 그룹명
+
+			디렉토리 생성
+			mkdir abc
+			ll
+
+			su user1
+			touch test.txt
+
+			exit
+
+			chmod 777 abc
+
+			su user1
+			cd abc
+			touch test.txt
+
+			exit
+			
+			chmod 755 abc
+
+		- 소유권(Ownership)
+			chown user1 abc
+
+			su user1
+			cd abc
+			touch test2.txt
+
+			su user2
+			cd abc
+			touch test3.txt
+
+			소유 그룹 변경
+			exit
+			chgrp user1 abc
+
+			exit (root 접속)
+			cd abc
+			touch test3.txt
+
+
+	7) 하드 링크, 심볼릭 링크
+		cd /home/user1
+		touch basefile
+		echo "abcdefg" > basefile
+		
+		하드링크 생성
+		cd ~
+		ln /home/user1/basefile hardlink
+		cat hardlink
+
+		심볼릭 링크 생성
+		ln -s /home/user1/basefile softlink
+		cat softlink
+
+		ls -il
+		ls -il /home/user1/basefile
+
+		basefile 삭제
+		rm /home/user1/basefile
+		cat hardlink
+		cat softlink
+
+	8) 프로세스
+		- ps
+			e(every) : 현재 실행중인 모든 프로세스 표시
+			f(full) : 현재 실행중인 프로세스의 상세 정보
+
+		- 프로세스 중지
+			kill 프로세스 아이디(PID)
+			kill -9 PID
+
+		- Foreground Process와 Background Process ( TTY 항목에서 확인)
+			첫번째 터미널에서 yes 프로그램 실행
+			두번째 터미널에서 ps -e | grep yes
+				ps -e | grep ssh
+
+			종료 방법
+				현재 실행 중인 창에서 ctrl + c 로 강제 종료
+				다른 터미널창에서 kill PIP 를 이용해서 강제 종료
+
+
+			
+			첫번째 창에서 yes > /dev/null
+			두번째 창에서 ps -e | grep yes, 	kill PID
+
+		- df (마운트된 디스크 정보)
+			df -m
+
+		- du(디스크 사용량)
+			du /home
+			
+			전체 합계만 확인하고자 하는 경우
+			du -sk /home
+			du -skm /home
+
+		- free (메모리 사용량)
+			free -m
+
+		- vmstat
+			vmstat 1
+
+
+	9) Shell Script
+		vi name.sh
+		i 입력
+		종료할 때는 esc
+		:wq (write quit)
+
+		실행 방법
+			- /bin/sh 를 이용하는 방법
+				sh name.sh
+
+			- chmod를 이용하는 방법
+				chmod 766 name.sh
+				./name.sh
